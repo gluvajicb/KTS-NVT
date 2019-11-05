@@ -1,5 +1,8 @@
 package tim20.KTS_NVT.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class SeatsSector extends Sector {
 
 	private Integer rowNum;
