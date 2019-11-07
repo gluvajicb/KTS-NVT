@@ -29,8 +29,14 @@ public class EventController
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
     private LocationService locationService;
+
+    @Autowired
     private SectorPriceService sectorPriceService;
+
+    @Autowired
     private TicketService ticketService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
