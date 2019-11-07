@@ -13,3 +13,5 @@ insert into event (id, title, description, is_Active, event_Category, location_i
 insert into sector_price (id, price, sector_id, event_id) values (110, 56, 100, 105);
 insert into sector_price (id, price, sector_id, event_id) values (111, 42, 101, 106);
 
+insert into event_day (id, title, eventdate, event_id) values (201, "Day1", '2019-05-30', 105);
+insert into event_day (id, title, eventdate, event_id) values (202, "Day2", '2019-05-28', 106);

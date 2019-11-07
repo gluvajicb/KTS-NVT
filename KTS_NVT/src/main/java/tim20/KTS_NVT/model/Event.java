@@ -3,8 +3,6 @@ package tim20.KTS_NVT.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +12,10 @@ public class Event {
 	private Long id;
 	private String title;
 	private String description;
-	//private List<Date> dates;
+
+	@OneToMany(mappedBy = "event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<EventDay> eventdays;
+	//private Set<Date> dates;
 	private Boolean isActive;
 	private EventCategory eventCategory;
 
@@ -54,13 +55,21 @@ public class Event {
 		this.description = description;
 	}
 
+	public Set<EventDay> getEventDays() {
+		return eventdays;
+	}
+
+	public void setEventDays(Set<EventDay> eventdays) {
+		this.eventdays = eventdays;
+	}
+
 	/*
 
-	public List<Date> getDates() {
+	public Set<Date> getDates() {
 		return dates;
 	}
 
-	public void setDates(List<Date> dates) {
+	public void setDates(Set<Date> dates) {
 		this.dates = dates;
 	}
 

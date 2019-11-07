@@ -9,11 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tim20.KTS_NVT.dto.EventDTO;
 import tim20.KTS_NVT.exceptions.EventNotFoundException;
-import tim20.KTS_NVT.model.Event;
-import tim20.KTS_NVT.model.EventCategory;
-import tim20.KTS_NVT.model.SectorPrice;
+import tim20.KTS_NVT.model.*;
 import tim20.KTS_NVT.model.Error;
-import tim20.KTS_NVT.model.Ticket;
 import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.LocationService;
 import tim20.KTS_NVT.service.SectorPriceService;
@@ -45,6 +42,20 @@ public class EventController
         Collection<Event> events = eventService.findAll();
 
         return new ResponseEntity<Collection<Event>>(events, HttpStatus.OK);
+
+    }
+
+
+    @GetMapping(value = "/{eventId}/days")
+    public ResponseEntity<Collection<EventDay>> getAllDaysForEvent(@PathVariable("eventId") Long eventId) {
+
+        Event event = eventService.findOne(eventId);
+
+        if (event == null) {
+            throw new EventNotFoundException(eventId);
+        } else {
+            return new ResponseEntity<Collection<EventDay>>(event.getEventDays(), HttpStatus.OK);
+        }
 
     }
 
