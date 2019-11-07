@@ -11,6 +11,7 @@ import tim20.KTS_NVT.dto.EventDTO;
 import tim20.KTS_NVT.exceptions.EventNotFoundException;
 import tim20.KTS_NVT.model.*;
 import tim20.KTS_NVT.model.Error;
+import tim20.KTS_NVT.service.EventDayService;
 import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.LocationService;
 import tim20.KTS_NVT.service.SectorPriceService;
@@ -35,6 +36,9 @@ public class EventController
 
     @Autowired
     private TicketService ticketService;
+    
+    @Autowired
+    private EventDayService eventDayServise;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<Event>> getAll() {
@@ -88,22 +92,37 @@ public class EventController
 
         /* SECTOR PRICES */
         Set<SectorPrice> sectorprices = new HashSet<>();
-        for(Long id : dto.getSectorpriceIDs())
-        {
-            SectorPrice sp = sectorPriceService.findOne(id);
-            sectorprices.add(sp);
+        
+        if(dto.getSectorpriceIDs() != null) {
+        	for(Long id : dto.getSectorpriceIDs())
+            {
+            	System.out.println("Od " + id);
+                SectorPrice sp = sectorPriceService.findOne(id);
+                sp.setEvent(event);
+                
+                sectorprices.add(sp);
+            }
         }
-
         event.setSectorPrice(sectorprices);
+        
+        /* DAYS */
+        Set<EventDay> eventdays = new HashSet<>();
+        
+        if(dto.getEventdaysIDs() != null) {
+        	for(Long id : dto.getEventdaysIDs())
+            {
+            	System.out.println("Od " + id);
+                EventDay ed = eventDayServise.findOne(id);
+                ed.setEvent(event);
+                
+                eventdays.add(ed);
+            }
+        }
+        event.setEventDays(eventdays);;
 
         /* TICKETS */
 
         Set<Ticket> tickets = new HashSet<>();
-        for(Long id : dto.getTicketIDs())
-        {
-            Ticket t = ticketService.findOne(id);
-            tickets.add(t);
-        }
 
         event.setTickets(tickets);
 
@@ -141,7 +160,18 @@ public class EventController
 
     }
 
+    @GetMapping(value = "{eventId}/sectorprices", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<SectorPrice>> getSectorPriceForEvent(@PathVariable("eventId") Long eventId) {
 
+    	Event event = eventService.findOne(eventId);
+
+        if (event == null) {
+            throw new EventNotFoundException(eventId);
+        } else {
+            return new ResponseEntity<Collection<SectorPrice>>(event.getSectorPrice(), HttpStatus.OK);
+        }
+
+    }
 
 
     /* ----------    Exception Handler   ------------- */

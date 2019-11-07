@@ -18,6 +18,7 @@ public class EventDTO
     private EventCategory eventCategory;
     private Long locationID;
     private Set<Long> sectorpriceIDs;
+    private List<Long> eventdaysIDs;
     private Set<Long> ticketIDs;
 
     public EventDTO() {}
@@ -105,4 +106,20 @@ public class EventDTO
     public void setTicketIDs(Set<Long> ticketIDs) {
         this.ticketIDs = ticketIDs;
     }
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public List<Long> getEventdaysIDs() {
+		return eventdaysIDs;
+	}
+
+	public void setEventdaysIDs(List<Long> eventdaysIDs) {
+		this.eventdaysIDs = eventdaysIDs;
+	}
 }
