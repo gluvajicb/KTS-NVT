@@ -1,5 +1,7 @@
 package tim20.KTS_NVT.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,6 +23,9 @@ public class Location {
 
 	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Sector> sectors;
+
+	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Event> events;
 
 	public Location() {
 		super();
@@ -57,5 +62,10 @@ public class Location {
 	public void setSectors(Set<Sector> sectors) {
 		this.sectors = sectors;
 	}
+
+	@JsonIgnore
+	public Set<Event> getEvents() {return events; }
+
+	public void setEvents(Set<Event> events) { this.events = events; }
 
 }

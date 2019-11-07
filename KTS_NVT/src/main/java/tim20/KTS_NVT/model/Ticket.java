@@ -1,16 +1,26 @@
 package tim20.KTS_NVT.model;
 
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
+import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
+
+@Entity
+@Inheritance(strategy=TABLE_PER_CLASS)
 public abstract class Ticket {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private List<Date> date;
+	//private List<Date> date;
 	private Boolean singleDay;
 	private Double price;
 
+	@ManyToOne
 	private Event event;
+
+	@ManyToOne
 	private Sector sector;
 
 	public Ticket() {
@@ -56,6 +66,8 @@ public abstract class Ticket {
 		this.sector = sector;
 	}
 
+	/*
+
 	public List<Date> getDate() {
 		return date;
 	}
@@ -63,5 +75,7 @@ public abstract class Ticket {
 	public void setDate(List<Date> date) {
 		this.date = date;
 	}
+
+	*/
 
 }

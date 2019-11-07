@@ -1,13 +1,22 @@
 package tim20.KTS_NVT.model;
 
+
+import javax.persistence.*;
 import java.util.Set;
 
+@Entity
 public class SectorPrice {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Double price;
 
-	private Set<Sector> sectors;
+	@ManyToOne
+	private Sector sector;
+
+	@ManyToOne
+	private Event event;
 
 	public SectorPrice() {
 	}
@@ -28,12 +37,19 @@ public class SectorPrice {
 		this.price = price;
 	}
 
-	public Set<Sector> getSectors() {
-		return sectors;
+	public Sector getSector() {
+		return sector;
 	}
 
-	public void setSectors(Set<Sector> sectors) {
-		this.sectors = sectors;
+	public void setSector(Sector sector) {
+		this.sector = sector;
 	}
 
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
 }

@@ -57,7 +57,7 @@ public class EventController
 
         event.setTitle(dto.getTitle());
         event.setDescription(dto.getDescription());
-        event.setDates(dto.getDates());
+        // event.setDates(dto.getDates());
         event.setIsActive(dto.getActive());
 
         /* ENUM - EVENT CATEGORY */
@@ -118,7 +118,17 @@ public class EventController
         }
     }
 
+    /* ************* SECTOR PRICE *************** */
 
+
+    @GetMapping(value = "/sectorprices", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<SectorPrice>> getAllSectorPrice() {
+
+        Collection<SectorPrice> sectorprices = sectorPriceService.findAll();
+
+        return new ResponseEntity<Collection<SectorPrice>>(sectorprices, HttpStatus.OK);
+
+    }
 
 
 

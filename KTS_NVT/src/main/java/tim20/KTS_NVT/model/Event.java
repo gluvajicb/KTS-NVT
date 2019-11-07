@@ -1,19 +1,30 @@
 package tim20.KTS_NVT.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
+@Entity
 public class Event {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	private String description;
-	private List<Date> dates;
+	//private List<Date> dates;
 	private Boolean isActive;
 	private EventCategory eventCategory;
 
+	@ManyToOne
 	private Location location;
+
+	@OneToMany(mappedBy = "event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<SectorPrice> sectorPrice;
+
+	@OneToMany(mappedBy = "event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Ticket> tickets;
 
 	public Event() {
@@ -43,6 +54,8 @@ public class Event {
 		this.description = description;
 	}
 
+	/*
+
 	public List<Date> getDates() {
 		return dates;
 	}
@@ -50,6 +63,8 @@ public class Event {
 	public void setDates(List<Date> dates) {
 		this.dates = dates;
 	}
+
+	*/
 
 	public Boolean getIsActive() {
 		return isActive;
@@ -67,6 +82,7 @@ public class Event {
 		this.location = location;
 	}
 
+	@JsonIgnore
 	public Set<SectorPrice> getSectorPrice() {
 		return sectorPrice;
 	}
@@ -75,6 +91,7 @@ public class Event {
 		this.sectorPrice = sectorPrice;
 	}
 
+	@JsonIgnore
 	public Set<Ticket> getTickets() {
 		return tickets;
 	}

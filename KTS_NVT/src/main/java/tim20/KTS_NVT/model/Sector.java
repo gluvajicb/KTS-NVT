@@ -2,14 +2,11 @@ package tim20.KTS_NVT.model;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy=TABLE_PER_CLASS)
@@ -23,6 +20,9 @@ public abstract class Sector {
 	
 	@ManyToOne
 	private Location location;
+
+	@OneToMany(mappedBy = "sector", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<SectorPrice> sector_price;
 
 	public Sector() {
 	}
@@ -52,4 +52,12 @@ public abstract class Sector {
 		this.location = location;
 	}
 
+	@JsonIgnore
+	public Set<SectorPrice> getSector_price() {
+		return sector_price;
+	}
+
+	public void setSector_price(Set<SectorPrice> sector_price) {
+		this.sector_price = sector_price;
+	}
 }
