@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6588aa74-cc9a-492d-980e-85d3157947df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/exceptions/MaxGuestsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/exceptions/NotStanSectorException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KTS_NVT/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/dto/StandTicketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/dto/StandTicketDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/repository/TicketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/repository/TicketRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/SectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/SectorService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

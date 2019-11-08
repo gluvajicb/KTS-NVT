@@ -56,7 +56,7 @@ public class TicketController {
 
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add-seats-ticket", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ticket> addSeatsTicket(@RequestBody SeatsTicketDTO dto) {
         Event event = eventService.findOne(dto.getEventID());
 
@@ -115,7 +115,7 @@ public class TicketController {
         }
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add-stand-ticket", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ticket> addStandTicket(@RequestBody StandTicketDTO dto) {
         Event event = eventService.findOne(dto.getEventID());
 
