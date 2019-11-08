@@ -8,9 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tim20.KTS_NVT.dto.SeatsTicketDTO;
-import tim20.KTS_NVT.exceptions.EventNotFoundException;
-import tim20.KTS_NVT.exceptions.TakenSeatException;
-import tim20.KTS_NVT.exceptions.TicketNotFoundException;
+import tim20.KTS_NVT.dto.StandTicketDTO;
+import tim20.KTS_NVT.exceptions.*;
 import tim20.KTS_NVT.model.*;
 import tim20.KTS_NVT.model.Error;
 import tim20.KTS_NVT.service.EventService;
@@ -57,7 +56,6 @@ public class TicketController {
 
     }
 
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ticket> addSeatsTicket(@RequestBody SeatsTicketDTO dto) {
         Event event = eventService.findOne(dto.getEventID());
@@ -97,10 +95,12 @@ public class TicketController {
             throw  new TakenSeatException(dto.getRowNumber(), dto.getColumnNumber());
         }
 
-        Ticket t = new SeatsTicket();
+        SeatsTicket t = new SeatsTicket();
         t.setEvent(event);
         t.setPrice(dto.getPrice());
         t.setSingleDay(dto.isSingleDay());
+        t.setColumnNumber(dto.getColumnNumber());
+        t.setRowNumber(dto.getRowNumber());
         Sector s = sectorService.findOne(dto.getSectorID());
         t.setSector(s);
 
@@ -108,7 +108,52 @@ public class TicketController {
         eventService.updateEvent(event);
 
         try {
-            t = ticketService.saveTicket(t);
+            Ticket t1 = ticketService.saveTicket(t);
+            return new ResponseEntity<>(t, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Ticket> addStandTicket(@RequestBody StandTicketDTO dto) {
+        Event event = eventService.findOne(dto.getEventID());
+
+        if (event == null) {
+            throw new EventNotFoundException(dto.getEventID());
+        }
+
+        int guestNum = 0;
+        for (Ticket t : event.getTickets()) {
+            if (t instanceof StandTicket) {
+                if(t.getSector().getId() == dto.getSectorID()) {
+                    guestNum++;
+                }
+            }
+        }
+
+        StandSector s;
+        try {
+            s = (StandSector) sectorService.findOne(dto.getSectorID());
+        }catch (Exception e){
+            throw new NotStanSectorException();
+        }
+
+        if(guestNum >= s.getMaxGuests()) {
+            throw  new MaxGuestsException();
+        }
+
+        StandTicket t = new StandTicket();
+        t.setEvent(event);
+        t.setPrice(dto.getPrice());
+        t.setSingleDay(dto.isSingleDay());
+        t.setSector(s);
+
+        event.getTickets().add(t);
+        eventService.updateEvent(event);
+
+        try {
+            Ticket t1 = ticketService.saveTicket(t);
             return new ResponseEntity<>(t, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -158,4 +203,20 @@ public class TicketController {
         Error error = new Error(1, "Seat [ row: " + row + ", column: " + col + "] is already reserved.");
         return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(NotStanSectorException.class)
+    public ResponseEntity<Error> notStandSector(NotStanSectorException e)
+    {
+        Error error = new Error(1,"Sector is not STAND type.");
+        return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(MaxGuestsException.class)
+    public ResponseEntity<Error> maxGuestExc(MaxGuestsException e)
+    {
+        Error error = new Error(1, "There is max number of guests in sector.");
+        return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+    }
+
+
 }

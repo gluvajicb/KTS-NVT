@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6588aa74-cc9a-492d-980e-85d3157947df" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/exceptions/MaxGuestsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/exceptions/NotStanSectorException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KTS_NVT/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/dto/SeatsTicket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/TicketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/dto/StandTicketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/dto/StandTicketDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/repository/TicketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/repository/TicketRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/SectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/SectorService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +61,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -83,6 +83,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -119,17 +121,19 @@
       <workItem from="1573171847769" duration="1015000" />
       <workItem from="1573173935264" duration="590000" />
       <workItem from="1573175698255" duration="591000" />
-      <workItem from="1573177528854" duration="211000" />
+      <workItem from="1573177528854" duration="584000" />
+      <workItem from="1573179552269" duration="589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3191000" />
+    <option name="totallyTimeSpent" value="4153000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />

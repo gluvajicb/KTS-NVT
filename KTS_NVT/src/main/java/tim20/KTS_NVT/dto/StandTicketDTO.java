@@ -5,12 +5,23 @@ public class StandTicketDTO {
     private Long eventDayID;
     private boolean isSingleDay;
     private double price;
+    private Long sectorID;
 
-    public StandTicketDTO(Long eventID, Long eventDayID, boolean isSingleDay, double price) {
+
+    public StandTicketDTO(Long eventID, Long eventDayID, boolean isSingleDay, double price, Long sectorID) {
         this.eventID = eventID;
         this.eventDayID = eventDayID;
         this.isSingleDay = isSingleDay;
         this.price = price;
+        this.sectorID = sectorID;
+    }
+
+    public Long getSectorID() {
+        return sectorID;
+    }
+
+    public void setSectorID(Long sectorID) {
+        this.sectorID = sectorID;
     }
 
     public Long getEventID() {
