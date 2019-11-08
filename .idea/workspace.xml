@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6588aa74-cc9a-492d-980e-85d3157947df" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KTS_NVT/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Location.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Registered.class" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Registered.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/SeatsTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/SeatsTicket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Sector.class" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Sector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/SectorPrice.class" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/SectorPrice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/StandTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/StandTicket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/target/classes/tim20/KTS_NVT/model/Ticket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/dto/SeatsTicket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/EventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KTS_NVT/src/main/java/tim20/KTS_NVT/service/TicketService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,8 +59,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -89,6 +86,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/KTS_NVT" />
@@ -119,17 +117,19 @@
       <updated>1573169937225</updated>
       <workItem from="1573169955013" duration="784000" />
       <workItem from="1573171847769" duration="1015000" />
+      <workItem from="1573173935264" duration="590000" />
+      <workItem from="1573175698255" duration="591000" />
+      <workItem from="1573177528854" duration="211000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1799000" />
+    <option name="totallyTimeSpent" value="3191000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />

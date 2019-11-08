@@ -1,20 +1,30 @@
 package tim20.KTS_NVT.dto;
 
-public class SeatsTicket {
+public class SeatsTicketDTO {
     private Long eventID;
     private Long eventDayID;
     private boolean isSingleDay;
     private double price;
     private int rowNumber;
     private int columnNumber;
+    private Long sectorID;
 
-    public SeatsTicket(Long eventID, Long eventDayID, boolean isSingleDay, double price, int rowNumber, int columnNumber) {
+    public SeatsTicketDTO(Long eventID, Long eventDayID, boolean isSingleDay, double price, int rowNumber, int columnNumber, Long sectorID) {
         this.eventID = eventID;
         this.eventDayID = eventDayID;
         this.isSingleDay = isSingleDay;
         this.price = price;
         this.rowNumber = rowNumber;
         this.columnNumber = columnNumber;
+        this.sectorID = sectorID;
+    }
+
+    public Long getSectorID() {
+        return sectorID;
+    }
+
+    public void setSectorID(Long sectorID) {
+        this.sectorID = sectorID;
     }
 
     public Long getEventID() {
