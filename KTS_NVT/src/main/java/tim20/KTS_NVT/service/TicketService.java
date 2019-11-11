@@ -36,8 +36,13 @@ public class TicketService {
 
     public Ticket saveTicket(Ticket ticket) {
 
-        Ticket t = ticketRepository.save(ticket);
+        Ticket t = (Ticket)ticketRepository.save(ticket);
 
         return t;
     }
+
+    public void deleteTicket(Long ticketId) {
+        ticketRepository.deleteById(ticketId);
+    }
+
 }
