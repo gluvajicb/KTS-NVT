@@ -3,6 +3,7 @@ package tim20.KTS_NVT.dto;
 public class SectorDTO {
 
 	private Long id;
+	
 	private String title;
 	private String type;
 	private int max_guests;

@@ -10,32 +10,32 @@ import java.util.Optional;
 
 @Service
 public class SectorService {
-    @Autowired
-    private SectorRepository sectorRepository;
+	
+	@Autowired
+	private SectorRepository sectorRepository;
 
-    public List<Sector> findAll() {
+	public List<Sector> findAll() {
 
-        List<Sector> sectors = sectorRepository.findAll();
+		List<Sector> sectors = sectorRepository.findAll();
 
-        return sectors;
-    }
+		return sectors;
+	}
 
+	public Sector findOne(Long id) {
 
-    public Sector findOne(Long id) {
+		Optional<Sector> sectorprice = sectorRepository.findById(id);
 
-        Optional<Sector> sectorprice = sectorRepository.findById(id);
+		if (sectorprice.isPresent()) {
+			return sectorprice.get();
+		}
 
-        if(sectorprice.isPresent()) {
-            return sectorprice.get();
-        }
+		return null;
+	}
 
-        return null;
-    }
+	public Sector saveSector(Sector sectorprice) {
 
-    public Sector saveSector(Sector sectorprice) {
+		Sector sp = sectorRepository.save(sectorprice);
 
-        Sector sp = sectorRepository.save(sectorprice);
-
-        return sp;
-    }
+		return sp;
+	}
 }

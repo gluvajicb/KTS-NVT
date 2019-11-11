@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,7 @@ public abstract class Sector {
 	private Set<SectorPrice> sector_price;
 
 	public Sector() {
+		sector_price = new HashSet<SectorPrice>();
 	}
 
 	public Long getId() {

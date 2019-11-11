@@ -2,6 +2,7 @@ package tim20.KTS_NVT.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,7 +29,8 @@ public class Location {
 	private Set<Event> events;
 
 	public Location() {
-		super();
+		sectors = new HashSet<Sector>();
+		events = new HashSet<Event>();
 	}
 
 	public Long getId() {

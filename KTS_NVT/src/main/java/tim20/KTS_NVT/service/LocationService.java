@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tim20.KTS_NVT.converters.LocationDTOConverter;
+import tim20.KTS_NVT.converters.SectorDTOConverter;
+import tim20.KTS_NVT.dto.LocationDTO;
 import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.model.Location;
 import tim20.KTS_NVT.model.SeatsSector;
@@ -30,10 +33,6 @@ public class LocationService {
 		return locations;
 	}
 
-	/*
-	 * public List<Sector> getSectorsByLocation(Long locationId){ List<Sector>
-	 * sectors = sectorRepository.findByLocationId(locationId); return sectors; }
-	 */
 
 	public Location findOne(Long id) {
 
@@ -46,32 +45,35 @@ public class LocationService {
 		return null;
 	}
 
-	public Location saveLocation(Location location) {
-
+	public Location saveLocation(LocationDTO dto) {
+		
+		Location location = LocationDTOConverter.dtoToLocation(dto);
 		Location l = locationRepository.save(location);
 
 		return l;
 
 	}
 
+	public Location updateLocation(LocationDTO dto) {
+
+		if(dto.getId() == null) {
+			return null;
+		}
+		
+		Location location = LocationDTOConverter.dtoToLocation(dto);
+
+		Location l = locationRepository.save(location);
+
+		return l;
+	}
+
 	public Location saveSector(Location location, SectorDTO dto) {
 
 		if (dto.getType().equalsIgnoreCase("seats")) {
-			SeatsSector seatsSector;
-			seatsSector = new SeatsSector();
-			seatsSector.setRowNum(dto.getRow_num());
-			seatsSector.setTitle(dto.getTitle());
-			seatsSector.setColumnNum(dto.getColumn_num());
-			seatsSector.setLocation(location);
-			location.getSectors().add(seatsSector);
+			SeatsSector seatsSector = SectorDTOConverter.dtoToSeatsSector(dto, location);
 			sectorRepository.save(seatsSector);
 		} else {
-			StandSector standSector;
-			standSector = new StandSector();
-			standSector.setTitle(dto.getTitle());
-			standSector.setMaxGuests(dto.getMax_guests());
-			standSector.setLocation(location);
-
+			StandSector standSector = SectorDTOConverter.dtoToStandSector(dto, location);
 			sectorRepository.save(standSector);
 		}
 

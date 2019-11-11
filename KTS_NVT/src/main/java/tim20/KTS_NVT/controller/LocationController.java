@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import tim20.KTS_NVT.dto.LocationDTO;
 import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.exceptions.LocationNotFoundException;
 import tim20.KTS_NVT.exceptions.LowerThanZeroException;
@@ -39,6 +41,56 @@ public class LocationController {
 		return new ResponseEntity<Collection<Location>>(locations, HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Location> getOne(@PathVariable("id") Long id) {
+
+		Location location = locationService.findOne(id);
+
+		if (location == null) {
+			throw new LocationNotFoundException(id);
+		} else {
+			return new ResponseEntity<Location>(location, HttpStatus.OK);
+		}
+
+	}
+
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Location> addLocation(@RequestBody LocationDTO dto) {
+		// location.setId(null);
+		Location location = locationService.saveLocation(dto);
+
+		return new ResponseEntity<Location>(location, HttpStatus.OK);
+	}
+
+	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Location> updateLocation(@PathVariable("id") Long id, @RequestBody LocationDTO dto) {
+
+		Location location = locationService.updateLocation(dto);
+
+		if (location == null) {
+			throw new LocationNotFoundException(id);
+		} else {
+			return new ResponseEntity<Location>(location, HttpStatus.OK);
+		}
+
+	}
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> deleteLocation(@PathVariable("id") Long id) {
+
+		Location location = locationService.findOne(id);
+
+		if (location == null) {
+			throw new LocationNotFoundException(id);
+		} else {
+			locationService.deleteLocation(id);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
+
+	}
+
+	// ******************************** sektori *****************************
+
 	@GetMapping(value = "/{locationId}/sectors")
 	public ResponseEntity<Collection<Sector>> getAllSectorsByLocation(@PathVariable("locationId") Long locationId) {
 
@@ -52,14 +104,6 @@ public class LocationController {
 
 	}
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Location> addLocation(@RequestBody Location location){
-		location.setId(null);
-		locationService.saveLocation(location);
-		
-		return new ResponseEntity<Location>(location, HttpStatus.OK);
-	}
-	
 	@PostMapping(value = "/{locationId}/sectors", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Location> addNewSector(@PathVariable("locationId") Long locationId,
 			@RequestBody SectorDTO dto) {
@@ -93,20 +137,6 @@ public class LocationController {
 
 	}
 
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deleteLocation(@PathVariable("id") Long id) {
-
-		Location location = locationService.findOne(id);
-
-		if (location == null) {
-			throw new LocationNotFoundException(id);
-		} else {
-			locationService.deleteLocation(id);
-			return new ResponseEntity<Void>(HttpStatus.OK);
-		}
-
-	}
-	
 	@DeleteMapping(value = "/sector/{sectorId}")
 	public ResponseEntity<Void> deleteSector(@PathVariable("sectorId") Long id) {
 
@@ -142,5 +172,5 @@ public class LocationController {
 		Error error = new Error(1, "Sector [" + locationId + "] not found");
 		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
 	}
-	
+
 }
