@@ -86,45 +86,11 @@ public class EventController
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
+        event.setMax_tickets(dto.getMax_tickets());
+
 
         /* LOCATION */
         event.setLocation(locationService.findOne(dto.getLocationID()));
-
-        /* SECTOR PRICES */
-        Set<SectorPrice> sectorprices = new HashSet<>();
-        
-        if(dto.getSectorpriceIDs() != null) {
-        	for(Long id : dto.getSectorpriceIDs())
-            {
-            	System.out.println("Od " + id);
-                SectorPrice sp = sectorPriceService.findOne(id);
-                sp.setEvent(event);
-                
-                sectorprices.add(sp);
-            }
-        }
-        event.setSectorPrice(sectorprices);
-        
-        /* DAYS */
-        Set<EventDay> eventdays = new HashSet<>();
-        
-        if(dto.getEventdaysIDs() != null) {
-        	for(Long id : dto.getEventdaysIDs())
-            {
-            	System.out.println("Od " + id);
-                EventDay ed = eventDayServise.findOne(id);
-                ed.setEvent(event);
-                
-                eventdays.add(ed);
-            }
-        }
-        event.setEventDays(eventdays);;
-
-        /* TICKETS */
-
-        Set<Ticket> tickets = new HashSet<>();
-
-        event.setTickets(tickets);
 
         try {
             event = eventService.saveEvent(event);

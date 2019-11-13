@@ -16,23 +16,20 @@ public class EventDTO
     private List<Date> dates;
     private Boolean isActive;
     private EventCategory eventCategory;
+    private Integer max_tickets;
     private Long locationID;
-    private Set<Long> sectorpriceIDs;
-    private List<Long> eventdaysIDs;
-    private Set<Long> ticketIDs;
 
     public EventDTO() {}
 
-    public EventDTO(Long id, String title, String description, List<Date> dates, Boolean isActive, EventCategory eventCategory, Long locationID, Set<Long> sectorpriceIDs, Set<Long> ticketIDs) {
+    public EventDTO(Long id, String title, String description, List<Date> dates, Boolean isActive, EventCategory eventCategory, Integer max_tickets, Long locationID) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.dates = dates;
         this.isActive = true;
         this.eventCategory = eventCategory;
+        this.max_tickets = max_tickets;
         this.locationID = locationID;
-        this.sectorpriceIDs = sectorpriceIDs;
-        this.ticketIDs = ticketIDs;
     }
 
     public Long getId() {
@@ -83,6 +80,14 @@ public class EventDTO
         this.eventCategory = eventCategory;
     }
 
+    public Integer getMax_tickets() {
+        return max_tickets;
+    }
+
+    public void setMax_tickets(Integer max_tickets) {
+        this.max_tickets = max_tickets;
+    }
+
     public Long getLocationID() {
         return locationID;
     }
@@ -91,35 +96,11 @@ public class EventDTO
         this.locationID = locationID;
     }
 
-    public Set<Long> getSectorpriceIDs() {
-        return sectorpriceIDs;
-    }
-
-    public void setSectorpriceIDs(Set<Long> sectorpriceIDs) {
-        this.sectorpriceIDs = sectorpriceIDs;
-    }
-
-    public Set<Long> getTicketIDs() {
-        return ticketIDs;
-    }
-
-    public void setTicketIDs(Set<Long> ticketIDs) {
-        this.ticketIDs = ticketIDs;
-    }
-
 	public Boolean getIsActive() {
 		return isActive;
 	}
 
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
-	}
-
-	public List<Long> getEventdaysIDs() {
-		return eventdaysIDs;
-	}
-
-	public void setEventdaysIDs(List<Long> eventdaysIDs) {
-		this.eventdaysIDs = eventdaysIDs;
 	}
 }

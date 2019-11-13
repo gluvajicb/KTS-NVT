@@ -29,8 +29,8 @@ public class Location {
 	private Set<Event> events;
 
 	public Location() {
-		sectors = new HashSet<Sector>();
-		events = new HashSet<Event>();
+		this.sectors = new HashSet<Sector>();
+		this.events = new HashSet<Event>();
 	}
 
 	public Long getId() {

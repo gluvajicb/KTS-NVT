@@ -3,6 +3,7 @@ package tim20.KTS_NVT.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,9 +16,12 @@ public class Event {
 
 	@OneToMany(mappedBy = "event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<EventDay> eventdays;
-	//private Set<Date> dates;
+
 	private Boolean isActive;
 	private EventCategory eventCategory;
+
+	// Maksimalni broj karata koje mogu da se REZERVISU
+	private Integer max_tickets;
 
 	@ManyToOne
 	private Location location;
@@ -29,7 +33,14 @@ public class Event {
 	private Set<Ticket> tickets;
 
 	public Event() {
+		this.eventdays = new HashSet<>();
+		this.tickets = new HashSet<>();
+		this.sectorPrice = new HashSet<>();
 	}
+
+	public Integer getMax_tickets() { return max_tickets; }
+
+	public void setMax_tickets(Integer max_tickets) { this.max_tickets = max_tickets; }
 
 	public Long getId() {
 		return id;
@@ -62,18 +73,6 @@ public class Event {
 	public void setEventDays(Set<EventDay> eventdays) {
 		this.eventdays = eventdays;
 	}
-
-	/*
-
-	public Set<Date> getDates() {
-		return dates;
-	}
-
-	public void setDates(Set<Date> dates) {
-		this.dates = dates;
-	}
-
-	*/
 
 	public Boolean getIsActive() {
 		return isActive;
