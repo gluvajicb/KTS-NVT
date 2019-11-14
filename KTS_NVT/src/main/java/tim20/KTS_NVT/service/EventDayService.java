@@ -1,5 +1,6 @@
 package tim20.KTS_NVT.service;
 
+import java.sql.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,17 @@ public class EventDayService {
 
         return null;
     }
+	
+	public boolean checkAvailability(Date eventDate, Long locationId) {
+		
+		EventDay day = dayRepository.checkAvailability(eventDate, locationId);
+		
+		if(day == null) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 	
 }

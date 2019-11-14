@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import tim20.KTS_NVT.converters.LocationDTOConverter;
 import tim20.KTS_NVT.dto.LocationDTO;
 import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.exceptions.LocationNotFoundException;
@@ -56,21 +57,30 @@ public class LocationController {
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Location> addLocation(@RequestBody LocationDTO dto) {
-		// location.setId(null);
-		Location location = locationService.saveLocation(dto);
+		
+		Location location = LocationDTOConverter.dtoToLocation(dto);
+		location.setId(null);
+		Location l = locationService.saveLocation(location);
 
-		return new ResponseEntity<Location>(location, HttpStatus.OK);
+		return new ResponseEntity<Location>(l, HttpStatus.OK);
 	}
 
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Location> updateLocation(@PathVariable("id") Long id, @RequestBody LocationDTO dto) {
 
-		Location location = locationService.updateLocation(dto);
+		if(dto.getId() == null) {
+			//neki drugi exception?
+			throw new LocationNotFoundException(id);
+		}
+		
+		Location location = LocationDTOConverter.dtoToLocation(dto);
+		
+		Location l = locationService.updateLocation(location);
 
-		if (location == null) {
+		if (l == null) {
 			throw new LocationNotFoundException(id);
 		} else {
-			return new ResponseEntity<Location>(location, HttpStatus.OK);
+			return new ResponseEntity<Location>(l, HttpStatus.OK);
 		}
 
 	}

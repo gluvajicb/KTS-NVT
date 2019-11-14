@@ -10,14 +10,14 @@ public class SectorPriceDTOConverter {
 
     public static SectorPrice dtoToSectorPrice(SectorPriceDTO dto)
     {
-        EventService eventService = new EventService();
-        SectorService sectorService = new SectorService();
+        //EventService eventService = new EventService();
+        //SectorService sectorService = new SectorService();
 
         SectorPrice sectorprice = new SectorPrice();
 
         sectorprice.setPrice(dto.getPrice());
-        sectorprice.setSector(sectorService.findOne(dto.getSectorID()));
-        sectorprice.setEvent(eventService.findOne(dto.getEventID()));
+        //sectorprice.setSector(sectorService.findOne(dto.getSectorID()));
+        //sectorprice.setEvent(eventService.findOne(dto.getEventID()));
 
         return sectorprice;
 
