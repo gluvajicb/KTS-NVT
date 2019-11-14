@@ -12,7 +12,6 @@ public class EventDTOConverter {
 
     public static Event dtoToEvent(EventDTO dto)
     {
-        EventService eventService = new EventService();
         LocationService locationService = new LocationService();
 
         Event event = new Event();

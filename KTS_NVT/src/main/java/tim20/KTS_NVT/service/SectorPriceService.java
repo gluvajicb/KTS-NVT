@@ -40,4 +40,16 @@ public class SectorPriceService {
 
         return sp;
     }
+
+    public SectorPrice updateSectorPrice(SectorPrice sectorprice) {
+
+        if(sectorprice.getId() == null) {
+            return null;
+        }
+
+        SectorPrice sp = sectorPriceRepository.save(sectorprice);
+
+        return sp;
+
+    }
 }
