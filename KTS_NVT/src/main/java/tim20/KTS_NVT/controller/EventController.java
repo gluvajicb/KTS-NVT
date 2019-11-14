@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import tim20.KTS_NVT.converters.EventDTOConverter;
 import tim20.KTS_NVT.dto.EventDTO;
 import tim20.KTS_NVT.exceptions.EventNotFoundException;
 import tim20.KTS_NVT.model.*;
@@ -67,36 +68,24 @@ public class EventController
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Event> addEvent(@RequestBody EventDTO dto)
     {
-        Event event = new Event();
-        event.setId(null);
+        Event event = EventDTOConverter.dtoToEvent(dto);
 
-        event.setTitle(dto.getTitle());
-        event.setDescription(dto.getDescription());
-        // event.setDates(dto.getDates());
-        event.setIsActive(dto.getActive());
+        event = eventService.saveEvent(event);
 
-        /* ENUM - EVENT CATEGORY */
+        return new ResponseEntity<Event>(event, HttpStatus.OK);
+    }
 
-        if(dto.getEventCategory().equals(EventCategory.SHOW))
-            event.setEventCategory(EventCategory.SHOW);
-        else if (dto.getEventCategory().equals(EventCategory.SPORT))
-            event.setEventCategory(EventCategory.SPORT);
-        else if (dto.getEventCategory().equals(EventCategory.MUSIC))
-            event.setEventCategory(EventCategory.MUSIC);
-        else
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Event> updateEvent(@PathVariable("id") Long id, @RequestBody EventDTO dto)
+    {
+        Event event = EventDTOConverter.dtoToEvent(dto);
 
-        event.setMax_tickets(dto.getMax_tickets());
+        event = eventService.updateEvent(event);
 
-
-        /* LOCATION */
-        event.setLocation(locationService.findOne(dto.getLocationID()));
-
-        try {
-            event = eventService.saveEvent(event);
-            return new ResponseEntity<>(event, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if(event == null) {
+            throw new EventNotFoundException(id);
+        } else {
+            return new ResponseEntity<Event>(event, HttpStatus.OK);
         }
     }
 

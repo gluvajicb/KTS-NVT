@@ -3,6 +3,8 @@ package tim20.KTS_NVT.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tim20.KTS_NVT.converters.EventDTOConverter;
+import tim20.KTS_NVT.dto.EventDTO;
 import tim20.KTS_NVT.model.Event;
 import tim20.KTS_NVT.repository.EventRepository;
 
@@ -47,7 +49,14 @@ public class EventService {
     public void deleteEvent(Long eventId) { eventRepository.deleteById(eventId);}
 
     public Event updateEvent(Event event) {
-        return eventRepository.save(event);
+
+        if(event.getId() == null){
+            return null;
+        }
+
+        Event e = eventRepository.save(event);
+
+        return e;
     }
 
 }
