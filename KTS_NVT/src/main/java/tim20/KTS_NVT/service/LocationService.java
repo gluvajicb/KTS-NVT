@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tim20.KTS_NVT.converters.LocationDTOConverter;
 import tim20.KTS_NVT.converters.SectorDTOConverter;
-import tim20.KTS_NVT.dto.LocationDTO;
 import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.model.Location;
 import tim20.KTS_NVT.model.SeatsSector;
@@ -45,22 +43,15 @@ public class LocationService {
 		return null;
 	}
 
-	public Location saveLocation(LocationDTO dto) {
+	public Location saveLocation(Location location) {
 		
-		Location location = LocationDTOConverter.dtoToLocation(dto);
 		Location l = locationRepository.save(location);
 
 		return l;
 
 	}
 
-	public Location updateLocation(LocationDTO dto) {
-
-		if(dto.getId() == null) {
-			return null;
-		}
-		
-		Location location = LocationDTOConverter.dtoToLocation(dto);
+	public Location updateLocation(Location location) {
 
 		Location l = locationRepository.save(location);
 
