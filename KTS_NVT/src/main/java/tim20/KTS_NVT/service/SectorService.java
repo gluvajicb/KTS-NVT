@@ -32,9 +32,13 @@ public class SectorService {
 		return null;
 	}
 
-	public Sector saveSector(Sector sectorprice) {
+	public Sector saveSector(Sector sector) {
 
-		Sector sp = sectorRepository.save(sectorprice);
+		if(sector.getId() != null) {
+			return null;
+		}
+		
+		Sector sp = sectorRepository.save(sector);
 
 		return sp;
 	}
