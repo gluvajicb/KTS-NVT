@@ -45,6 +45,9 @@ public class LocationService {
 
 	public Location saveLocation(Location location) {
 		
+		if(location.getId() != null) {
+			return null;
+		}
 		Location l = locationRepository.save(location);
 
 		return l;
@@ -53,6 +56,9 @@ public class LocationService {
 
 	public Location updateLocation(Location location) {
 
+		if(location.getId() == null) {
+			return null;
+		}
 		Location l = locationRepository.save(location);
 
 		return l;
