@@ -4,6 +4,7 @@ delete from location;
 
 insert into location (id, title, address) values (1, 'Location 1', 'Address');
 insert into location (id, title, address) values (2, 'Location 2', 'Address 2');
+insert into location (id, title, address) values (3, 'Location 3', 'Address 3');
 
 insert into stand_sector (id, title, max_guests, location_id) values (101, 'Stand sector', 100, 1);
 insert into stand_sector (id, title, max_guests, location_id) values (102, 'Stand sector 2', 150, 1);

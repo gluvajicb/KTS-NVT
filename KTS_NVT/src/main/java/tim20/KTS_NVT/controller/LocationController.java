@@ -1,6 +1,7 @@
 package tim20.KTS_NVT.controller;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import tim20.KTS_NVT.converters.LocationDTOConverter;
+import tim20.KTS_NVT.converters.SectorDTOConverter;
 import tim20.KTS_NVT.dto.LocationDTO;
 import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.exceptions.LocationNotFoundException;
@@ -102,14 +104,15 @@ public class LocationController {
 	// ******************************** sektori *****************************
 
 	@GetMapping(value = "/{locationId}/sectors")
-	public ResponseEntity<Collection<Sector>> getAllSectorsByLocation(@PathVariable("locationId") Long locationId) {
+	public ResponseEntity<Collection<SectorDTO>> getAllSectorsByLocation(@PathVariable("locationId") Long locationId) {
 
 		Location location = locationService.findOne(locationId);
 
 		if (location == null) {
 			throw new LocationNotFoundException(locationId);
 		} else {
-			return new ResponseEntity<Collection<Sector>>(location.getSectors(), HttpStatus.OK);
+			List<SectorDTO> dtos = SectorDTOConverter.convertSectorsToDtos(location.getSectors());
+			return new ResponseEntity<Collection<SectorDTO>>(dtos, HttpStatus.OK);
 		}
 
 	}

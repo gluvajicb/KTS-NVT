@@ -6,7 +6,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.h2.engine.SysProperties;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import tim20.KTS_NVT.model.SeatsSector;
 import tim20.KTS_NVT.model.Sector;
 import tim20.KTS_NVT.model.StandSector;
+import tim20.KTS_NVT.repository.SectorRepository;
 import tim20.KTS_NVT.service.SectorService;
 
 @RunWith(SpringRunner.class)
@@ -26,12 +29,21 @@ public class SectorServiceIntegrationTest {
 	@Autowired
 	SectorService sectorService;
 	
+	@Autowired
+	SectorRepository sectorRepository;
+	
 	@Test
 	public void findAllTest() {
 		List<Sector> sectors = sectorService.findAll();
 		
 		assertNotNull(sectors);
-		assertTrue(sectors.size() > 0);
+		System.out.println(sectors.size());
+		
+		for (Sector sector : sectors) {
+			System.out.println(sector.getId());
+			System.out.println(sector.getTitle());
+		}
+		assertTrue(sectors.size() > 0 );
 	}
 	
 	@Test
@@ -41,7 +53,7 @@ public class SectorServiceIntegrationTest {
 		
 		assertNotNull(sector);
 		assertEquals(101l, sector.getId());
-		
+		assertEquals("Stand sector", sector.getTitle());
 	}
 	
 	@Test
@@ -62,6 +74,11 @@ public class SectorServiceIntegrationTest {
 		
 		assertNotNull(saved);
 		assertNotNull(saved.getId());
+		
+		Optional<Sector> find = sectorRepository.findById(saved.getId());
+		
+		assertTrue(find.isPresent());
+		assertEquals(saved.getId(), find.get().getId());
 		
 	}
 

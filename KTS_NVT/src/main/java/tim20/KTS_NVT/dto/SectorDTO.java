@@ -3,7 +3,7 @@ package tim20.KTS_NVT.dto;
 public class SectorDTO {
 
 	private Long id;
-	
+
 	private String title;
 	private String type;
 	private int max_guests;
@@ -14,6 +14,15 @@ public class SectorDTO {
 		this.max_guests = -1;
 		this.column_num = -1;
 		this.row_num = -1;
+	}
+
+	public SectorDTO(Long id, String title, String type, int max_guests, int row_num, int column_num) {
+		this.id = id;
+		this.title = title;
+		this.type = type;
+		this.max_guests = max_guests;
+		this.row_num = row_num;
+		this.column_num = column_num;
 	}
 
 	public Long getId() {
