@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.Optional;
 
-import org.h2.engine.SysProperties;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import tim20.KTS_NVT.model.SeatsSector;
@@ -90,5 +90,15 @@ public class SectorServiceIntegrationTest {
 		Sector saved = sectorService.saveSector(sector);
 		
 		assertNull(saved);
+	}
+	
+	@Test
+	public void deleteSectorTest() {
+		sectorService.deleteSector(103l);
+	}
+
+	@Test(expected = EmptyResultDataAccessException.class)
+	public void deleteSectorTestException() {
+		sectorService.deleteSector(444l);
 	}
 }

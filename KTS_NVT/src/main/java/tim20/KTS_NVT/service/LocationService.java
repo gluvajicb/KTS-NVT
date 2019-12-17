@@ -64,17 +64,19 @@ public class LocationService {
 		return l;
 	}
 
-	public Location saveSector(Location location, SectorDTO dto) {
+	public Sector saveSector(Location location, SectorDTO dto) {
 
+		Sector sector = null;
+		
 		if (dto.getType().equalsIgnoreCase("seats")) {
 			SeatsSector seatsSector = SectorDTOConverter.dtoToSeatsSector(dto, location);
-			sectorRepository.save(seatsSector);
+			sector = sectorRepository.save(seatsSector);
 		} else {
 			StandSector standSector = SectorDTOConverter.dtoToStandSector(dto, location);
-			sectorRepository.save(standSector);
+			 sector = sectorRepository.save(standSector);
 		}
 
-		return location;
+		return sector;
 
 	}
 
@@ -88,9 +90,6 @@ public class LocationService {
 		return null;
 	}
 
-	public void deleteSector(Long sectorId) {
-		sectorRepository.deleteById(sectorId);
-	}
 
 	public void deleteLocation(Long locationId) {
 		locationRepository.deleteById(locationId);

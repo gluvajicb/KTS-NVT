@@ -21,13 +21,17 @@ import tim20.KTS_NVT.converters.LocationDTOConverter;
 import tim20.KTS_NVT.converters.SectorDTOConverter;
 import tim20.KTS_NVT.dto.LocationDTO;
 import tim20.KTS_NVT.dto.SectorDTO;
+import tim20.KTS_NVT.exceptions.IdNotFoundException;
 import tim20.KTS_NVT.exceptions.LocationNotFoundException;
 import tim20.KTS_NVT.exceptions.LowerThanZeroException;
 import tim20.KTS_NVT.exceptions.SectorNotFoundException;
 import tim20.KTS_NVT.model.Error;
 import tim20.KTS_NVT.model.Location;
+import tim20.KTS_NVT.model.SeatsSector;
 import tim20.KTS_NVT.model.Sector;
+import tim20.KTS_NVT.model.StandSector;
 import tim20.KTS_NVT.service.LocationService;
+import tim20.KTS_NVT.service.SectorService;
 
 @Controller
 @RequestMapping(value = "/locations")
@@ -35,55 +39,63 @@ public class LocationController {
 
 	@Autowired
 	private LocationService locationService;
+	
+	@Autowired
+	private SectorService sectorService;
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<Location>> getAll() {
+	public ResponseEntity<List<LocationDTO>> getAll() {
 
 		Collection<Location> locations = locationService.findAll();
+		
+		List<LocationDTO> dtos = LocationDTOConverter.locationsToDtos(locations);
 
-		return new ResponseEntity<Collection<Location>>(locations, HttpStatus.OK);
+		return new ResponseEntity<List<LocationDTO>>(dtos, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Location> getOne(@PathVariable("id") Long id) {
+	public ResponseEntity<LocationDTO> getOne(@PathVariable("id") Long id) {
 
 		Location location = locationService.findOne(id);
 
 		if (location == null) {
 			throw new LocationNotFoundException(id);
 		} else {
-			return new ResponseEntity<Location>(location, HttpStatus.OK);
+			LocationDTO dto = LocationDTOConverter.locationToDto(location);
+			return new ResponseEntity<LocationDTO>(dto, HttpStatus.OK);
 		}
 
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Location> addLocation(@RequestBody LocationDTO dto) {
+	public ResponseEntity<LocationDTO> addLocation(@RequestBody LocationDTO dto) {
 		
 		Location location = LocationDTOConverter.dtoToLocation(dto);
 		location.setId(null);
 		Location l = locationService.saveLocation(location);
 
-		return new ResponseEntity<Location>(l, HttpStatus.OK);
+		return new ResponseEntity<LocationDTO>(LocationDTOConverter.locationToDto(l), HttpStatus.CREATED);
 	}
 
-	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Location> updateLocation(@PathVariable("id") Long id, @RequestBody LocationDTO dto) {
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<LocationDTO> updateLocation(@RequestBody LocationDTO dto) {
 
 		if(dto.getId() == null) {
-			//neki drugi exception?
-			throw new LocationNotFoundException(id);
+			throw new IdNotFoundException();
+		}
+		
+		Location found = locationService.findOne(dto.getId());
+		
+		if(found == null) {
+			throw new LocationNotFoundException(dto.getId());
 		}
 		
 		Location location = LocationDTOConverter.dtoToLocation(dto);
 		
 		Location l = locationService.updateLocation(location);
 
-		if (l == null) {
-			throw new LocationNotFoundException(id);
-		} else {
-			return new ResponseEntity<Location>(l, HttpStatus.OK);
-		}
+		return new ResponseEntity<LocationDTO>(LocationDTOConverter.locationToDto(l), HttpStatus.OK);
+	
 
 	}
 
@@ -118,11 +130,12 @@ public class LocationController {
 	}
 
 	@PostMapping(value = "/{locationId}/sectors", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Location> addNewSector(@PathVariable("locationId") Long locationId,
+	public ResponseEntity<SectorDTO> addNewSector(@PathVariable("locationId") Long locationId,
 			@RequestBody SectorDTO dto) {
 
 		Location location = locationService.findOne(locationId);
-
+		SectorDTO sectorDTO = null;
+		
 		if (location == null) {
 			throw new LocationNotFoundException(locationId);
 		} else {
@@ -130,23 +143,32 @@ public class LocationController {
 			if (!dto.getType().equalsIgnoreCase("seats") && !dto.getType().equalsIgnoreCase("stand")) {
 				if (dto.getColumn_num() > 0 && dto.getRow_num() > 0) {
 					dto.setType("seats");
-					locationService.saveSector(location, dto);
+					sectorDTO = SectorDTOConverter.seatsSectorToDto((SeatsSector)locationService.saveSector(location, dto));
 				} else if (dto.getMax_guests() > 0) {
 					dto.setType("stand");
-					locationService.saveSector(location, dto);
+					sectorDTO = SectorDTOConverter.standSectorToDto((StandSector)locationService.saveSector(location, dto));
 				} else {
 					throw new LowerThanZeroException();
 				}
-			} else if ((dto.getType().equalsIgnoreCase("seats") && (dto.getRow_num() < 0 || dto.getColumn_num() < 0))
-					|| (dto.getType().equalsIgnoreCase("stand") && dto.getMax_guests() < 0)) {
+			} else if ((dto.getType().equalsIgnoreCase("seats") && (dto.getRow_num() <= 0 || dto.getColumn_num() <= 0))
+					|| (dto.getType().equalsIgnoreCase("stand") && dto.getMax_guests() <= 0)) {
 				throw new LowerThanZeroException();
 			} else {
-				locationService.saveSector(location, dto);
+				Sector newSector = null;
+				
+				if(dto.getType().equalsIgnoreCase("seats")) {
+					newSector = sectorService.saveSector(SectorDTOConverter.dtoToSeatsSector(dto, location));
+					sectorDTO = SectorDTOConverter.seatsSectorToDto((SeatsSector)newSector);
+				}else {
+					newSector = sectorService.saveSector(SectorDTOConverter.dtoToStandSector(dto, location));
+					sectorDTO = SectorDTOConverter.standSectorToDto((StandSector)newSector);
+				}
+				//sector = sectorService.saveSector(location, dto);
 			}
 
 		}
 
-		return new ResponseEntity<Location>(location, HttpStatus.OK);
+		return new ResponseEntity<SectorDTO>(sectorDTO, HttpStatus.CREATED);
 
 	}
 
@@ -158,7 +180,7 @@ public class LocationController {
 		if (sector == null) {
 			throw new SectorNotFoundException(id);
 		} else {
-			locationService.deleteSector(id);
+			sectorService.deleteSector(id);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 
@@ -183,6 +205,12 @@ public class LocationController {
 	public ResponseEntity<Error> sectorNotFound(SectorNotFoundException e) {
 		long locationId = e.getSectorId();
 		Error error = new Error(1, "Sector [" + locationId + "] not found");
+		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(IdNotFoundException.class)
+	public ResponseEntity<Error> idNotFound(IdNotFoundException e) {
+		Error error = new Error(1, "Id not found");
 		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
 	}
 

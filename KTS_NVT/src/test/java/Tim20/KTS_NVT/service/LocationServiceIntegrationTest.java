@@ -25,7 +25,7 @@ public class LocationServiceIntegrationTest {
 
 	@Autowired
 	private LocationService locationService;
-
+	
 	@Test
 	public void findAllTest() {
 
@@ -126,13 +126,5 @@ public class LocationServiceIntegrationTest {
 
 	}
 
-	@Test
-	public void deleteSectorTest() {
-		locationService.deleteSector(103l);
-	}
 
-	@Test(expected = EmptyResultDataAccessException.class)
-	public void deleteSectorTestException() {
-		locationService.deleteSector(444l);
-	}
 }

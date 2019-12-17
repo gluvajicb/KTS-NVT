@@ -43,4 +43,8 @@ public class SectorService {
 		return sp;
 	}
 	
+	public void deleteSector(Long sectorId) {
+		sectorRepository.deleteById(sectorId);
+	}
+	
 }
