@@ -32,6 +32,23 @@ public class Event {
 	@OneToMany(mappedBy = "event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Ticket> tickets;
 
+	
+	public Event(Long id, String title, String description, Set<EventDay> eventdays, Boolean isActive,
+			EventCategory eventCategory, Integer max_tickets, Location location, Set<SectorPrice> sectorPrice,
+			Set<Ticket> tickets) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.eventdays = eventdays;
+		this.isActive = isActive;
+		this.eventCategory = eventCategory;
+		this.max_tickets = max_tickets;
+		this.location = location;
+		this.sectorPrice = sectorPrice;
+		this.tickets = tickets;
+	}
+
 	public Event() {
 		this.eventdays = new HashSet<>();
 		this.tickets = new HashSet<>();

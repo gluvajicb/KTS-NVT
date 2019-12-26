@@ -20,8 +20,7 @@ public class EventDay {
 
     public EventDay() {}
 
-    public EventDay(Long id, String title, Date eventdate, Event event) {
-        this.id = id;
+    public EventDay(String title, Date eventdate, Event event) {
         this.title = title;
         this.eventdate = eventdate;
         this.event = event;
