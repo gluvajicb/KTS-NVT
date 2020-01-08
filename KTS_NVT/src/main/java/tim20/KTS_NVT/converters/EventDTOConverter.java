@@ -8,6 +8,10 @@ import tim20.KTS_NVT.model.EventCategory;
 import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.LocationService;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class EventDTOConverter {
 
     public static Event dtoToEvent(EventDTO dto)
@@ -37,5 +41,24 @@ public class EventDTOConverter {
 
         return event;
 
+    }
+
+    public static EventDTO eventToDto(Event event) {
+
+        EventDTO dto = new EventDTO(event.getId(), event.getTitle(), event.getDescription());
+
+        return dto;
+
+    }
+
+    public static List<EventDTO> eventsToDtos(Collection<Event> events) {
+
+        List<EventDTO> retVal = new ArrayList<>();
+
+        for (Event event : events) {
+            retVal.add(EventDTOConverter.eventToDto(event));
+        }
+
+        return retVal;
     }
 }

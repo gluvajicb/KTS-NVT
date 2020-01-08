@@ -21,6 +21,12 @@ public class EventDTO
 
     public EventDTO() {}
 
+    public EventDTO(Long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
     public EventDTO(Long id, String title, String description, List<Date> dates, Boolean isActive, EventCategory eventCategory, Integer max_tickets, Long locationID) {
         this.id = id;
         this.title = title;

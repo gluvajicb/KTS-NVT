@@ -2,6 +2,7 @@ package tim20.KTS_NVT.controller;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import tim20.KTS_NVT.converters.EventDTOConverter;
+import tim20.KTS_NVT.converters.SectorPriceDTOConverter;
 import tim20.KTS_NVT.dto.EventDTO;
+import tim20.KTS_NVT.dto.SectorPriceDTO;
 import tim20.KTS_NVT.exceptions.EventNotFoundException;
+import tim20.KTS_NVT.exceptions.IdNotFoundException;
 import tim20.KTS_NVT.model.Error;
 import tim20.KTS_NVT.model.Event;
 import tim20.KTS_NVT.model.EventDay;
@@ -49,12 +53,27 @@ public class EventController {
 	@Autowired
 	private EventDayService eventDayServise;
 
+	@GetMapping(value = "/{eventId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<EventDTO> getOne(@PathVariable("eventId") Long id) {
+
+		Event event = eventService.findOne(id);
+
+		if(event == null) {
+			throw new EventNotFoundException(id);
+		} else {
+			EventDTO dto = EventDTOConverter.eventToDto(event);
+			return new ResponseEntity<EventDTO>(dto, HttpStatus.OK);
+		}
+	}
+
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<Event>> getAll() {
+	public ResponseEntity<List<EventDTO>> getAll() {
 
 		Collection<Event> events = eventService.findAll();
 
-		return new ResponseEntity<Collection<Event>>(events, HttpStatus.OK);
+		List<EventDTO> dtos = EventDTOConverter.eventsToDtos(events);
+
+		return new ResponseEntity<List<EventDTO>>(dtos, HttpStatus.OK);
 
 	}
 
@@ -72,25 +91,33 @@ public class EventController {
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Event> addEvent(@RequestBody EventDTO dto) {
+	public ResponseEntity<EventDTO> addEvent(@RequestBody EventDTO dto) {
+
 		Event event = EventDTOConverter.dtoToEvent(dto);
+		event.setId(null);
+		Event e = eventService.saveEvent(event);
 
-		event = eventService.saveEvent(event);
-
-		return new ResponseEntity<Event>(event, HttpStatus.OK);
+		return new ResponseEntity<EventDTO>(EventDTOConverter.eventToDto(e), HttpStatus.CREATED);
 	}
 
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Event> updateEvent(@PathVariable("id") Long id, @RequestBody EventDTO dto) {
+	public ResponseEntity<EventDTO> updateEvent(@RequestBody EventDTO dto) {
+
+		if(dto.getId() == null) {
+			throw new IdNotFoundException();
+		}
+
+		Event found = eventService.findOne(dto.getId());
+
+		if(found == null) {
+			throw new EventNotFoundException(dto.getId());
+		}
+
 		Event event = EventDTOConverter.dtoToEvent(dto);
 
-		event = eventService.updateEvent(event);
+		Event e = eventService.updateEvent(event);
 
-		if (event == null) {
-			throw new EventNotFoundException(id);
-		} else {
-			return new ResponseEntity<Event>(event, HttpStatus.OK);
-		}
+		return new ResponseEntity<EventDTO>(EventDTOConverter.eventToDto(e), HttpStatus.OK);
 	}
 
 	@DeleteMapping(value = "/{id}")
@@ -110,23 +137,26 @@ public class EventController {
 	/* ************* SECTOR PRICE *************** */
 
 	@GetMapping(value = "/sectorprices", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<SectorPrice>> getAllSectorPrice() {
+	public ResponseEntity<List<SectorPriceDTO>> getAllSectorPrice() {
 
 		Collection<SectorPrice> sectorprices = sectorPriceService.findAll();
 
-		return new ResponseEntity<Collection<SectorPrice>>(sectorprices, HttpStatus.OK);
+		List<SectorPriceDTO> dtos = SectorPriceDTOConverter.sectorpricesToDtos(sectorprices);
+
+		return new ResponseEntity<List<SectorPriceDTO>>(dtos, HttpStatus.OK);
 
 	}
 
 	@GetMapping(value = "{eventId}/sectorprices", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Collection<SectorPrice>> getSectorPriceForEvent(@PathVariable("eventId") Long eventId) {
+	public ResponseEntity<Collection<SectorPriceDTO>> getSectorPriceForEvent(@PathVariable("eventId") Long eventId) {
 
 		Event event = eventService.findOne(eventId);
 
-		if (event == null) {
+		if(event == null) {
 			throw new EventNotFoundException(eventId);
 		} else {
-			return new ResponseEntity<Collection<SectorPrice>>(event.getSectorPrice(), HttpStatus.OK);
+			List<SectorPriceDTO> dtos = SectorPriceDTOConverter.sectorpricesToDtos(event.getSectorPrice());
+			return new ResponseEntity<Collection<SectorPriceDTO>>(dtos, HttpStatus.OK);
 		}
 
 	}

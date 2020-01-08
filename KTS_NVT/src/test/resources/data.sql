@@ -11,3 +11,5 @@ insert into stand_sector (id, title, max_guests, location_id) values (102, 'Stan
 
 insert into seats_sector (id, title, row_num, column_num, location_id) values (103, 'Seats sector', 50,50, 1);
 insert into seats_sector (id, title, row_num, column_num, location_id) values (104, 'Seats sector 2', 30,60, 2);
+
+insert into event (id, title, description, max_tickets) values (1, 'Event 1', 'Event 1 Description', 60);
