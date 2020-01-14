@@ -47,9 +47,5 @@ public class SectorService {
 	public void deleteSector(Long sectorId) {
 		sectorRepository.deleteById(sectorId);
 	}
-
-	public StandSector findStandById(Long sectorID) {
-		return sectorRepository.findStandById(sectorID);
-	}
 	
 }

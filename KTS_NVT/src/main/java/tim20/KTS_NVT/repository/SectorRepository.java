@@ -15,6 +15,4 @@ public interface SectorRepository extends JpaRepository<Sector, Long>{
 
 	List<Sector> findByLocationId(Long location_id);
 
-	@Query("SELECT * FROM stand_sector WHERE sector_id = ?1")
-	StandSector findStandById(Long sectorID);
 }

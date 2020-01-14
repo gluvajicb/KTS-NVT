@@ -81,7 +81,7 @@ public class TicketServiceUnitTest {
 		when(ticketRepositoryMock.findById(2l))
         .thenReturn(Optional.empty());
 		
-		when(sectorRepositoryMock.findById(2l))
+		when(sectorRepositoryMock.findById(3l))
         .thenReturn(Optional.empty());
 		
 		Sector sector = new SeatsSector();
@@ -102,7 +102,7 @@ public class TicketServiceUnitTest {
 		when(ticketRepositoryMock.checkSeatsTicketAvailability(eventID, 1, 2, 1l))
         .thenReturn(null);
 		
-		when(sectorRepositoryMock.findStandById(2l))
+		when(sectorRepositoryMock.findById(2l))
         .thenReturn(null);
 		
 		Sector sector1 = new StandSector();
@@ -124,7 +124,7 @@ public class TicketServiceUnitTest {
 	@Test(expected = SectorNotFoundException.class)
 	public void addSeatTicket_notExistingSector_throwsSectorNotFoundException(){
 		
-		ticketService.addSeatTicket(1l, 1l, true, 5000, 1, 1, 2l);
+		ticketService.addSeatTicket(1l, 1l, true, 5000, 1, 1, 3l);
 	}
 	
 	@Test
@@ -164,7 +164,7 @@ public class TicketServiceUnitTest {
 	@Test(expected = SectorNotFoundException.class)
 	public void addStandTicket_notExistingSector_throwsSectorNotFoundException(){
 		
-		ticketService.addStandTicket(1l, 1l, true, 5000, 2l);
+		ticketService.addStandTicket(1l, 1l, true, 5000, 3l);
 	}
 	
 	@Test

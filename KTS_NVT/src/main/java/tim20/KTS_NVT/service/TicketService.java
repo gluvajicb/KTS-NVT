@@ -110,7 +110,7 @@ public class TicketService {
             throw new EventNotFoundException(eventID);
         }
         
-        StandSector s = sectorService.findStandById(sectorID);
+        Sector s = sectorService.findOne(sectorID);
         if (s == null) {
             throw new SectorNotFoundException(sectorID);
         }
@@ -118,7 +118,7 @@ public class TicketService {
         int guestNum = ticketRepository.checkNumberOfGuests(eventID, sectorID, eventDayID);
         
 
-        if(guestNum >= s.getMaxGuests()) {
+        if(guestNum >= 1000) {
             return false;
         }
 
