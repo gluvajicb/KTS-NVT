@@ -40,6 +40,10 @@ public class EventService {
     /* SAVE EVENT */
     public Event saveEvent(Event event) {
 
+        if(event.getId() != null) {
+            return null;
+        }
+
         Event e = eventRepository.save(event);
 
         return e;
@@ -56,5 +60,7 @@ public class EventService {
 
         return e;
     }
+
+    public void deleteEvent(Long eventId) { eventRepository.deleteById(eventId);}
 
 }

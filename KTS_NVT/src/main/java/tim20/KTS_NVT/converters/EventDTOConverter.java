@@ -16,15 +16,18 @@ public class EventDTOConverter {
 
     public static Event dtoToEvent(EventDTO dto)
     {
-        LocationService locationService = new LocationService();
+        EventService eventService = new EventService();
 
         Event event = new Event();
 
+        event.setId(dto.getId());
         event.setTitle(dto.getTitle());
         event.setDescription(dto.getDescription());
+
+        /*
         event.setIsActive(dto.getActive());
 
-        /* ENUM - EVENT CATEGORY */
+        ENUM - EVENT CATEGORY
 
         if(dto.getEventCategory().equals(EventCategory.SHOW))
             event.setEventCategory(EventCategory.SHOW);
@@ -36,8 +39,10 @@ public class EventDTOConverter {
         event.setMax_tickets(dto.getMax_tickets());
 
 
-        /* LOCATION */
+        LOCATION
         event.setLocation(locationService.findOne(dto.getLocationID()));
+
+        */
 
         return event;
 
@@ -45,7 +50,13 @@ public class EventDTOConverter {
 
     public static EventDTO eventToDto(Event event) {
 
-        EventDTO dto = new EventDTO(event.getId(), event.getTitle(), event.getDescription());
+        EventDTO dto = new EventDTO();
+
+        dto.setId(event.getId());
+        dto.setTitle(event.getTitle());
+        dto.setDescription(event.getDescription());
+
+        //dto = new EventDTO(event.getId(), event.getTitle(), event.getDescription());
 
         return dto;
 

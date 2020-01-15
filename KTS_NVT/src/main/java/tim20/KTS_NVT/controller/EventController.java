@@ -100,7 +100,7 @@ public class EventController {
 		return new ResponseEntity<EventDTO>(EventDTOConverter.eventToDto(e), HttpStatus.CREATED);
 	}
 
-	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<EventDTO> updateEvent(@RequestBody EventDTO dto) {
 
 		if(dto.getId() == null) {
@@ -108,6 +108,8 @@ public class EventController {
 		}
 
 		Event found = eventService.findOne(dto.getId());
+
+		System.out.println(dto.getId());
 
 		if(found == null) {
 			throw new EventNotFoundException(dto.getId());
@@ -120,8 +122,8 @@ public class EventController {
 		return new ResponseEntity<EventDTO>(EventDTOConverter.eventToDto(e), HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deactivateEvent(@PathVariable("id") Long id) {
+	@DeleteMapping(value = "/{eventId}")
+	public ResponseEntity<Void> deactivateEvent(@PathVariable("eventId") Long id) {
 
 		Event event = eventService.findOne(id);
 
@@ -166,7 +168,7 @@ public class EventController {
 	@ExceptionHandler(EventNotFoundException.class)
 	public ResponseEntity<Error> eventNotFound(EventNotFoundException e) {
 		long eventId = e.getEventId();
-		Error error = new Error(1, "Location [" + eventId + "] not found");
+		Error error = new Error(1, "Event [" + eventId + "] not found");
 		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
 	}
 
