@@ -19,6 +19,12 @@ public abstract class Sector {
 	
 	private String title;
 	
+	private Double top;
+	private Double posLeft;
+	private Double width;
+	private Double height;
+	private Double angle;
+	
 	@ManyToOne
 	private Location location;
 
@@ -61,5 +67,45 @@ public abstract class Sector {
 
 	public void setSector_price(Set<SectorPrice> sector_price) {
 		this.sector_price = sector_price;
+	}
+
+	public Double getTop() {
+		return top;
+	}
+
+	public void setTop(Double top) {
+		this.top = top;
+	}
+
+	public Double getPosLeft() {
+		return posLeft;
+	}
+
+	public void setPosLeft(Double posLeft) {
+		this.posLeft = posLeft;
+	}
+
+	public Double getWidth() {
+		return width;
+	}
+
+	public void setWidth(Double width) {
+		this.width = width;
+	}
+
+	public Double getHeight() {
+		return height;
+	}
+
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+
+	public Double getAngle() {
+		return angle;
+	}
+
+	public void setAngle(Double angle) {
+		this.angle = angle;
 	}
 }

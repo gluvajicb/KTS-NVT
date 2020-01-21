@@ -9,6 +9,11 @@ public class SectorDTO {
 	private int max_guests;
 	private int row_num;
 	private int column_num;
+	private double top;
+	private double left;
+	private double height;
+	private double width;
+	private double angle;
 
 	public SectorDTO() {
 		this.max_guests = -1;
@@ -16,14 +21,25 @@ public class SectorDTO {
 		this.row_num = -1;
 	}
 
-	public SectorDTO(Long id, String title, String type, int max_guests, int row_num, int column_num) {
+
+
+	public SectorDTO(Long id, String title, String type, int max_guests, int row_num, int column_num, double top,
+			double left, double height, double width, double angle) {
+		super();
 		this.id = id;
 		this.title = title;
 		this.type = type;
 		this.max_guests = max_guests;
 		this.row_num = row_num;
 		this.column_num = column_num;
+		this.top = top;
+		this.left = left;
+		this.height = height;
+		this.width = width;
+		this.angle = angle;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -71,6 +87,66 @@ public class SectorDTO {
 
 	public void setColumn_num(int column_num) {
 		this.column_num = column_num;
+	}
+
+
+
+	public double getTop() {
+		return top;
+	}
+
+
+
+	public void setTop(double top) {
+		this.top = top;
+	}
+
+
+
+	public double getLeft() {
+		return left;
+	}
+
+
+
+	public void setLeft(double left) {
+		this.left = left;
+	}
+
+
+
+	public double getHeight() {
+		return height;
+	}
+
+
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+
+
+	public double getWidth() {
+		return width;
+	}
+
+
+
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+
+
+	public double getAngle() {
+		return angle;
+	}
+
+
+
+	public void setAngle(double angle) {
+		this.angle = angle;
 	}
 
 }

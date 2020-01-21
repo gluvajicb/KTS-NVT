@@ -19,6 +19,8 @@ public class LocationDTOConverter {
 		location.setAddress(dto.getAddress());
 		location.setId(dto.getId());
 		location.setTitle(dto.getTitle());
+		
+		location.setSectors(SectorDTOConverter.convertDTOsToSectors(dto.getSectors(), location));
 
 		return location;
 

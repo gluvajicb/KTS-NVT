@@ -222,7 +222,7 @@ public class LocationControllerIntegrationTest {
 		int size = sectorService.findAll().size();
 
 		ResponseEntity<SectorDTO> responseEntity = restTemplate.postForEntity("/locations/2/sectors",
-				new SectorDTO(null, "My new sector", "seats", 0, 15, 30), SectorDTO.class);
+				new SectorDTO(null, "My new sector", "seats", 0, 15, 30, 100, 100, 100, 100, 0), SectorDTO.class);
 
 		SectorDTO sector = responseEntity.getBody();
 
@@ -244,7 +244,7 @@ public class LocationControllerIntegrationTest {
 		int size = sectorService.findAll().size();
 
 		ResponseEntity<SectorDTO> responseEntity = restTemplate.postForEntity("/locations/2/sectors",
-				new SectorDTO(null, "My new sector", "stand", 150, 0, 0), SectorDTO.class);
+				new SectorDTO(null, "My new sector", "stand", 150, 0, 0, 100, 100, 100, 100, 0), SectorDTO.class);
 
 		SectorDTO sector = responseEntity.getBody();
 
@@ -264,7 +264,7 @@ public class LocationControllerIntegrationTest {
 	public void addNewSectorLocationNotFoundTest() {
 
 		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/locations/456/sectors",
-				new SectorDTO(null, "My new sector", "stand", 150, 0, 0), Error.class);
+				new SectorDTO(null, "My new sector", "stand", 150, 0, 0, 100, 100, 100, 100, 0), Error.class);
 
 		Error error = responseEntity.getBody();
 
@@ -277,7 +277,7 @@ public class LocationControllerIntegrationTest {
 	public void addNewSectorLowerThanZeroStand() {
 
 		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/locations/2/sectors",
-				new SectorDTO(null, "My new sector", "stand", 0, 0, 0), Error.class);
+				new SectorDTO(null, "My new sector", "stand", 0, 0, 0, 100, 100, 100, 100, 0), Error.class);
 
 		Error error = responseEntity.getBody();
 
@@ -290,7 +290,7 @@ public class LocationControllerIntegrationTest {
 	public void addNewSectorLowerThanZeroSeats() {
 
 		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/locations/2/sectors",
-				new SectorDTO(null, "My new sector", "seats", 0, 0, 0), Error.class);
+				new SectorDTO(null, "My new sector", "seats", 0, 0, 0, 100, 100, 100, 100, 0), Error.class);
 
 		Error error = responseEntity.getBody();
 
