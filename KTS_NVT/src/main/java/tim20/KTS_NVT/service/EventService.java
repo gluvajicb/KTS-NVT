@@ -40,13 +40,15 @@ public class EventService {
     /* SAVE EVENT */
     public Event saveEvent(Event event) {
 
+        if(event.getId() != null) {
+            return null;
+        }
+
         Event e = eventRepository.save(event);
 
         return e;
     }
 
-    /* DELETE EVENT (Full Delete) */
-    public void deleteEvent(Long eventId) { eventRepository.deleteById(eventId);}
 
     public Event updateEvent(Event event) {
 
@@ -58,5 +60,7 @@ public class EventService {
 
         return e;
     }
+
+    public void deleteEvent(Long eventId) { eventRepository.deleteById(eventId);}
 
 }
