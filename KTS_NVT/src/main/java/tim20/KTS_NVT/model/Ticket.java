@@ -27,6 +27,17 @@ public abstract class Ticket {
 	public Ticket() {
 	}
 
+	
+	public Ticket(EventDay day, Boolean singleDay, Double price, Event event, Sector sector) {
+		super();
+		this.day = day;
+		this.singleDay = singleDay;
+		this.price = price;
+		this.event = event;
+		this.sector = sector;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

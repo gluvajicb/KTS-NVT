@@ -1,27 +1,43 @@
 package tim20.KTS_NVT.model;
+import javax.persistence.Entity;
 
+@Entity(name="seats_ticket")
 public class SeatsTicket extends Ticket {
 
-	private Integer rowNumber;
-	private Integer columnNumber;
+	private Integer rowNum;
+	private Integer columnNum;
 
 	public SeatsTicket() {
 	}
 
-	public Integer getRowNumber() {
-		return rowNumber;
+	
+
+
+	public SeatsTicket(EventDay day, Boolean singleDay, Double price, Event event, Sector sector,
+			Integer rowNum, Integer columnNum) {
+		super( day, singleDay, price, event, sector);
+		this.rowNum = rowNum;
+		this.columnNum = columnNum;
 	}
 
-	public void setRowNumber(Integer rowNumber) {
-		this.rowNumber = rowNumber;
+
+
+
+	public Integer getRowNum() {
+		return rowNum;
 	}
 
-	public Integer getColumnNumber() {
-		return columnNumber;
+	public void setRowNum(Integer rowNum) {
+		this.rowNum = rowNum;
 	}
 
-	public void setColumnNumber(Integer columnNumber) {
-		this.columnNumber = columnNumber;
+	public Integer getColumnNum() {
+		return columnNum;
 	}
+
+	public void setColumnNum(Integer columnNum) {
+		this.columnNum = columnNum;
+	}
+
 
 }
