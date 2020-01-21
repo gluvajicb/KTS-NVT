@@ -1,7 +1,7 @@
 package tim20.KTS_NVT.model;
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name="seats_ticket")
 public class SeatsTicket extends Ticket {
 
 	private Integer rowNum;

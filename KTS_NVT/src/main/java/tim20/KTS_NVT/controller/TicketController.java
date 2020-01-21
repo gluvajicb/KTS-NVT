@@ -76,52 +76,6 @@ public class TicketController {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
-
-    @PostMapping(value = "/add-stand-ticket1", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Ticket> addStandTicket1(@RequestBody StandTicketDTO dto) {
-        Event event = eventService.findOne(dto.getEventID());
-
-        if (event == null) {
-            throw new EventNotFoundException(dto.getEventID());
-        }
-
-        int guestNum = 0;
-        for (Ticket t : event.getTickets()) {
-            if (t instanceof StandTicket) {
-                if(t.getSector().getId() == dto.getSectorID()) {
-                    guestNum++;
-                }
-            }
-        }
-
-        StandSector s;
-        try {
-            s = (StandSector) sectorService.findOne(dto.getSectorID());
-        }catch (Exception e){
-            throw new NotStanSectorException();
-        }
-
-        if(guestNum >= s.getMaxGuests()) {
-            throw  new MaxGuestsException();
-        }
-
-        StandTicket t = new StandTicket();
-        t.setEvent(event);
-        t.setPrice(dto.getPrice());
-        t.setSingleDay(dto.isSingleDay());
-        t.setSector(s);
-
-        event.getTickets().add(t);
-        eventService.updateEvent(event);
-
-        try {
-            Ticket t1 = ticketService.saveTicket(t);
-            return new ResponseEntity<>(t, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteTicket(@PathVariable("id") Long id) {
 

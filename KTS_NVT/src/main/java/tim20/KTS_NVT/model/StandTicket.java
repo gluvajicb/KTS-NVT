@@ -1,7 +1,7 @@
 package tim20.KTS_NVT.model;
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name="stand_ticket")
 public class StandTicket extends Ticket {
 
 	public StandTicket() {}
