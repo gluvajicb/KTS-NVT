@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import tim20.KTS_NVT.model.SeatsTicket;
 import tim20.KTS_NVT.model.Ticket;
 import tim20.KTS_NVT.repository.TicketRepository;
 
@@ -30,7 +31,7 @@ public class TicketRepositoryIntegrationTest {
 	
 	@Test
 	public void checkSeatsTicketAvailability_NotAvailable() {
-		Ticket t = ticketRepository.checkSeatsTicketAvailability(1l, 1, 1, 103l);
+		SeatsTicket t = (SeatsTicket) ticketRepository.checkSeatsTicketAvailability(1l, 1, 1, 103l);
 		
 		long eventId = t.getEvent().getId();
 		long sectorId = t.getSector().getId();
@@ -47,7 +48,7 @@ public class TicketRepositoryIntegrationTest {
 	
 	@Test
 	public void checkSeatsTicketAvailabilitySingleDay_NotAvailable() {
-		Ticket t = ticketRepository.checkSeatsTicketSingleDayAvailability(1l, 1, 1, 103l, 1l);
+		SeatsTicket t = (SeatsTicket) ticketRepository.checkSeatsTicketSingleDayAvailability(1l, 1, 1, 103l, 1l);
 		
 		long eventId = t.getEvent().getId();
 		long sectorId = t.getSector().getId();
@@ -57,9 +58,11 @@ public class TicketRepositoryIntegrationTest {
 	
 	@Test
 	public void checkNumberOfGuestsSingleDay() {
-		int guests = ticketRepository.checkNumberOfGuestsSingleDay(1l, 101l, 1l);
+		int number = ticketRepository.checkNumberOfGuestsSingleDay(1l, 101l, 1l);
 		
-		assertEquals(guests, 5);
+		assertEquals(5, number);
 	}
+	
+	
 
 }
