@@ -1,0 +1,35 @@
+<p>Workd</p>
+{{ location | json}}
+<form #locationForm="ngForm" novalidate>
+	<h3>Add location</h3>
+	<div class="form-group row">
+		<label for="title" class="col-2 col-form-label">Title:</label>
+		<div class="col-10">
+			<input class="form-control" type="text" id="title" placeholder="Title" 
+				name="title" [(ngModel)]="location.title" #title="ngModel" required>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="address" class="col-2 col-form-label">Address:</label>
+		<div class="col-10">
+			<input class="form-control" type="text" id="address" placeholder="Address"
+				name="address" [(ngModel)]="location.address" #address="ngModel" required>
+		</div>
+	</div>
+	<div class="row-col-2">
+		<div class="row">
+			<div class="col">
+				<app-sector-canvas [sectors]="location.sectors" (submitChangesEvent)="editSectors($event)" [numberOfSectors]="numOfSectors" [editable]="true"></app-sector-canvas>
+			</div>
+			<div class="col">
+				<app-add-sector (newSector)="addNewSector($event)"></app-add-sector>
+			</div>
+		</div>
+	</div>
+	<div class="form-group row float-right">
+		<div class="col-12">
+			<button class="btn btn-primary " type="submit" (click)="addLocation()">Add location</button>
+		</div>
+	</div>
+</form>

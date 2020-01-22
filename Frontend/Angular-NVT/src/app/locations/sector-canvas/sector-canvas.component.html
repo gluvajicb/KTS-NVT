@@ -1,0 +1,10 @@
+<!--
+<input type='range' step='.1' max='2' min='0' (change)="setZoom(this.value)">
+    <button (click)="setZoom(1)">
+      Reset Zoom
+    </button>
+-->
+<div class="container">
+    <canvas id="canvas" width="500" height="500" style="border: 1px solid red;"></canvas>
+    <button (click)="sendCanvas()" *ngIf="this.editable">Submit changes</button>
+</div>

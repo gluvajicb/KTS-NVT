@@ -1,0 +1,21 @@
+<h3>Locations Details</h3> 
+
+<hr/>
+<div *ngIf="location">
+  <div>
+    <div>
+      <label><b>Id: </b></label> {{location.id}}
+    </div>
+    <div>
+      <label><b>Title: </b></label> {{location.title}}
+    </div>
+    <div>
+      <label><b>Address: </b></label> {{location.address}}
+    </div>  
+  </div>
+
+  <div>
+    <app-sector-canvas [sectors]="location.sectors" [editable]="false"></app-sector-canvas>
+  </div>
+</div>
+<button (click)="backToList()" class="btn btn-primary">Back to Location List</button><br>

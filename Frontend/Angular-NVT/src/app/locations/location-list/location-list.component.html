@@ -1,0 +1,11 @@
+<div class="row">
+	<h1>Locations</h1>
+</div>
+<div class="row-col-2">
+	<app-table-location [locations]="locationList"></app-table-location>
+</div>
+<div class="row">
+	<div class="col">
+		<app-pagination [totalItems]="totalSize" [pageSize]="pageSize" (eventPageSelected)="changePage($event)"></app-pagination>
+	</div>
+</div>
