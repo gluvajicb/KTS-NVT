@@ -54,5 +54,12 @@ public class TicketRepositoryIntegrationTest {
 		assertEquals(eventId, 1);
 		assertEquals(sectorId, 103);
 	}
+	
+	@Test
+	public void checkNumberOfGuestsSingleDay() {
+		int guests = ticketRepository.checkNumberOfGuestsSingleDay(1l, 101l, 1l);
+		
+		assertEquals(guests, 5);
+	}
 
 }

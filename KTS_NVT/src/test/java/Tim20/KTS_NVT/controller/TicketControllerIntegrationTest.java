@@ -63,7 +63,7 @@ public class TicketControllerIntegrationTest {
 		TicketDTO[] tickets = responseEntity.getBody();
 
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-		assertEquals(3, tickets.length);
+		assertEquals(8, tickets.length);
 
 	}
 	

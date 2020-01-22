@@ -24,3 +24,8 @@ insert into event_day (id, eventdate, title, event_id) values (1, '2020-03-05', 
 insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (1, 5000, 1, 1, 1, 103, 1, 1);
 insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (2, 5000, 1, 1, 1, 103, 1, 2);
 insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (3, 5000, 1, 1, 1, 103, 1, 3);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(1, 2000, 0, 1, 1,101);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(2, 2000, 1, 1, 1, 101);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(3, 2000, 1, 1, 1, 101);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(4, 2000, 1, 1, 1, 101);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(5, 2000, 1, 1, 1, 101);

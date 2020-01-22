@@ -16,6 +16,9 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 	Ticket checkSeatsTicketSingleDayAvailability(Long eventId, Integer rowNum, Integer colNum, Long sectorId, Long dayId);
 	
 	@Query("SELECT COUNT(st) FROM stand_ticket st WHERE (st.event.id = ?1 AND st.sector.id = ?2 AND singleDay=false) OR (st.event.id = ?1 AND st.sector.id = ?2 AND st.singleDay=true AND st.day.id = ?3) ")
+	Integer checkNumberOfGuestsSingleDay(Long eventId, Long sectorId, Long dayId); //LOSA LOGIKA
+	
+	@Query("SELECT COUNT(st) FROM stand_ticket st WHERE (st.event.id = ?1 AND st.sector.id = ?2 AND singleDay=false) OR (st.event.id = ?1 AND st.sector.id = ?2 AND st.singleDay=true AND st.day.id = ?3) ")
 	Integer checkNumberOfGuests(Long eventId, Long sectorId, Long dayId); //LOSA LOGIKA
 	
 	
