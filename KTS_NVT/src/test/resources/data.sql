@@ -14,7 +14,13 @@ insert into seats_sector (id, title, row_num, column_num, location_id) values (1
 
 delete from event;
 
-insert into event (id, title, description, max_tickets) values (1, 'Event 1', 'Event 1 Description', 60);
-insert into event (id, title, description, max_tickets) values (2, 'Event 2', 'Event 2 Description', 70);
-insert into event (id, title, description, max_tickets) values (3, 'Event 3', 'Event 3 Description', 80);
-insert into event (id, title, description, max_tickets) values (4, 'Event 4', 'Event 4 Description', 90);
+insert into event (id, title, description, max_tickets, location_id) values (1, 'Event 1', 'Event 1 Description', 60, 1);
+insert into event (id, title, description, max_tickets, location_id) values (2, 'Event 2', 'Event 2 Description', 70, 2);
+insert into event (id, title, description, max_tickets, location_id) values (3, 'Event 3', 'Event 3 Description', 80, 1);
+insert into event (id, title, description, max_tickets,location_id) values (4, 'Event 4', 'Event 4 Description', 90, 2);
+
+insert into event_day (id, eventdate, title, event_id) values (1, '2020-03-05', 'Event1 DAY 1', 1);
+
+insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (1, 5000, 1, 1, 1, 103, 1, 1);
+insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (2, 5000, 1, 1, 1, 103, 1, 2);
+insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (3, 5000, 1, 1, 1, 103, 1, 3);

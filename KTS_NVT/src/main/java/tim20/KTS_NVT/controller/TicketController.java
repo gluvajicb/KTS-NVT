@@ -7,8 +7,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import tim20.KTS_NVT.converters.SectorDTOConverter;
+import tim20.KTS_NVT.converters.TicketDTOConverter;
 import tim20.KTS_NVT.dto.SeatsTicketDTO;
+import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.dto.StandTicketDTO;
+import tim20.KTS_NVT.dto.TicketDTO;
 import tim20.KTS_NVT.exceptions.*;
 import tim20.KTS_NVT.model.*;
 import tim20.KTS_NVT.model.Error;
@@ -44,21 +49,30 @@ public class TicketController {
 
 
     @GetMapping(value = "/{eventId}")
-    public ResponseEntity<Collection<Ticket>> getTicketsForEvent(@PathVariable("eventId") Long eventId) {
+    public ResponseEntity<Collection<TicketDTO>> getTicketsForEvent(@PathVariable("eventId") Long eventId) {
 
         Event event = eventService.findOne(eventId);
 
         if (event == null) {
             throw new EventNotFoundException(eventId);
         } else {
-            return new ResponseEntity<Collection<Ticket>>(event.getTickets(), HttpStatus.OK);
+        	List<TicketDTO> dtos = TicketDTOConverter.convertTicketsToDtos(event.getTickets());
+			return new ResponseEntity<Collection<TicketDTO>>(dtos, HttpStatus.OK);
         }
 
     }
     
     @PostMapping(value = "/add-seats-ticket", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> addSeatsTicket(@RequestBody SeatsTicketDTO dto) {
-        boolean success = ticketService.addSeatTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getRowNumber(), dto.getColumnNumber(), dto.getSectorID());
+    	boolean success;
+    	try {
+    		 success = ticketService.addSeatTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getRowNumber(), dto.getColumnNumber(), dto.getSectorID());
+    	}catch(EventNotFoundException nf) {
+    		throw new EventNotFoundException(dto.getEventID());
+    	}catch(SectorNotFoundException nf){
+    		throw new SectorNotFoundException(dto.getSectorID());
+    	}
+        
         if(success == false) {
         	return new ResponseEntity<>(success, HttpStatus.BAD_REQUEST);
         }
