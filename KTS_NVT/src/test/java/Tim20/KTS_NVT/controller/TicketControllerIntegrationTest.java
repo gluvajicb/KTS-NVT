@@ -1,6 +1,7 @@
 package Tim20.KTS_NVT.controller;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Collection;
@@ -76,6 +77,19 @@ public class TicketControllerIntegrationTest {
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
 		assertEquals(1, error.getCode());
 		assertEquals("Event [5] not found", error.getMessage());
+	}
+	
+	@Test
+	public void addSeatsTicketTest() {
+
+		int size = ticketService.findAll().size();
+
+		ResponseEntity<Boolean> responseEntity = restTemplate.postForEntity("/add-seats-ticket",
+				new SeatsTicketDTO(1l, 1l, true, 5000.00, 1, 1, 1l), Boolean.class);
+
+		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+		List<Ticket> tickets = ticketService.findAll();
+		assertEquals(size + 1, tickets.size());
 	}
 	
 	@Test

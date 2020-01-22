@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import tim20.KTS_NVT.model.Ticket;
 
-public interface TicketRepository<T extends Ticket> extends JpaRepository<T, Long> {
+public interface TicketRepository extends JpaRepository<Ticket, Long> {
 				
 	@Query("SELECT st FROM seats_ticket st  WHERE st.event.id = ?1 AND st.rowNum = ?2 AND st.columnNum = ?3 AND st.sector.id = ?4")
 	Ticket checkSeatsTicketAvailability(Long eventId, Integer rowNum, Integer colNum, Long sectorId);
