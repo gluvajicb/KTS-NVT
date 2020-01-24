@@ -7,6 +7,8 @@
 		<div class="col-10">
 			<input class="form-control" type="text" id="title" placeholder="Title" 
 				name="title" [(ngModel)]="location.title" #title="ngModel" required>
+			<small *ngIf="title.touched && title.errors?.required" class="text-danger">
+					Title is required</small>
 		</div>
 	</div>
 
@@ -15,6 +17,8 @@
 		<div class="col-10">
 			<input class="form-control" type="text" id="address" placeholder="Address"
 				name="address" [(ngModel)]="location.address" #address="ngModel" required>
+			<small *ngIf="address.touched && address.errors?.required" class="text-danger">
+					Address is required</small>
 		</div>
 	</div>
 	<div class="row-col-2">
@@ -29,7 +33,7 @@
 	</div>
 	<div class="form-group row float-right">
 		<div class="col-12">
-			<button class="btn btn-primary " type="submit" (click)="addLocation()">Add location</button>
+			<button class="btn btn-primary " type="submit" (click)="addLocation()" [disabled]="locationForm.invalid">Add location</button>
 		</div>
 	</div>
 </form>
