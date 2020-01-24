@@ -4,6 +4,7 @@ import { LocationsService} from '../services/locations.service';
 import { Location } from '../model/location';
 import { FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import { SectorService } from '../services/sector.service';
+import { sectorTypeFormValidator } from '../directives/sector-type-form.directive';
 
 
 @Component({
@@ -37,9 +38,9 @@ export class AddSectorComponent implements OnInit {
       max_guests: [''],
       row_num: [''],
       column_num: [''],
-    });
+    }, {validators: sectorTypeFormValidator});
 
-    this.sectorForm.get('type').valueChanges.subscribe(val => {
+    /*this.sectorForm.get('type').valueChanges.subscribe(val => {
       if (val === 'stand') { // for setting validations
         this.sectorForm.get('max_guests').setValidators([Validators.required]);
         this.sectorForm.get('row_num').clearValidators();
@@ -53,7 +54,7 @@ export class AddSectorComponent implements OnInit {
         this.sectorForm.get('row_num').setValidators(Validators.required);
         this.sectorForm.get('column_num').setValidators(Validators.required);
       }
-  });
+  });*/
   }
 
 

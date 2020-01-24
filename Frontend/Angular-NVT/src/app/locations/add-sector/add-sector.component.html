@@ -7,6 +7,9 @@
 		<div class="col-10">
 			<input class="form-control" type="text" id="sectorTitle" placeholder="Title" 
 				formControlName="title">
+				<small class="text-danger" 
+				*ngIf="sectorForm.controls.title.touched && sectorForm.controls.title.errors?.required">
+				Title is required</small>
 		</div>
 	</div>
 
@@ -33,12 +36,17 @@
 			<div class="form-group row">
 				<label class="col-form-label-sm" for="inputRow">Rows</label>
 				<input type="text" class="form-control" formControlName="row_num" placeholder="Number of rows" id="inputRow" [hidden]="!showRowColInput">
+				<small class="text-danger" 
+				*ngIf="sectorForm.controls.row_num.touched && sectorForm.errors?.sectorTypeFormValidator && sectorForm.controls.type.value === 'seats'">
+				Enter a number</small>
 			</div>
-
-
+			
 			<div class="form-group row">
 				<label class="col-form-label-sm" for="inputCol">Columns</label>
 				<input type="text" class="form-control" formControlName="column_num" placeholder="Number of columns" id="inputCol" [hidden]="!showRowColInput">
+				<small class="text-danger" 
+				*ngIf="sectorForm.controls.row_num.touched && sectorForm.controls.column_num.touched && sectorForm.errors?.sectorTypeFormValidator && sectorForm.controls.type.value === 'seats'">
+				Enter a number</small>
 			</div>
 
 		</div>
@@ -46,6 +54,9 @@
 		<div class="form-group col">
 			<label class="col-form-label-sm" for="inputMaxGuests">Max guests</label>
 			<input type="text" class="form-control" formControlName="max_guests" placeholder="Max guests" id="inputMaxGuests" [hidden]="!showMaxGuestsInput">
+			<small class="text-danger" 
+				*ngIf="sectorForm.controls.max_guests.touched && sectorForm.errors?.sectorTypeFormValidator && sectorForm.controls.type.value === 'stand'">
+				Enter a number</small>
 		</div>
 	</div>
 	  

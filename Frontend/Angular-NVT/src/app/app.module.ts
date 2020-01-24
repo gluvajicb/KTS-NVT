@@ -32,7 +32,7 @@ import { LocationsService } from './locations/services/locations.service';
     PaginationComponent,
     LocationDetailsComponent,
     SectorCanvasComponent,
-    AddSectorComponent
+    AddSectorComponent,
   ],
   imports: [
     BrowserModule,
