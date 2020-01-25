@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Location } from '../model/location';
 import { LocationsService } from '../services/locations.service';
 import { Router } from '@angular/router';
@@ -11,13 +11,17 @@ import { Router } from '@angular/router';
 export class TableComponent implements OnInit {
   @Input() locations: Location[];
 
-  constructor(private locationService: LocationsService, private router: Router) { }
+  @Output() deleteClickedEvent: EventEmitter<number>;
+
+  constructor(private locationService: LocationsService, private router: Router) {
+    this.deleteClickedEvent = new EventEmitter();
+  }
 
   ngOnInit() {
   }
 
-  deleteLocation(id: number) {
-    this.locationService.delete(id);
+  onClickDelete(id: number) {
+    this.deleteClickedEvent.emit(id);
   }
 
   locationDetails(id: number) {

@@ -61,8 +61,9 @@ export class LocationsService {
    }
 
 
-    delete(id: number) {
+    delete(id: number): Observable<any> {
      console.log('delete');
+     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
    }
 
 }

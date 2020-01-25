@@ -33,4 +33,21 @@ export class LocationListComponent implements OnInit {
       });
   }
 
+  reloadData() {
+    this.locationsService.getAll(this.currentPage - 1, this.pageSize)
+      .subscribe( res => {
+        this.locationList = res.body as Location[];
+      });
+  }
+
+  deleteLocation(id: number) {
+    this.locationsService.delete(id)
+      .subscribe(
+        data => {
+          console.log(data);
+        }
+      );
+    this.reloadData();
+  }
+
 }

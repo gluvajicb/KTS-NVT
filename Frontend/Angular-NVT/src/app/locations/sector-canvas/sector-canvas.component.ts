@@ -17,9 +17,11 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
   canvasWidth = 700;
   canvas: any;
   numOfSectors: number;
+  hasUnsavedChanges: boolean;
+  itemSelected: boolean;
 
   @Output() submitChangesEvent = new EventEmitter<any>();
-
+  @Output() deleteSectorClicked = new EventEmitter<string>();
   @Input() sectors: Sector[];
   @Input() editable: boolean;
 
@@ -39,6 +41,25 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.canvas = new fabric.Canvas('canvas');
+    this.hasUnsavedChanges = false;
+    this.itemSelected = false;
+
+    this.canvas.on('object:modified', (event: any) => {
+      this.hasUnsavedChanges = true;
+    });
+
+    this.canvas.on('selection:created', () => {
+      if (this.canvas.getActiveObject().toObject().type === 'activeSelection') {
+        this.itemSelected = false;
+      } else {
+        this.itemSelected = true;
+      }
+    });
+
+    this.canvas.on('selection:cleared', () => {
+      this.itemSelected = false;
+    });
+
     this.draw();
   }
 
@@ -221,7 +242,31 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
     });
   }
 
-  sendCanvas() {
+  clickedDelete() {
+    const activeObject = this.canvas.getActiveObject().toObject();
+    if (activeObject.type === 'table') {
+      const sectorTitle = activeObject.objects[1].text;
+      this.deleteSectorClicked.emit(sectorTitle);
+      this.canvas.getActiveObjects().forEach((obj: any) => {
+        this.canvas.remove(obj);
+      });
+      this.canvas.discardActiveObject().renderAll();
+      console.log('Delete');
+    } else {
+      if (activeObject.type === 'group') {
+        const sectorTitle = activeObject.objects[0].text;
+        this.deleteSectorClicked.emit(sectorTitle);
+        this.canvas.getActiveObjects().forEach((obj: any) => {
+          this.canvas.remove(obj);
+        });
+        this.canvas.discardActiveObject().renderAll();
+      }
+    }
+  }
+
+
+sendCanvas() {
+    this.hasUnsavedChanges = false;
     this.submitChangesEvent.emit(this.canvas.toObject());
   }
 

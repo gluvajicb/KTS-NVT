@@ -1,6 +1,10 @@
-.container {
-    /*overflow-y: scroll;
+/*.container {
+    overflow-y: scroll;
     overflow-x: scroll;
     width: 500px;
-    height: 500px;*/
-}
+    height: 500px;
+}*/
+
+#submitChangesButton {
+    padding-right: 0;
+  }

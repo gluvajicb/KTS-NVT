@@ -5,6 +5,8 @@
     </button>
 -->
 <div class="container">
+    <button (click)="sendCanvas()" *ngIf="this.editable" id="submitChangesButton" class="btn btn-primary" [disabled]="!this.hasUnsavedChanges">Submit changes</button>
+    <small *ngIf="this.hasUnsavedChanges" class="text-danger">Unsaved changes*</small>
+    <button (click)="clickedDelete()" *ngIf="this.editable" class="btn btn-danger" [disabled]="!this.itemSelected">Delete selected item</button>
     <canvas id="canvas" width="500" height="500" style="border: 1px solid red;"></canvas>
-    <button (click)="sendCanvas()" *ngIf="this.editable">Submit changes</button>
 </div>

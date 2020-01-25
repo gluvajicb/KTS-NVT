@@ -75,4 +75,18 @@ export class AddLocationFormComponent implements OnInit {
 
   }
 
+  deleteSector(sectorTitle: string) {
+    let i = 0;
+
+    for (const sec of this.location.sectors) {
+      if (sec.title === sectorTitle) {
+        break;
+      }
+      i ++;
+    }
+    if ( i < this.location.sectors.length) {
+      this.location.sectors.splice(i, 1);
+    }
+  }
+
 }
