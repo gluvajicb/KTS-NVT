@@ -1,5 +1,6 @@
 #container {
-    border-style: dashed;
-    border-radius: 5px;
+    border: 1px solid #C0C0C0;
+    border-radius: 10px;
     padding: 20px;
+    margin-top: 5em;
 }
