@@ -16,3 +16,5 @@ insert into sector_price (id, price, sector_id, event_id) values (111, 42, 101, 
 insert into event_day (id, title, eventdate, event_id) values (201, "Day1", '2019-05-30', 105);
 insert into event_day (id, title, eventdate, event_id) values (202, "Day2", '2019-05-28', 106);
 
+insert into role (role_id, role) values(1, "ADMIN");
+insert into role (role_id, role) values(2, "USER");

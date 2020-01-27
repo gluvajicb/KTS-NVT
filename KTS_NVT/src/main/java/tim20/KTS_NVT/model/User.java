@@ -1,54 +1,62 @@
 package tim20.KTS_NVT.model;
 
-public abstract class User {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "users")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class User implements UserDetails {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String username;
 	private String password;
 	private String name;
 	private String surname;
 	private String email;
 
-	public User() {
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<UserRole> roles;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<GrantedAuthority> grantedAuthorities = new HashSet<>();
+		grantedAuthorities.addAll(roles);
+		return grantedAuthorities;
 	}
 
-	public String getUsername() {
-		return username;
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
 	}
 
-	public String getPassword() {
-		return password;
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 }
