@@ -8,12 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tim20.KTS_NVT.converters.EventDayDTOConverter;
 import tim20.KTS_NVT.dto.EventDayDTO;
+import tim20.KTS_NVT.exceptions.DateInThePastException;
 import tim20.KTS_NVT.exceptions.EventDayNotFoundException;
+import tim20.KTS_NVT.exceptions.IdNotFoundException;
 import tim20.KTS_NVT.model.Error;
 import tim20.KTS_NVT.model.EventDay;
 import tim20.KTS_NVT.service.EventDayService;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -52,12 +56,50 @@ public class EventDayController {
 
         EventDay eventday = EventDayDTOConverter.dtoToEventDay(dto);
         eventday.setId(null);
-        EventDay ed = eventDayService.saveEventDay(eventday);
 
-        /* todo TREBA PROVERITI OVDE DA LI JE DATUM U PROSLOSTI ITD */
+        Date today = Calendar.getInstance().getTime();
+
+        if (dto.getEventdate().before(today)) {
+            throw new DateInThePastException();
+        }
+
+        EventDay ed = eventDayService.saveEventDay(eventday);
 
         return new ResponseEntity<EventDayDTO>(EventDayDTOConverter.eventDayToDto(ed), HttpStatus.CREATED);
 
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<EventDayDTO> updateEventDay(@RequestBody EventDayDTO dto) {
+
+        if(dto.getId() == null) {
+            throw new IdNotFoundException();
+        }
+
+        EventDay found = eventDayService.findOne(dto.getId());
+
+        if(found == null) {
+            throw new EventDayNotFoundException(dto.getId());
+        }
+
+        EventDay eventDay = EventDayDTOConverter.dtoToEventDay(dto);
+
+        EventDay ed = eventDayService.updateEventDay(eventDay);
+
+        return new ResponseEntity<EventDayDTO>(EventDayDTOConverter.eventDayToDto(ed), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{dayId}")
+    public ResponseEntity<Void> deleteEventDay(@PathVariable("dayId") Long id) {
+
+        EventDay eventDay = eventDayService.findOne(id);
+
+        if(eventDay == null) {
+            throw new EventDayNotFoundException(id);
+        } else {
+            eventDayService.deleteEventDay(id);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
     }
 
     // ************************ EXCEPTION HANDLER ************************ //
