@@ -1,8 +1,13 @@
-<h3>Locations Details</h3> 
+<div class="row">
+  <h3 class="mt-5">Locations Details</h3>
+  <hr/>
+</div>
+<div *ngIf="location" class="row">
+  <div class="col-md-7">
+    <app-sector-canvas [sectors]="location.sectors" [editable]="false"></app-sector-canvas>
+  </div>
 
-<hr/>
-<div *ngIf="location">
-  <div>
+  <div class="col-md-4 mt-5">
     <div>
       <label><b>Id: </b></label> {{location.id}}
     </div>
@@ -11,11 +16,10 @@
     </div>
     <div>
       <label><b>Address: </b></label> {{location.address}}
-    </div>  
-  </div>
-
-  <div>
-    <app-sector-canvas [sectors]="location.sectors" [editable]="false"></app-sector-canvas>
+    </div>
   </div>
 </div>
-<button (click)="backToList()" class="btn btn-primary">Back to Location List</button><br>
+<div class="row ml-3 mt-5 mb-5">
+  <button (click)="backToList()" class="btn btn-primary">Back to Location List</button><br>
+</div>
+
