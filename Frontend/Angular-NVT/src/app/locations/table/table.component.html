@@ -10,8 +10,8 @@
       <tr *ngFor="let loc of locations">
         <td>{{loc.title}}</td>
         <td>{{loc.address}}</td>
+        <button (click)="locationDetails(loc.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
         <td><button (click)="onClickDelete(loc.id)" class="btn btn-danger">Delete</button>
-          <button (click)="locationDetails(loc.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
       </td>
       </tr>
     </tbody>
