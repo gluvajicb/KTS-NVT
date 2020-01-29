@@ -34,7 +34,7 @@ export class AddEventFormComponent implements OnInit {
       });
   }
 
-  onChange(newValue) {
+  onChange(newValue: any) {
     console.log(newValue);
     this.selectedLocation = newValue;
   }
