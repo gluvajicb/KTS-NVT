@@ -1,3 +1,4 @@
+{{event | json}}
 <form #eventForm="ngForm" novalidate>
   <h3 class="mt-2 mb-4">Add event</h3>
   <div class="form-group row">
@@ -39,7 +40,7 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <app-sector-canvas [sectors]="this.selectedLocation.sectors" [editable]="false"></app-sector-canvas>
+      <app-canvas-events [sectors]="this.selectedLocation.sectors" *ngIf="selectedLocation"></app-canvas-events>
     </div>
   </div>
 </form>

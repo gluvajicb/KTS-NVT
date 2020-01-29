@@ -25,6 +25,7 @@ import { AddEventFormComponent } from './events/add-event-form/add-event-form.co
 import { EventContainerComponent } from './events/event-container/event-container.component';
 import { EventsService } from './events/services/events.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
+import { CanvasEventsComponent } from './events/canvas-events/canvas-events.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { EventDetailsComponent } from './events/event-details/event-details.comp
     EventListComponent,
     AddEventFormComponent,
     EventContainerComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    CanvasEventsComponent
   ],
   imports: [
     BrowserModule,
