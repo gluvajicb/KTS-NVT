@@ -11,10 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tim20.KTS_NVT.exceptions.EmailInUseException;
-import tim20.KTS_NVT.exceptions.FieldsRequiredException;
-import tim20.KTS_NVT.exceptions.UsernameTakenException;
-import tim20.KTS_NVT.exceptions.WrongCredentialsException;
+import tim20.KTS_NVT.dto.UserDTO;
+import tim20.KTS_NVT.exceptions.*;
 import tim20.KTS_NVT.model.User;
 import tim20.KTS_NVT.repository.UserRepository;
 import tim20.KTS_NVT.repository.UserRoleRepository;
@@ -80,7 +78,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
-    public UserTokenState loginUser(User user) {
+    public UserTokenState loginUser(UserDTO user) {
         try {
             if (user.getUsername() == null || user.getUsername().trim().equals("")
                 || user.getPassword() == null || user.getPassword().trim().equals("")) {
@@ -105,22 +103,30 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
-    public void registerUser(User user) {
-        if (user.getName() == null || user.getName().isEmpty() || user.getSurname() == null || user.getSurname().isEmpty()
-            || user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null || user.getPassword().isEmpty()
-            || user.getEmail() == null || user.getEmail().isEmpty()) {
+    public void registerUser(UserDTO userDTO) {
+        if (userDTO.getName() == null || userDTO.getName().isEmpty() || userDTO.getSurname() == null || userDTO.getSurname().isEmpty()
+                || userDTO.getUsername() == null || userDTO.getUsername().isEmpty() || userDTO.getEmail() == null || userDTO.getEmail().isEmpty()
+                || userDTO.getPassword() == null || userDTO.getPassword().isEmpty()
+                || userDTO.getPasswordConfirmation() == null || userDTO.getPasswordConfirmation().isEmpty()) {
             throw new FieldsRequiredException();
         }
 
-        if (findByUsername(user.getUsername()) != null) {
+        if (findByUsername(userDTO.getUsername()) != null) {
             throw new UsernameTakenException();
         }
 
-        if (findByEmail(user.getEmail()) != null) {
+        if (findByEmail(userDTO.getEmail()) != null) {
             throw new EmailInUseException();
         }
 
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if (!userDTO.getPassword().equals(userDTO.getPasswordConfirmation())) {
+            throw new PasswordsNotMatchingException();
+        }
+
+        User user = new User(0, userDTO.getUsername(), userDTO.getPassword(), userDTO.getName(),
+                userDTO.getSurname(), userDTO.getEmail(), null);
+
+        user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
         user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByRole("ADMIN"))));
         userRepository.save(user);
     }

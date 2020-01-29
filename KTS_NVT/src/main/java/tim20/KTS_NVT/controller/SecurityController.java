@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import tim20.KTS_NVT.dto.UserDTO;
 import tim20.KTS_NVT.exceptions.*;
 import tim20.KTS_NVT.model.Error;
 import tim20.KTS_NVT.model.User;
@@ -38,13 +39,13 @@ public class SecurityController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<UserTokenState> login(@Valid @RequestBody User user) {
+    public ResponseEntity<UserTokenState> login(@Valid @RequestBody UserDTO user) {
         UserTokenState tokenState = userService.loginUser(user);
         return new ResponseEntity<>(tokenState, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<Boolean> register(@Valid @RequestBody User user) {
+    public ResponseEntity<Boolean> register(@Valid @RequestBody UserDTO user) {
         userService.registerUser(user);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
@@ -74,6 +75,13 @@ public class SecurityController {
     public ResponseEntity<Error> emailInUse()
     {
         Error error = new Error(1,"Email is already in use, try logging in.");
+        return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(PasswordsNotMatchingException.class)
+    public ResponseEntity<Error> passwordsDontMatch()
+    {
+        Error error = new Error(1,"Password confirmation is incorrect.");
         return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
     }
 }
