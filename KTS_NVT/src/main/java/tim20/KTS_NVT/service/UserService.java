@@ -41,6 +41,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private TokenHelper tokenHelper;
 
+    @Autowired
+    private EmailService emailService;
+
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
@@ -124,10 +127,28 @@ public class UserService implements UserDetailsService {
         }
 
         User user = new User(0, userDTO.getUsername(), userDTO.getPassword(), userDTO.getName(),
-                userDTO.getSurname(), userDTO.getEmail(), null);
+                userDTO.getSurname(), userDTO.getEmail(), false, null, null);
 
         user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
         user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByRole("ADMIN"))));
+
+        emailService.sendVerificationEmail(user);
         userRepository.save(user);
+    }
+
+    public boolean verifyAccount(String email, String token) {
+        if (email == null || email.isEmpty() || token == null || token.isEmpty()) {
+            throw new FieldsRequiredException();
+        }
+
+        User user = userRepository.findByEmailAndVerificationToken(email, token);
+        if (user != null) {
+            user.setConfirmed(true);
+            user.setVerificationToken("");
+            userRepository.save(user);
+            return true;
+        }
+
+        throw new WrongVerificationTokenAndEmail();
     }
 }

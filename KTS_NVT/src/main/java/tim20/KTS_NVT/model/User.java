@@ -28,6 +28,8 @@ public class User implements UserDetails {
 	private String name;
 	private String surname;
 	private String email;
+	private boolean confirmed;
+	private String verificationToken;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

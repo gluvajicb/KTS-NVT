@@ -7,14 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import tim20.KTS_NVT.dto.UserDTO;
 import tim20.KTS_NVT.exceptions.*;
 import tim20.KTS_NVT.model.Error;
-import tim20.KTS_NVT.model.User;
 import tim20.KTS_NVT.repository.UserRoleRepository;
 import tim20.KTS_NVT.security.UserTokenState;
 import tim20.KTS_NVT.service.UserService;
@@ -48,6 +44,11 @@ public class SecurityController {
     public ResponseEntity<Boolean> register(@Valid @RequestBody UserDTO user) {
         userService.registerUser(user);
         return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/verify", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> verifyAccount(@RequestParam String email, @RequestParam String token) {
+        return new ResponseEntity<Boolean>(userService.verifyAccount(email, token), HttpStatus.OK);
     }
 
     @ExceptionHandler(FieldsRequiredException.class)
