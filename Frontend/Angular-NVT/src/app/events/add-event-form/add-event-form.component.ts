@@ -18,6 +18,7 @@ export class AddEventFormComponent implements OnInit {
 
   event: Event;
   locations: Location[];
+  selectedLocation: Location;
   constructor(private fb: FormBuilder, private eventsService: EventsService, private locationsService: LocationsService,
               private router: Router) {
     this.event = new Event();
@@ -28,7 +29,13 @@ export class AddEventFormComponent implements OnInit {
     this.locationsService.getAll(1, 100)
       .subscribe( res => {
         this.locations = res.body as Location[];
-        console.log(this.locations);
+        this.selectedLocation = this.locations[0];
+        console.log(this.selectedLocation);
       });
+  }
+
+  onChange(newValue) {
+    console.log(newValue);
+    this.selectedLocation = newValue;
   }
 }

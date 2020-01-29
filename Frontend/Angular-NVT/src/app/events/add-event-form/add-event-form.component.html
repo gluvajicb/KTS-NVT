@@ -30,27 +30,16 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="location" class="col-2 col-form-label">Location:
-      {{locations.length}}</label>
+    <label for="location" class="col-2 col-form-label">Location:</label>
     <div class="col-10">
-      <select class="form-control" id="location">
-        <option *ngFor="let location of this.locations"> ID {{location.address}}</option>
+      <select class="form-control" [ngModel]="selectedLocation" (ngModelChange)="onChange($event)" id="location" name="locations">
+        <option *ngFor="let location of this.locations" [ngValue]="location">{{location.title}}</option>
       </select>
     </div>
   </div>
-  <div class="row-col-2">
-    <div class="row">
-      <div class="col">
-        <app-sector-canvas [sectors]="location.sectors" (deleteSectorClicked)="deleteSector($event)" (submitChangesEvent)="editSectors($event)" [numberOfSectors]="numOfSectors" [editable]="true"></app-sector-canvas>
-      </div>
-      <div class="col">
-        <app-add-sector (newSector)="addNewSector($event)"></app-add-sector>
-      </div>
-    </div>
-  </div>
-  <div class="form-group row float-right">
-    <div class="col-12">
-      <button class="btn btn-primary " type="submit" (click)="addLocation()" [disabled]="locationForm.invalid">Add location</button>
+  <div class="row">
+    <div class="col-md-7">
+      <app-sector-canvas [sectors]="this.selectedLocation.sectors" [editable]="false"></app-sector-canvas>
     </div>
   </div>
 </form>

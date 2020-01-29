@@ -12,4 +12,7 @@ export class EventContainerComponent implements OnInit {
 
   ngOnInit() {
   }
+  navigateToAdd() {
+    this.router.navigate(['events/add']);
+  }
 }
