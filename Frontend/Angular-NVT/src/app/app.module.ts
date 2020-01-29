@@ -19,6 +19,12 @@ import { AddSectorComponent } from './locations/add-sector/add-sector.component'
 import { HttpClientModule} from '@angular/common/http';
 import { LocationsService } from './locations/services/locations.service';
 
+import { TableEventComponent } from './events/table/table.component';
+import { EventListComponent } from './events/event-list/event-list.component';
+import { AddEventFormComponent } from './events/add-event-form/add-event-form.component';
+import { EventContainerComponent } from './events/event-container/event-container.component';
+import { EventsService } from './events/services/events.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +39,10 @@ import { LocationsService } from './locations/services/locations.service';
     LocationDetailsComponent,
     SectorCanvasComponent,
     AddSectorComponent,
+    TableEventComponent,
+    EventListComponent,
+    AddEventFormComponent,
+    EventContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +51,10 @@ import { LocationsService } from './locations/services/locations.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [LocationsService],
+  providers: [
+    LocationsService,
+    EventsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
