@@ -1,0 +1,31 @@
+<div class="row">
+  <h3 class="mt-5">Event Details</h3>
+  <hr/>
+</div>
+<div *ngIf="event" class="row">
+
+  <div class="col-md-6 mt-5">
+    <div>
+      <label><b>Id: </b></label> {{event.id}}
+    </div>
+    <div>
+      <label><b>Title: </b></label> {{event.title}}
+    </div>
+    <div>
+      <label><b>Description: </b></label> {{event.description}}
+    </div>
+
+    <div>
+      <label><b>Location: </b></label> {{location.title}}
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <app-sector-canvas [sectors]="location.sectors" [editable]="false"></app-sector-canvas>
+  </div>
+
+</div>
+<div class="row ml-3 mt-5 mb-5">
+  <button (click)="backToList()" class="btn btn-primary">Back to Events List</button><br>
+</div>
+
