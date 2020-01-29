@@ -11,6 +11,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tim20.KTS_NVT.exceptions.EmailInUseException;
+import tim20.KTS_NVT.exceptions.FieldsRequiredException;
+import tim20.KTS_NVT.exceptions.UsernameTakenException;
+import tim20.KTS_NVT.exceptions.WrongCredentialsException;
 import tim20.KTS_NVT.model.User;
 import tim20.KTS_NVT.repository.UserRepository;
 import tim20.KTS_NVT.repository.UserRoleRepository;
@@ -76,8 +80,13 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
-    public boolean loginUser(User user) {
+    public UserTokenState loginUser(User user) {
         try {
+            if (user.getUsername() == null || user.getUsername().trim().equals("")
+                || user.getPassword() == null || user.getPassword().trim().equals("")) {
+                throw new FieldsRequiredException();
+            }
+
             final Authentication authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 
@@ -87,38 +96,32 @@ public class UserService implements UserDetailsService {
 
                 String jwt = tokenHelper.generateToken(user.getUsername());
 
-                UserTokenState tokenState = new UserTokenState(jwt, 43200);
-                // return token state to user
-                return true;
+                return new UserTokenState(jwt, 43200);
             }
         } catch (Exception e) {
-            String a = e.getMessage();
+            throw new WrongCredentialsException();
         }
 
-        return false;
+        return null;
     }
 
-    public boolean registerUser(User user) {
-        if (user.getName().isEmpty() || user.getPassword().isEmpty() || user.getEmail().isEmpty()
-                || user.getSurname().isEmpty() || user.getUsername().isEmpty()) {
-            //return "All fields are required!";
-            return false;
+    public void registerUser(User user) {
+        if (user.getName() == null || user.getName().isEmpty() || user.getSurname() == null || user.getSurname().isEmpty()
+            || user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null || user.getPassword().isEmpty()
+            || user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new FieldsRequiredException();
         }
 
         if (findByUsername(user.getUsername()) != null) {
-//            return "Username already taken!";
-            return false;
+            throw new UsernameTakenException();
         }
 
         if (findByEmail(user.getEmail()) != null) {
-//            return "Email already taken!";
-            return false;
+            throw new EmailInUseException();
         }
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByRole("ADMIN"))));
         userRepository.save(user);
-
-        return true;
     }
 }

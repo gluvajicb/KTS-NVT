@@ -7,11 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import tim20.KTS_NVT.exceptions.*;
+import tim20.KTS_NVT.model.Error;
 import tim20.KTS_NVT.model.User;
 import tim20.KTS_NVT.repository.UserRoleRepository;
+import tim20.KTS_NVT.security.UserTokenState;
 import tim20.KTS_NVT.service.UserService;
 
 import javax.validation.Valid;
@@ -34,22 +38,42 @@ public class SecurityController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<Boolean> login(@Valid @RequestBody User user) {
-        try {
-            userService.loginUser(user);
-            return new ResponseEntity<>(true, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<UserTokenState> login(@Valid @RequestBody User user) {
+        UserTokenState tokenState = userService.loginUser(user);
+        return new ResponseEntity<>(tokenState, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<Boolean> register(@Valid @RequestBody User user) {
-        try {
-            userService.registerUser(user);
-            return new ResponseEntity<>(true, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
-        }
+        userService.registerUser(user);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+
+    @ExceptionHandler(FieldsRequiredException.class)
+    public ResponseEntity<Error> fieldsRequired()
+    {
+        Error error = new Error(1,"All fields must be provided.");
+        return new ResponseEntity<Error>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(WrongCredentialsException.class)
+    public ResponseEntity<Error> wrongCredentials()
+    {
+        Error error = new Error(1,"Provided credentials don't match with any account.");
+        return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(UsernameTakenException.class)
+    public ResponseEntity<Error> usernameTaken()
+    {
+        Error error = new Error(1,"Username is taken, please choose another one.");
+        return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(EmailInUseException.class)
+    public ResponseEntity<Error> emailInUse()
+    {
+        Error error = new Error(1,"Email is already in use, try logging in.");
+        return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
     }
 }
