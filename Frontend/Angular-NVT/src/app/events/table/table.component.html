@@ -15,6 +15,7 @@
         <td>{{event.days.length}}</td>
         <td>{{event.isActive}}</td>
         <td>
+          <button (click)="eventDetails(event.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
         </td>
       </tr>
     </tbody>

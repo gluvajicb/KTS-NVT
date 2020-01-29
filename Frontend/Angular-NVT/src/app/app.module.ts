@@ -24,6 +24,8 @@ import { EventListComponent } from './events/event-list/event-list.component';
 import { AddEventFormComponent } from './events/add-event-form/add-event-form.component';
 import { EventContainerComponent } from './events/event-container/event-container.component';
 import { EventsService } from './events/services/events.service';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { EventsService } from './events/services/events.service';
     TableEventComponent,
     EventListComponent,
     AddEventFormComponent,
-    EventContainerComponent
+    EventContainerComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

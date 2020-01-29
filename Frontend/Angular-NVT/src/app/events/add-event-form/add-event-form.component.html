@@ -1,4 +1,56 @@
+<form #eventForm="ngForm" novalidate>
+  <h3 class="mt-2 mb-4">Add event</h3>
+  <div class="form-group row">
+    <label for="title" class="col-2 col-form-label">Title:</label>
+    <div class="col-10">
+      <input class="form-control" type="text" id="title" placeholder="Title"
+             name="title" [(ngModel)]="event.title" #title="ngModel" required>
+      <small *ngIf="title.touched && title.errors?.required" class="text-danger">
+        Title is required</small>
+    </div>
+  </div>
 
-<form #locationForm="ngForm" novalidate>
-	<h2>Add event</h2>
+  <div class="form-group row">
+    <label for="description" class="col-2 col-form-label">Description:</label>
+    <div class="col-10">
+      <input class="form-control" type="text" id="description" placeholder="Description"
+             name="description" [(ngModel)]="event.description" #description="ngModel" required>
+      <small *ngIf="description.touched && description.errors?.required" class="text-danger">
+        Description is required</small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="category" class="col-2 col-form-label">Event category:</label>
+    <div class="col-10">
+      <select class="form-control" id="category">
+        <option>SHOW</option>
+        <option>MUSIC</option>
+        <option>SPORT</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="location" class="col-2 col-form-label">Location:
+      {{locations.length}}</label>
+    <div class="col-10">
+      <select class="form-control" id="location">
+        <option *ngFor="let location of this.locations"> ID {{location.address}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row-col-2">
+    <div class="row">
+      <div class="col">
+        <app-sector-canvas [sectors]="location.sectors" (deleteSectorClicked)="deleteSector($event)" (submitChangesEvent)="editSectors($event)" [numberOfSectors]="numOfSectors" [editable]="true"></app-sector-canvas>
+      </div>
+      <div class="col">
+        <app-add-sector (newSector)="addNewSector($event)"></app-add-sector>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row float-right">
+    <div class="col-12">
+      <button class="btn btn-primary " type="submit" (click)="addLocation()" [disabled]="locationForm.invalid">Add location</button>
+    </div>
+  </div>
 </form>

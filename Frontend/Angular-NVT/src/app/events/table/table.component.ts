@@ -19,4 +19,8 @@ export class TableEventComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  eventDetails(id: number) {
+    this.router.navigate(['events/details', id]);
+  }
 }
