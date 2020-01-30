@@ -1,4 +1,5 @@
 import { EventDay } from '../model/event-day';
+import { Sectorprice } from './sectorprice';
 
 export class Event {
     id: number;
@@ -11,6 +12,7 @@ export class Event {
     max_tickets: number;
     locationId: number;
     active: number;
+    sectorPrices: Sectorprice[];
 
     constructor(obj?: any) {
      this.id = obj && obj.id || null;

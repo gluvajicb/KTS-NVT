@@ -1,0 +1,29 @@
+<div *ngIf="sectorPriceHelp">
+    <form #sectorpricesForm="ngForm" appSectorPriceFormValidator>
+        <h2>Add prices for sectors</h2>
+        <table>
+            <tr>
+                <th>Enabled</th>
+                <th>Title</th>
+                <th>Price</th>
+            </tr>
+            
+                <tr *ngFor="let sp of sectorPriceHelp">
+                    <td>
+                        <input type="checkbox" name="enabled" id="{{'cb' + sp.sectorID}}" [(ngModel)]="sp.enabled">
+                    </td>
+                    <td>
+                        <label>{{ sp.title }}</label>
+                    </td>
+                    <td>
+                        <input name="price" [(ngModel)]="sp.price" id="{{'price' + sp.sectorID}}" appPriceFieldValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><button (click)="sendData()" [disabled]="sectorpricesForm.invalid">Apply</button></td>
+                </tr>
+        </table>
+    </form>
+</div>
