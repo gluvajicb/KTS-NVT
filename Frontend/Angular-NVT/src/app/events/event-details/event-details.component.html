@@ -18,10 +18,18 @@
     <div>
       <label><b>Location: </b></label> {{location.title}}
     </div>
+
+    <h2 class="mt-5">Event days</h2>
+    <app-table-event-day [days]="event.days"></app-table-event-day>
+
+    <h2 class="mt-5">Prices</h2>
+    <div *ngFor="let sectorPrice of event.prices">
+      <label><b>{{sectorPrice.sector.title}} </b> - </label> {{sectorPrice.price}}e
+    </div>
   </div>
 
   <div class="col-md-5">
-    <app-sector-canvas [sectors]="location.sectors" [editable]="false"></app-sector-canvas>
+    <app-canvas-event-prices [prices]="event.prices" ></app-canvas-event-prices>
   </div>
 
 </div>

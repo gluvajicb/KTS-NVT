@@ -19,6 +19,7 @@ public class EventDTO
     private String eventCategory;
     private Integer max_tickets;
     private Long locationID;
+    private List<SectorPriceDTO> prices;
 
     public EventDTO() {}
 
@@ -28,8 +29,15 @@ public class EventDTO
         this.description = description;
     }
     
-    
-    public Long getId() {
+    public List<SectorPriceDTO> getPrices() {
+		return prices;
+	}
+
+	public void setPrices(List<SectorPriceDTO> prices) {
+		this.prices = prices;
+	}
+
+	public Long getId() {
         return id;
     }
 

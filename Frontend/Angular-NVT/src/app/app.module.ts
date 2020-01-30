@@ -19,6 +19,7 @@ import { AddSectorComponent } from './locations/add-sector/add-sector.component'
 import { HttpClientModule} from '@angular/common/http';
 import { LocationsService } from './locations/services/locations.service';
 
+import { TableEventDayComponent } from './events/event-day-table/event-day-table.component';
 import { TableEventComponent } from './events/table/table.component';
 import { EventListComponent } from './events/event-list/event-list.component';
 import { AddEventFormComponent } from './events/add-event-form/add-event-form.component';
@@ -26,9 +27,10 @@ import { EventContainerComponent } from './events/event-container/event-containe
 import { EventsService } from './events/services/events.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CanvasEventsComponent } from './events/canvas-events/canvas-events.component';
+import { CanvasEventPricesComponent } from './events/canvas-event-prices/canvas-event-prices.component';
 import { AddSectorpricesFormComponent } from './events/add-sectorprices-form/add-sectorprices-form.component';
 import { SectorPriceFormValidatorDirective } from './events/directives/sector-price-form-validator.directive';
-import { PriceFieldValidatorDirective } from './events/directives/price-field-validator.directive';
+
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { PriceFieldValidatorDirective } from './events/directives/price-field-va
     EventContainerComponent,
     EventDetailsComponent,
     CanvasEventsComponent,
+    TableEventDayComponent,
+    CanvasEventPricesComponent,
     AddSectorpricesFormComponent,
     SectorPriceFormValidatorDirective,
     PriceFieldValidatorDirective
