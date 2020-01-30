@@ -19,6 +19,9 @@ import tim20.KTS_NVT.repository.UserRoleRepository;
 import tim20.KTS_NVT.security.TokenHelper;
 import tim20.KTS_NVT.security.UserTokenState;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -136,6 +139,14 @@ public class UserService implements UserDetailsService {
     public boolean verifyAccount(String email, String token) {
         if (email == null || email.isEmpty() || token == null || token.isEmpty()) {
             throw new FieldsRequiredException();
+        }
+
+        try {
+            // This decoding is added to decode email address passed from test case
+            // where email has special characters ie. vule97+petar@gmail.com
+            email = URLDecoder.decode(email, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
 
         User user = userRepository.findByEmailAndVerificationToken(email, token);

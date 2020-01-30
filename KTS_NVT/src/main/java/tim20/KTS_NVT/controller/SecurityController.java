@@ -85,4 +85,11 @@ public class SecurityController {
         Error error = new Error(1,"Password confirmation is incorrect.");
         return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(WrongVerificationTokenAndEmail.class)
+    public ResponseEntity<Error> wrongVerificationData()
+    {
+        Error error = new Error(1,"Provided verification data is not valid.");
+        return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
+    }
 }
