@@ -28,6 +28,9 @@ import { EventsService } from './events/services/events.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CanvasEventsComponent } from './events/canvas-events/canvas-events.component';
 import { CanvasEventPricesComponent } from './events/canvas-event-prices/canvas-event-prices.component';
+import { AddSectorpricesFormComponent } from './events/add-sectorprices-form/add-sectorprices-form.component';
+import { SectorPriceFormValidatorDirective } from './events/directives/sector-price-form-validator.directive';
+
 
 
 @NgModule({
@@ -51,7 +54,10 @@ import { CanvasEventPricesComponent } from './events/canvas-event-prices/canvas-
     EventDetailsComponent,
     CanvasEventsComponent,
     TableEventDayComponent,
-    CanvasEventPricesComponent
+    CanvasEventPricesComponent,
+    AddSectorpricesFormComponent,
+    SectorPriceFormValidatorDirective,
+    PriceFieldValidatorDirective
   ],
   imports: [
     BrowserModule,

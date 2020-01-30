@@ -1,6 +1,6 @@
 import { EventDay } from '../model/event-day';
 import { EventPrice } from '../model/event-price';
-
+import { Sectorprice } from './sectorprice';
 
 export class Event {
     id: number;
@@ -14,6 +14,7 @@ export class Event {
     locationId: number;
     active: number;
     prices: EventPrice[];
+    sectorPrices: Sectorprice[];
 
     constructor(obj?: any) {
      this.id = obj && obj.id || null;

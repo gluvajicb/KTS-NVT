@@ -134,7 +134,8 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
         width: sec.width,
         height: sec.height,
         top: sec.top,
-        left: sec.left
+        left: sec.left,
+        angle: sec.angle
       });
 
       this.canvas.add(container);
