@@ -11,8 +11,17 @@ insert into event (id, title, description, is_Active, event_Category, location_i
 insert into event (id, title, description, is_Active, event_Category, location_id) values (106, "Event2", "Descript Event2", true, 1, 2);
 
 insert into sector_price (id, price, sector_id, event_id) values (110, 56, 100, 105);
+insert into sector_price (id, price, sector_id, event_id) values (112, 100, 102, 105);
 insert into sector_price (id, price, sector_id, event_id) values (111, 42, 101, 106);
 
 insert into event_day (id, title, eventdate, event_id) values (201, "Day1", '2019-05-30', 105);
 insert into event_day (id, title, eventdate, event_id) values (202, "Day2", '2019-05-28', 106);
 
+insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (1, 5000, 1, 201, 105, 102, 1, 1);
+insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (2, 5000, 1, 201, 105, 102, 1, 2);
+insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (3, 5000, 1, 201, 105, 102, 1, 3);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(6, 2000, 0, 201, 105,100);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(7, 2000, 1, 201, 105, 100);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(8, 2000, 1, 201, 105, 100);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(4, 2000, 1, 201, 105, 100);
+insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(5, 2000, 1, 201, 105, 100);

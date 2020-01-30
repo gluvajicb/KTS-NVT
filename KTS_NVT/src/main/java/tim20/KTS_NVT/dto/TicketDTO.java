@@ -2,11 +2,11 @@ package tim20.KTS_NVT.dto;
 
 public class TicketDTO {
 	
-	private Long eventID;
-    private Long eventDayID;
+	private Long ID;
+    private String eventDayTitle;
     private boolean isSingleDay;
     private double price;
-    private Long sectorID;
+    private String sectorTitle;
     private int rowNumber;
     private int columnNumber;
     
@@ -15,20 +15,12 @@ public class TicketDTO {
 		this.rowNumber = -1;
 	}
 
-	public Long getEventID() {
-		return eventID;
+	public Long getID() {
+		return ID;
 	}
 
 	public void setEventID(Long eventID) {
-		this.eventID = eventID;
-	}
-
-	public Long getEventDayID() {
-		return eventDayID;
-	}
-
-	public void setEventDayID(Long eventDayID) {
-		this.eventDayID = eventDayID;
+		this.ID = eventID;
 	}
 
 	public boolean isSingleDay() {
@@ -46,13 +38,22 @@ public class TicketDTO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
 
-	public Long getSectorID() {
-		return sectorID;
+	public String getEventDayTitle() {
+		return eventDayTitle;
 	}
 
-	public void setSectorID(Long sectorID) {
-		this.sectorID = sectorID;
+	public void setEventDayTitle(String eventDayTitle) {
+		this.eventDayTitle = eventDayTitle;
+	}
+
+	public String getSectorTitle() {
+		return sectorTitle;
+	}
+
+	public void setSectorTitle(String sectorTitle) {
+		this.sectorTitle = sectorTitle;
 	}
 
 	public int getRowNumber() {
@@ -71,14 +72,14 @@ public class TicketDTO {
 		this.columnNumber = columnNumber;
 	}
 
-	public TicketDTO(Long eventID, Long eventDayID, boolean isSingleDay,
-			double price, Long sectorID, int rowNumber, int columnNumber) {
+	public TicketDTO(Long eventID, String eventDayID, boolean isSingleDay,
+			double price, String sectorID, int rowNumber, int columnNumber) {
 		super();
-		this.eventID = eventID;
-		this.eventDayID = eventDayID;
+		this.ID = eventID;
+		this.eventDayTitle = eventDayID;
 		this.isSingleDay = isSingleDay;
 		this.price = price;
-		this.sectorID = sectorID;
+		this.sectorTitle = sectorID;
 		this.rowNumber = rowNumber;
 		this.columnNumber = columnNumber;
 	}
