@@ -106,7 +106,7 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
-    public void registerUser(UserDTO userDTO) {
+    public boolean registerUser(UserDTO userDTO) {
         if (userDTO.getName() == null || userDTO.getName().isEmpty() || userDTO.getSurname() == null || userDTO.getSurname().isEmpty()
                 || userDTO.getUsername() == null || userDTO.getUsername().isEmpty() || userDTO.getEmail() == null || userDTO.getEmail().isEmpty()
                 || userDTO.getPassword() == null || userDTO.getPassword().isEmpty()
@@ -134,6 +134,8 @@ public class UserService implements UserDetailsService {
 
         emailService.sendVerificationEmail(user);
         userRepository.save(user);
+
+        return true;
     }
 
     public boolean verifyAccount(String email, String token) {

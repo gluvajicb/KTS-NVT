@@ -42,8 +42,7 @@ public class SecurityController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<Boolean> register(@Valid @RequestBody UserDTO user) {
-        userService.registerUser(user);
-        return new ResponseEntity<>(true, HttpStatus.OK);
+        return new ResponseEntity<>(userService.registerUser(user), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
