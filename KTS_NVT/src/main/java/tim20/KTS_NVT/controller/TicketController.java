@@ -25,6 +25,7 @@ import java.util.*;
 
 
 @Controller
+@CrossOrigin
 @RequestMapping(value = "/tickets")
 public class TicketController {
 

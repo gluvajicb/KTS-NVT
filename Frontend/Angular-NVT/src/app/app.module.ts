@@ -30,7 +30,10 @@ import { CanvasEventsComponent } from './events/canvas-events/canvas-events.comp
 import { CanvasEventPricesComponent } from './events/canvas-event-prices/canvas-event-prices.component';
 import { AddSectorpricesFormComponent } from './events/add-sectorprices-form/add-sectorprices-form.component';
 import { SectorPriceFormValidatorDirective } from './events/directives/sector-price-form-validator.directive';
-
+import { PriceFieldValidatorDirective } from './events/directives/price-field-validator.directive';
+import { EventReportContainerComponent } from './reports/event-report-container/event-report-container.component';
+import { TicketTableComponent } from './reports/ticket-table/table.component';
+import { TicketListComponent } from './reports/ticket-list/ticket-list.component';
 
 
 @NgModule({
@@ -57,7 +60,10 @@ import { SectorPriceFormValidatorDirective } from './events/directives/sector-pr
     CanvasEventPricesComponent,
     AddSectorpricesFormComponent,
     SectorPriceFormValidatorDirective,
-    PriceFieldValidatorDirective
+    PriceFieldValidatorDirective,
+    EventReportContainerComponent,
+    TicketTableComponent,
+    TicketListComponent,
   ],
   imports: [
     BrowserModule,
