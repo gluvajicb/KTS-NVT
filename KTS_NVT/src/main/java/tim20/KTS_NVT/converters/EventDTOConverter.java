@@ -64,6 +64,7 @@ public class EventDTOConverter {
         
         dto.setDays(EventDayDTOConverter.eventDaysToDtos(event.getEventDays()));
         
+        dto.setPrices(SectorPriceDTOConverter.sectorpricesToDtos(event.getSectorPrice()));
         return dto;
 
     }

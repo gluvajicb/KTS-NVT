@@ -4,15 +4,15 @@ public class SectorPriceDTO
 {
     private Long id;
     private Double price;
-    private Long sectorID;
+    private SectorDTO sector;
     private Long eventID;
 
     public SectorPriceDTO() {}
 
-    public SectorPriceDTO(Long id, Double price, Long sectorID, Long eventID) {
+    public SectorPriceDTO(Long id, Double price, SectorDTO sectorID, Long eventID) {
         this.id = id;
         this.price = price;
-        this.sectorID = sectorID;
+        this.sector = sectorID;
         this.eventID = eventID;
     }
 
@@ -32,15 +32,16 @@ public class SectorPriceDTO
         this.price = price;
     }
 
-    public Long getSectorID() {
-        return sectorID;
-    }
+    
+    public SectorDTO getSector() {
+		return sector;
+	}
 
-    public void setSectorID(Long sectorID) {
-        this.sectorID = sectorID;
-    }
+	public void setSector(SectorDTO sector) {
+		this.sector = sector;
+	}
 
-    public Long getEventID() {
+	public Long getEventID() {
         return eventID;
     }
 

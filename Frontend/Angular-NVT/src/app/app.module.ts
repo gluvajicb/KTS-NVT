@@ -19,6 +19,7 @@ import { AddSectorComponent } from './locations/add-sector/add-sector.component'
 import { HttpClientModule} from '@angular/common/http';
 import { LocationsService } from './locations/services/locations.service';
 
+import { TableEventDayComponent } from './events/event-day-table/event-day-table.component';
 import { TableEventComponent } from './events/table/table.component';
 import { EventListComponent } from './events/event-list/event-list.component';
 import { AddEventFormComponent } from './events/add-event-form/add-event-form.component';
@@ -26,6 +27,7 @@ import { EventContainerComponent } from './events/event-container/event-containe
 import { EventsService } from './events/services/events.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { CanvasEventsComponent } from './events/canvas-events/canvas-events.component';
+import { CanvasEventPricesComponent } from './events/canvas-event-prices/canvas-event-prices.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { CanvasEventsComponent } from './events/canvas-events/canvas-events.comp
     AddEventFormComponent,
     EventContainerComponent,
     EventDetailsComponent,
-    CanvasEventsComponent
+    CanvasEventsComponent,
+    TableEventDayComponent,
+    CanvasEventPricesComponent
   ],
   imports: [
     BrowserModule,
