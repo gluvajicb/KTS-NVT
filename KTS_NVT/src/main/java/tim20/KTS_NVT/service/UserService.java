@@ -82,21 +82,18 @@ public class UserService implements UserDetailsService {
     }
 
     public UserTokenState loginUser(UserDTO user) {
-        try {
-            if (user.getUsername() == null || user.getUsername().trim().equals("")
+        if (user.getUsername() == null || user.getUsername().trim().equals("")
                 || user.getPassword() == null || user.getPassword().trim().equals("")) {
-                throw new FieldsRequiredException();
-            }
+            throw new FieldsRequiredException();
+        }
 
+        try {
             final Authentication authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 
-            User authenticatedUser = (User) authentication.getPrincipal();
-            if (authenticatedUser != null) {
+            if (authentication != null && authentication.getName() != null) {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-
-                String jwt = tokenHelper.generateToken(user.getUsername());
-
+                String jwt = tokenHelper.generateToken(authentication.getName());
                 return new UserTokenState(jwt, 43200);
             }
         } catch (Exception e) {
