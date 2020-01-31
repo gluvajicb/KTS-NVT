@@ -64,10 +64,10 @@ public class SectorPriceController
         }
         
         
-        Sector sector = sectorService.findOne(dto.getSectorID());
+        Sector sector = sectorService.findOne(dto.getSector().getId());
 
         if (sector == null) {
-            throw new SectorNotFoundException(dto.getSectorID());
+            throw new SectorNotFoundException(dto.getSector().getId());
         }
         
         //da li sektor pripada lokaciji?

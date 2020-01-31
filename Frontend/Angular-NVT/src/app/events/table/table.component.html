@@ -1,0 +1,22 @@
+<table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Number of days</th>
+        <th>Active</th>
+        <th>#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events">
+        <td>{{event.title}}</td>
+        <td>{{event.eventCategory}}</td>
+        <td>{{event.days.length}}</td>
+        <td>{{event.isActive}}</td>
+        <td>
+          <button (click)="eventDetails(event.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        </td>
+      </tr>
+    </tbody>
+</table>

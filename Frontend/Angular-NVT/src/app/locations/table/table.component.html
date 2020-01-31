@@ -3,15 +3,17 @@
       <tr>
         <th>Title</th>
         <th>Address</th>
+        <th>#</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let loc of locations">
         <td>{{loc.title}}</td>
         <td>{{loc.address}}</td>
-        <td><button (click)="onClickDelete(loc.id)" class="btn btn-danger">Delete</button>
+        <td>
           <button (click)="locationDetails(loc.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
-      </td>
+          <button (click)="onClickDelete(loc.id)" class="btn btn-danger">Delete</button>
+        </td>
       </tr>
     </tbody>
 </table>

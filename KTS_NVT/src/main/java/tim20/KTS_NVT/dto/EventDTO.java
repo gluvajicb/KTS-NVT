@@ -1,6 +1,7 @@
 package tim20.KTS_NVT.dto;
 
 import tim20.KTS_NVT.model.EventCategory;
+import tim20.KTS_NVT.model.EventDay;
 import tim20.KTS_NVT.model.Location;
 import tim20.KTS_NVT.model.SectorPrice;
 
@@ -13,11 +14,12 @@ public class EventDTO
     private Long id;
     private String title;
     private String description;
-    private List<Date> dates;
+    private List<EventDayDTO> days;
     private Boolean isActive;
-    private EventCategory eventCategory;
+    private String eventCategory;
     private Integer max_tickets;
     private Long locationID;
+    private List<SectorPriceDTO> prices;
 
     public EventDTO() {}
 
@@ -26,19 +28,16 @@ public class EventDTO
         this.title = title;
         this.description = description;
     }
+    
+    public List<SectorPriceDTO> getPrices() {
+		return prices;
+	}
 
-    public EventDTO(Long id, String title, String description, List<Date> dates, Boolean isActive, EventCategory eventCategory, Integer max_tickets, Long locationID) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.dates = dates;
-        this.isActive = true;
-        this.eventCategory = eventCategory;
-        this.max_tickets = max_tickets;
-        this.locationID = locationID;
-    }
+	public void setPrices(List<SectorPriceDTO> prices) {
+		this.prices = prices;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -62,14 +61,6 @@ public class EventDTO
         this.description = description;
     }
 
-    public List<Date> getDates() {
-        return dates;
-    }
-
-    public void setDates(List<Date> dates) {
-        this.dates = dates;
-    }
-
     public Boolean getActive() {
         return isActive;
     }
@@ -78,11 +69,11 @@ public class EventDTO
         isActive = active;
     }
 
-    public EventCategory getEventCategory() {
+    public String getEventCategory() {
         return eventCategory;
     }
 
-    public void setEventCategory(EventCategory eventCategory) {
+    public void setEventCategory(String eventCategory) {
         this.eventCategory = eventCategory;
     }
 
@@ -109,4 +100,14 @@ public class EventDTO
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
+
+	public List<EventDayDTO> getDays() {
+		return days;
+	}
+
+	public void setDays(List<EventDayDTO> days) {
+		this.days = days;
+	}
+	
+	
 }

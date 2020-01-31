@@ -1,0 +1,39 @@
+<div class="row">
+  <h3 class="mt-5">Event Details</h3>
+  <hr/>
+</div>
+<div *ngIf="event" class="row">
+
+  <div class="col-md-6 mt-5">
+    <div>
+      <label><b>Id: </b></label> {{event.id}}
+    </div>
+    <div>
+      <label><b>Title: </b></label> {{event.title}}
+    </div>
+    <div>
+      <label><b>Description: </b></label> {{event.description}}
+    </div>
+
+    <div>
+      <label><b>Location: </b></label> {{location.title}}
+    </div>
+
+    <h2 class="mt-5">Event days</h2>
+    <app-table-event-day [days]="event.days"></app-table-event-day>
+
+    <h2 class="mt-5">Prices</h2>
+    <div *ngFor="let sectorPrice of event.prices">
+      <label><b>{{sectorPrice.sector.title}} </b> - </label> {{sectorPrice.price}}e
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <app-canvas-event-prices [prices]="event.prices" ></app-canvas-event-prices>
+  </div>
+
+</div>
+<div class="row ml-3 mt-5 mb-5">
+  <button (click)="backToList()" class="btn btn-primary">Back to Events List</button><br>
+</div>
+

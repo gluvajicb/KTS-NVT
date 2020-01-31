@@ -17,7 +17,6 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    /* FIND ALL */
     public List<Event> findAll() {
 
         List<Event> events = eventRepository.findAll();
@@ -25,7 +24,6 @@ public class EventService {
         return events;
     }
 
-    /* FIND ONE */
     public Event findOne(Long id) {
 
         Optional<Event> event = eventRepository.findById(id);
@@ -37,7 +35,6 @@ public class EventService {
         return null;
     }
 
-    /* SAVE EVENT */
     public Event saveEvent(Event event) {
 
         if(event.getId() != null) {

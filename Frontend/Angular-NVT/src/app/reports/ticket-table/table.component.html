@@ -1,0 +1,22 @@
+<h3 class="mt-5 mb-3">Tickets</h3>
+<h5 class="mt-5">TOTAL: {{total}}e</h5>
+<h5 class="mb-5">Number of sold tickets: {{this.tickets.length}} </h5>
+<table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>EventDay</th>
+        <th>Sector</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ticket.id}}</td>
+        <td>{{ticket.eventDayTitle}}</td>
+        <td>{{ticket.sectorTitle}}</td>
+        <td>{{ticket.price}}e</td>
+
+      </tr>
+    </tbody>
+</table>

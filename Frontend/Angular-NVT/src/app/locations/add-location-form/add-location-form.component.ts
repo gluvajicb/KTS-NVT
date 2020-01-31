@@ -35,6 +35,7 @@ export class AddLocationFormComponent implements OnInit {
   addLocation() {
     console.log('add location');
     console.log(this.location);
+
     this.locationService.add(this.location as Location).subscribe(
       result => {
         console.log(result);

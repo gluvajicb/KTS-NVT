@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="card col-md-3 ml-4 mb-4" *ngFor="let event of events" >
+    <img class="card-img-top" src="https://www.seadancefestival.me/wp-content/uploads/vest_All-About-SDF_en.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{event.title}}</h5>
+      <div class="card-text">
+        <div *ngFor="let day of event.days">
+          <b>{{day.title}} </b> | {{day.eventdate}}
+        </div>
+        <div>
+          Category | <b>{{event.eventCategory}}</b>
+        </div>
+      </div>
+      <button (click)="eventDetails(event.id)" class="btn btn-primary mt-3" style="margin-left: 10px">Book now</button>    </div>
+  </div>
+</div>

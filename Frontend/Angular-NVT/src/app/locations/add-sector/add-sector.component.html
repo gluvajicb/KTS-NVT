@@ -1,6 +1,5 @@
 <div id="container">
-{{ sectorForm.value | json }}
-<form (submit)="onSubmit()" class="reactiveForm" [formGroup]="sectorForm">
+<form (submit)="onSubmit()" class="reactiveForm" [formGroup]="sectorForm" style="margin: 30px;">
 	<h3>Add sector</h3>
 	<div class="form-group row">
 		<label for="title" class="col-2 col-form-label">Title:</label>
@@ -31,7 +30,7 @@
 		</div>
 	  </fieldset>
 
-	  <div class="row">
+	  <div class="row ml-2">
 		<div class="col">
 			<div class="form-group row">
 				<label class="col-form-label-sm" for="inputRow">Rows</label>

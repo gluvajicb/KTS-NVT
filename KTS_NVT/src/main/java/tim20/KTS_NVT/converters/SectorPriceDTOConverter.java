@@ -1,8 +1,10 @@
 package tim20.KTS_NVT.converters;
 
 import tim20.KTS_NVT.dto.SectorPriceDTO;
+import tim20.KTS_NVT.model.SeatsSector;
 import tim20.KTS_NVT.model.Sector;
 import tim20.KTS_NVT.model.SectorPrice;
+import tim20.KTS_NVT.model.StandSector;
 import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.SectorPriceService;
 import tim20.KTS_NVT.service.SectorService;
@@ -30,8 +32,14 @@ public class SectorPriceDTOConverter {
 
     public static SectorPriceDTO sectorpriceToDto(SectorPrice sectorprice) {
 
-        SectorPriceDTO dto = new SectorPriceDTO(sectorprice.getId(), sectorprice.getPrice(), sectorprice.getSector().getId(), sectorprice.getEvent().getId());
-
+    	SectorPriceDTO dto;
+    	if(sectorprice.getSector() instanceof SeatsSector) {
+    		SeatsSector ss = (SeatsSector) sectorprice.getSector();
+    		dto = new SectorPriceDTO(sectorprice.getId(), sectorprice.getPrice(), SectorDTOConverter.seatsSectorToDto(ss), sectorprice.getEvent().getId());
+    	} else {
+    		StandSector ss = (StandSector) sectorprice.getSector();
+    		dto = new SectorPriceDTO(sectorprice.getId(), sectorprice.getPrice(), SectorDTOConverter.standSectorToDto(ss), sectorprice.getEvent().getId());
+    	}
         return dto;
     }
 

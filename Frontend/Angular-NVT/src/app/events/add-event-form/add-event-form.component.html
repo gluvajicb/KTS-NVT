@@ -1,0 +1,49 @@
+{{event | json}}
+<form #eventForm="ngForm" novalidate>
+  <h3 class="mt-2 mb-4">Add event</h3>
+  <div class="form-group row">
+    <label for="title" class="col-2 col-form-label">Title:</label>
+    <div class="col-10">
+      <input class="form-control" type="text" id="title" placeholder="Title"
+             name="title" [(ngModel)]="event.title" #title="ngModel" required>
+      <small *ngIf="title.touched && title.errors?.required" class="text-danger">
+        Title is required</small>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="description" class="col-2 col-form-label">Description:</label>
+    <div class="col-10">
+      <input class="form-control" type="text" id="description" placeholder="Description"
+             name="description" [(ngModel)]="event.description" #description="ngModel" required>
+      <small *ngIf="description.touched && description.errors?.required" class="text-danger">
+        Description is required</small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="category" class="col-2 col-form-label">Event category:</label>
+    <div class="col-10">
+      <select class="form-control" [ngModel]="event.eventCategory" name="eventCategory" id="category">
+        <option [ngValue]="SHOW">SHOW</option>
+        <option [ngValue]="MUSIC">MUSIC</option>
+        <option [ngValue]="SPORT">SPORT</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="location" class="col-2 col-form-label">Location:</label>
+    <div class="col-10">
+      <select class="form-control" [ngModel]="selectedLocation" (ngModelChange)="onChange($event)" id="location" name="locations">
+        <option *ngFor="let location of this.locations" [ngValue]="location">{{location.title}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <app-canvas-events [sectors]="this.selectedLocation.sectors" [sectorPrices]="this.event.sectorPrices" *ngIf="selectedLocation"></app-canvas-events>
+    </div>
+    <div class="col-md-15">
+      <app-add-sectorprices-form [sectors]="this.selectedLocation.sectors" (applySelected)="createSectorPrices($event)" *ngIf="selectedLocation"></app-add-sectorprices-form>
+    </div>
+  </div>
+</form>
