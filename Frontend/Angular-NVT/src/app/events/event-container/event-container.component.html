@@ -5,9 +5,21 @@
       <button class="btn btn-primary" (click)="navigateToAdd()">Add new event</button>
     </div>
   </div>
-  </div>
+</div>
+<div class="row mt-5 ml-3 mb-3">
+  <input type="text" class="form-control" name="search" [(ngModel)]="this.search" placeholder="Search events..">
+</div>
+<div class="row">
+  <label for="category" class="ml-5">Filter:</label>
+  <select class="form-control col-md-2 ml-4 mb-5"  [(ngModel)]="this.filterCategory" name="eventCategory" id="category">
+    <option (ngValue)="ANY"> ANY CATEGORY</option>
+    <option (ngValue)="SHOW">SHOW</option>
+    <option (ngValue)="MUSIC">MUSIC</option>
+    <option (ngValue)="SPORT">SPORT</option>
+  </select>
+</div>
   <div class="row">
     <div class="col">
-      <app-event-list></app-event-list>
+      <app-event-list [filterCategory]="this.filterCategory" [search]="this.search"></app-event-list>
     </div>
 </div>
