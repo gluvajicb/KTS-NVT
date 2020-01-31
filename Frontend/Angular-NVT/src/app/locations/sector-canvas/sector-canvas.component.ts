@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter} from '@angular/core';
 import { LocationsService } from '../services/locations.service';
 import { Sector } from '../model/sector';
-import { withModule } from '@angular/core/testing';
 
 declare var fabric: any;
 

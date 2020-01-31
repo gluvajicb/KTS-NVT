@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocationContainerComponent } from '../locations/location-container/location-container.component';
 import { LocationDetailsComponent } from '../locations/location-details/location-details.component';
 import { AddLocationFormComponent } from '../locations/add-location-form/add-location-form.component';
+import { LocationUpdateComponent } from '../locations/location-update/location-update.component';
 
 import { EventContainerComponent } from '../events/event-container/event-container.component';
 import { AddEventFormComponent } from '../events/add-event-form/add-event-form.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'locations', component: LocationContainerComponent},
   {path: 'locations/details/:id', component: LocationDetailsComponent},
   {path: 'locations/add', component: AddLocationFormComponent },
+  {path: 'locations/update/:id', component: LocationUpdateComponent},
   {path: 'events', component: EventContainerComponent},
   {path: 'events/add', component: AddEventFormComponent},
   {path: 'events/details/:id', component: EventDetailsComponent},

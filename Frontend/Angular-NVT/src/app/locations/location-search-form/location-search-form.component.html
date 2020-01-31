@@ -1,0 +1,15 @@
+
+<div id="container" class="col-4">
+    <form [formGroup]="searchForm">
+        <h3>Search locations</h3>
+        <label for="title" class="col-8 col-form-label">Title:</label>
+        <input class="form-control col" type="text" id="locationTitle" placeholder="Title" 
+            formControlName="title">
+        <label for="address" class="col col-form-label">Address:</label>
+        <input class="form-control col" type="text" id="locationAddress" placeholder="Address" 
+                formControlName="address">
+        <div class="col">
+            <button class="btn btn-primary " type="submit" (click)="sendSearchData()">Search</button>
+        </div>
+    </form>
+</div>

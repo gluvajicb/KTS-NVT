@@ -1,0 +1,38 @@
+{{ location | json}}
+<form #locationForm="ngForm" *ngIf="location" novalidate>
+	<h3 class="mt-2 mb-4">Add location</h3>
+	<div class="form-group row">
+		<label for="title" class="col-2 col-form-label">Title:</label>
+		<div class="col-10">
+			<input class="form-control" type="text" id="title" placeholder="Title" 
+				name="title" [(ngModel)]="location.title" #title="ngModel" required>
+			<small *ngIf="title.touched && title.errors?.required" class="text-danger">
+					Title is required</small>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="address" class="col-2 col-form-label">Address:</label>
+		<div class="col-10">
+			<input class="form-control" type="text" id="address" placeholder="Address"
+				name="address" [(ngModel)]="location.address" #address="ngModel" required>
+			<small *ngIf="address.touched && address.errors?.required" class="text-danger">
+					Address is required</small>
+		</div>
+	</div>
+	<div class="row-col-2">
+		<div class="row">
+			<div class="col">
+				<app-sector-canvas [sectors]="location.sectors" (deleteSectorClicked)="deleteSector($event)" (submitChangesEvent)="editSectors($event)" [numberOfSectors]="numOfSectors" [editable]="true" *ngIf="location"></app-sector-canvas>
+			</div>
+			<div class="col">
+				<app-add-sector (newSector)="addNewSector($event)"></app-add-sector>
+			</div>
+		</div>
+	</div>
+	<div class="form-group row float-right">
+		<div class="col-12">
+			<button class="btn btn-primary " type="submit" (click)="updateLocation()" [disabled]="locationForm.invalid">Update location</button>
+		</div>
+	</div>
+</form>
