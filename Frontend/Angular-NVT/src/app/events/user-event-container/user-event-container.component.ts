@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {Sectorprice} from "../model/sectorprice";
 
 @Component({
   selector: 'app-user-event-container',
@@ -8,8 +9,17 @@ import { Router } from '@angular/router';
 })
 export class UserEventContainerComponent implements OnInit {
 
+  search: string;
+  filterCategory: string;
+  model: number;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.filterCategory = 'ANY';
   }
+
+  onChange() {
+    console.log(this.filterCategory);
+    }
 }
