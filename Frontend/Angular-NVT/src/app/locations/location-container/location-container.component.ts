@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LocationContainerComponent implements OnInit {
 
+  search: string;
   constructor(private router: Router) { }
 
   ngOnInit() {

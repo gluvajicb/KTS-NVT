@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, SimpleChanges} from '@angular/core';
 import { Location } from '../model/location';
 import { LocationsService } from '../services/locations.service';
 import { SearchLocation } from '../model/search-location';
@@ -14,6 +14,8 @@ export class LocationListComponent implements OnInit {
   private currentPage: number;
   private totalSize: number;
   private locationList: Location[];
+  private allLocations: Location[];
+  @Input() search: string;
 
   constructor(private locationsService: LocationsService) {
     this.pageSize = 8;
@@ -32,6 +34,7 @@ export class LocationListComponent implements OnInit {
     this.locationsService.getAll(this.currentPage - 1, this.pageSize)
       .subscribe( res => {
         this.locationList = res.body as Location[];
+        this.allLocations = this.locationList;
       });
   }
 
@@ -52,8 +55,12 @@ export class LocationListComponent implements OnInit {
     this.reloadData();
   }
 
-  searchLocations(searchData: SearchLocation) {
-    this.locationsService.search(searchData);
+  ngOnChanges(changes: SimpleChanges) {
+    let searchValue = this.search;
+
+    this.locationList = this.allLocations.filter(function(el) {
+      return el.title.toLowerCase().includes(searchValue.toLowerCase())  || el.address.toLowerCase().includes(searchValue.toLowerCase());
+    });
   }
 
 }

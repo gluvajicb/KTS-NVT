@@ -6,6 +6,7 @@ describe('LocationListComponent', () => {
   let component: LocationListComponent;
   let fixture: ComponentFixture<LocationListComponent>;
 
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LocationListComponent ]
