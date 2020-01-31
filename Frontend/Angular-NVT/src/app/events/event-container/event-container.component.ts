@@ -8,10 +8,20 @@ import { Router } from '@angular/router';
 })
 export class EventContainerComponent implements OnInit {
 
+  search: string;
+  filterCategory: string;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.filterCategory = 'ANY';
+    this.search = '';
   }
+
+  onChange() {
+    console.log(this.filterCategory);
+  }
+
   navigateToAdd() {
     this.router.navigate(['events/add']);
   }

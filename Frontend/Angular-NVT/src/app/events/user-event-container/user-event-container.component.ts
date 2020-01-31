@@ -11,12 +11,12 @@ export class UserEventContainerComponent implements OnInit {
 
   search: string;
   filterCategory: string;
-  model: number;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.filterCategory = 'ANY';
+    this.search = '';
   }
 
   onChange() {

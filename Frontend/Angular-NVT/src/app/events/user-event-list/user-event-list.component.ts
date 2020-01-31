@@ -36,7 +36,7 @@ export class UserEventListComponent implements OnInit {
     let category = this.filterCategory;
     let searchValue = this.search;
 
-    if (this.filterCategory !== 'ANY') {
+    if (this.filterCategory !== 'ANY'  && this.filterCategory !== 'ANY CATEGORY') {
       this.eventList = this.allEvents.filter( function(el) {
         return el.eventCategory === category && el.title.toLowerCase().includes(searchValue.toLowerCase());
       });

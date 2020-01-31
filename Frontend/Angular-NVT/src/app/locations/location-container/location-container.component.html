@@ -5,9 +5,14 @@
       <button class="btn btn-primary" (click)="navigateToAdd()">Add new location</button>
     </div>
   </div>
+</div>
+
+<div class="row mt-5 ml-3 mb-5">
+  <input type="text" class="form-control" name="search" [(ngModel)]="this.search" placeholder="Search location by title or adress..">
+</div>
+
+<div class="row">
+  <div class="col">
+    <app-location-list [search]="this.search"></app-location-list>
   </div>
-  <div class="row">
-    <div class="col">
-      <app-location-list></app-location-list>
-    </div>
 </div>
