@@ -1,48 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationsService } from '../services/locations.service';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '../model/location';
-import { Sector } from '../model/sector';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-
 
 @Component({
-  selector: 'app-add-location-form',
-  templateUrl: './add-location-form.component.html',
-  styleUrls: ['./add-location-form.component.css']
+  selector: 'app-location-update',
+  templateUrl: './location-update.component.html',
+  styleUrls: ['./location-update.component.css']
 })
-export class AddLocationFormComponent implements OnInit {
+export class LocationUpdateComponent implements OnInit {
 
+  id: number;
   location: Location;
-  numOfSectors: number;
   sectorForDelete: string;
 
-  constructor(private fb: FormBuilder, private locationService: LocationsService, private router: Router) {
-    this.location = new Location();
-    this.location.sectors = [];
-    this.numOfSectors = 0;
+  constructor(private route: ActivatedRoute, private locationService: LocationsService) {
     this.sectorForDelete = '';
-   }
+  }
 
   ngOnInit() {
-  }
+    // this.location = new Location();
 
-  addNewSector(sector: Sector) {
-    this.location.sectors.push(sector);
-    this.numOfSectors++;
-    console.log('NUm ' + this.numOfSectors);
-  }
+    this.id = this.route.snapshot.params.id;
 
-  addLocation() {
-    console.log('add location');
-    console.log(this.location);
+    this.locationService.getOne(this.id)
+      .subscribe (data => {
+        this.location = data.body;
+        console.log(data);
+        console.log(this.location);
+      });
 
-    this.locationService.add(this.location as Location).subscribe(
-      result => {
-        console.log(result);
-        this.router.navigate(['locations']);
-      }
-    );
   }
 
   editSectors(canvas: any) {
@@ -54,6 +41,7 @@ export class AddLocationFormComponent implements OnInit {
         if (sec.type === 'stand') {
           if (canvasSector.type === 'table') {
             if (canvasSector.objects[1].text === sec.title) {
+              console.log('table');
               sec.top = canvasSector.top;
               sec.left = canvasSector.left;
               sec.angle = canvasSector.angle;
@@ -63,7 +51,7 @@ export class AddLocationFormComponent implements OnInit {
           }
         } else {
           if (canvasSector.type === 'group') {
-            if (canvasSector.objects[0].text === sec.title) {
+            if (canvasSector.objects[0].text === sec.title || canvasSector.objects[1].text === sec.title) {
               sec.top = canvasSector.top;
               sec.left = canvasSector.left;
               sec.angle = canvasSector.angle;
@@ -77,9 +65,20 @@ export class AddLocationFormComponent implements OnInit {
 
   }
 
+  addNewSector() {
+    // save sector
+
+  }
+
+  updateLocation() {
+    // update
+  }
+
   deleteSector(sectorTitle: string) {
     let i = 0;
 
+    // dodati proveru
+    // ako je moguce obrisati setovati sectorForDelete na title sektora
     for (const sec of this.location.sectors) {
       if (sec.title === sectorTitle) {
         break;
@@ -87,7 +86,6 @@ export class AddLocationFormComponent implements OnInit {
       i ++;
     }
     if ( i < this.location.sectors.length) {
-      this.sectorForDelete = this.location.sectors[i].title;
       this.location.sectors.splice(i, 1);
     }
   }

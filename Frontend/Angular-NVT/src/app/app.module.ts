@@ -39,6 +39,8 @@ import { UserEventDetailsComponent } from './events/user-event-details/user-even
 import { UserEventContainerComponent } from './events/user-event-container/user-event-container.component';
 import { UserEventListComponent } from './events/user-event-list/user-event-list.component';
 import { UserEventCardComponent } from './events/user-event-card/user-event-card.component';
+import { LocationSearchFormComponent } from './locations/location-search-form/location-search-form.component';
+import { LocationUpdateComponent } from './locations/location-update/location-update.component';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { UserEventCardComponent } from './events/user-event-card/user-event-card
     UserEventDetailsComponent,
     UserEventContainerComponent,
     UserEventListComponent,
-    UserEventCardComponent
+    UserEventCardComponent,
+    LocationSearchFormComponent,
+    LocationUpdateComponent
   ],
   imports: [
     BrowserModule,

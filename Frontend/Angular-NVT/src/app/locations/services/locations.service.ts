@@ -3,6 +3,7 @@ import { Location } from '../model/location';
 import { Sector } from '../model/sector';
 import { HttpClientModule, HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SearchLocation } from '../model/search-location';
 
 
 @Injectable({
@@ -64,6 +65,10 @@ export class LocationsService {
     delete(id: number): Observable<any> {
      console.log('delete');
      return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+   }
+
+   search(searchData: SearchLocation) {
+     // dodati
    }
 
 }

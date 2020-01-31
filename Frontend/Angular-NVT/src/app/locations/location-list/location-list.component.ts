@@ -1,6 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Location } from '../model/location';
 import { LocationsService } from '../services/locations.service';
+import { SearchLocation } from '../model/search-location';
+
 
 @Component({
   selector: 'app-location-list',
@@ -48,6 +50,10 @@ export class LocationListComponent implements OnInit {
         }
       );
     this.reloadData();
+  }
+
+  searchLocations(searchData: SearchLocation) {
+    this.locationsService.search(searchData);
   }
 
 }

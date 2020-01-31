@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter} from '@angular/core';
 import { LocationsService } from '../services/locations.service';
 import { Sector } from '../model/sector';
-import { withModule } from '@angular/core/testing';
 
 declare var fabric: any;
 
@@ -31,7 +30,16 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
     if (this.numOfSectors > 0) {
       this.addLastSector();
     }
-}
+  }
+
+  @Input('sectorForDelete')
+  set sectorForDelete(value: string) {
+    if (value && value != null) {
+      this.canvas.getActiveObjects().forEach((obj: any) => {
+        this.canvas.remove(obj);
+      });
+    }
+  }
 
   constructor(private locationService: LocationsService) { }
 
@@ -248,19 +256,19 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
     if (activeObject.type === 'table') {
       const sectorTitle = activeObject.objects[1].text;
       this.deleteSectorClicked.emit(sectorTitle);
-      this.canvas.getActiveObjects().forEach((obj: any) => {
+      /*this.canvas.getActiveObjects().forEach((obj: any) => {
         this.canvas.remove(obj);
-      });
-      this.canvas.discardActiveObject().renderAll();
+      });*/
+      // this.canvas.discardActiveObject().renderAll();
       console.log('Delete');
     } else {
       if (activeObject.type === 'group') {
         const sectorTitle = activeObject.objects[0].text;
         this.deleteSectorClicked.emit(sectorTitle);
-        this.canvas.getActiveObjects().forEach((obj: any) => {
+        /*this.canvas.getActiveObjects().forEach((obj: any) => {
           this.canvas.remove(obj);
-        });
-        this.canvas.discardActiveObject().renderAll();
+        });*/
+        // this.canvas.discardActiveObject().renderAll();
       }
     }
   }

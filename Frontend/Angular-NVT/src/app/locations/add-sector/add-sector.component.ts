@@ -28,7 +28,6 @@ export class AddSectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.sector = new Sector();
   }
 
   createForm() {
@@ -40,37 +39,17 @@ export class AddSectorComponent implements OnInit {
       column_num: [''],
     }, {validators: sectorTypeFormValidator});
 
-    /*this.sectorForm.get('type').valueChanges.subscribe(val => {
-      if (val === 'stand') { // for setting validations
-        this.sectorForm.get('max_guests').setValidators([Validators.required]);
-        this.sectorForm.get('row_num').clearValidators();
-        this.sectorForm.get('row_num').setValue('');
-        this.sectorForm.get('column_num').clearValidators();
-        this.sectorForm.get('column_num').setValue('');
-      }
-      if (val === 'seats') { // for clearing validations
-        this.sectorForm.get('max_guests').clearValidators();
-        this.sectorForm.get('max_guests').setValue('');
-        this.sectorForm.get('row_num').setValidators(Validators.required);
-        this.sectorForm.get('column_num').setValidators(Validators.required);
-      }
-  });*/
   }
 
 
    radioSeatsCheck() {
     this.showRowColInput = true;
     this.showMaxGuestsInput = false;
-    // this.sector.type = 'seats';
-    // this.sector.max_guests = -1;
   }
 
   radioStandCheck() {
     this.showRowColInput = false;
     this.showMaxGuestsInput = true;
-    // this.sector.type = 'stand';
-    // this.sector.column_num = -1;
-    // this.sector.row_num = -1;
   }
 
   onSubmit() {
