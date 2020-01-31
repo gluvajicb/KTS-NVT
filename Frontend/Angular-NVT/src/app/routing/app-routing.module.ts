@@ -9,6 +9,7 @@ import { EventContainerComponent } from '../events/event-container/event-contain
 import { AddEventFormComponent } from '../events/add-event-form/add-event-form.component';
 import { EventDetailsComponent } from '../events/event-details/event-details.component';
 import { EventReportContainerComponent } from '../reports/event-report-container/event-report-container.component';
+import { UserEventDetailsComponent } from '../events/user-event-details/user-event-details.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,8 @@ const routes: Routes = [
   {path: 'events/add', component: AddEventFormComponent},
   {path: 'events/details/:id', component: EventDetailsComponent},
   {path: 'reports', component: EventReportContainerComponent},
+  {path: 'user/events/details/:id', component: UserEventDetailsComponent},
+
 ];
 
 @NgModule({

@@ -34,6 +34,7 @@ import { PriceFieldValidatorDirective } from './events/directives/price-field-va
 import { EventReportContainerComponent } from './reports/event-report-container/event-report-container.component';
 import { TicketTableComponent } from './reports/ticket-table/table.component';
 import { TicketListComponent } from './reports/ticket-list/ticket-list.component';
+import { UserEventDetailsComponent } from './events/user-event-details/user-event-details.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { TicketListComponent } from './reports/ticket-list/ticket-list.component
     EventReportContainerComponent,
     TicketTableComponent,
     TicketListComponent,
+    UserEventDetailsComponent,
   ],
   imports: [
     BrowserModule,

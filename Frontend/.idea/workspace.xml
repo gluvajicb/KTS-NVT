@@ -4,12 +4,7 @@
     <list default="true" id="2741bdf5-a597-4d03-b46a-a54a709d733c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-NVT/src/app/core/navbar-admin/navbar-admin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-NVT/src/app/core/navbar-admin/navbar-admin.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/converters/TicketDTOConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/converters/TicketDTOConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/dto/TicketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/dto/TicketDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,15 +18,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="20" selection-start-column="20" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/core/navbar-admin/navbar-admin.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -41,46 +27,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/table/table.component.ts">
+        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#79#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/event-report-container/event-report-container.component.spec.ts">
+        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.spec.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-list/ticket-list.component.spec.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+            <state relative-caret-position="272">
+              <caret line="16" column="63" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
               </folding>
@@ -89,33 +53,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/event-report-container/event-report-container.component.ts">
+        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="-318">
+              <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
               <folding>
-                <element signature="e#0#50#0" expanded="true" />
+                <element signature="e#0#57#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/add-event-form/add-event-form.component.html">
+        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+            <state relative-caret-position="-1026">
+              <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-events/canvas-events.component.ts">
+        <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="26" column="3" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="26" selection-end-column="3" />
+            <state relative-caret-position="153">
+              <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
               <folding>
-                <element signature="e#0#108#0" expanded="true" />
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,11 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-list/ticket-list.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="323">
               <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#56#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -149,6 +110,7 @@
       <find>sectors</find>
       <find>.title</find>
       <find>ngOnChanges</find>
+      <find>eventDe</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,9 +119,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Angular-NVT/src/app/locations/add-location-form/add-location-form.component.html" />
-        <option value="$PROJECT_DIR$/Angular-NVT/src/app/locations/sector-canvas/sector-canvas.component.html" />
-        <option value="$PROJECT_DIR$/Angular-NVT/src/app/locations/add-sector/add-sector.component.css" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/locations/add-sector/add-sector.component.html" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/locations/location-details/location-details.component.html" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/locations/table/table.component.html" />
@@ -188,7 +147,6 @@
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/event-day-table/event-day-table.component.html" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/model/event-price.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-event-prices/canvas-event-prices.ts" />
-        <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/event-details/event-details.component.html" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-event-prices/canvas-event-prices.component.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/model/event.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/event-report-container/event-report-container.component.spec.ts" />
@@ -198,9 +156,7 @@
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/services/tickets.service.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-list/ticket-list.component.html" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.spec.ts" />
-        <option value="$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-list/ticket-list.component.spec.ts" />
-        <option value="$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/event-report-container/event-report-container.component.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/event-report-container/event-report-container.component.html" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/table/table.component.ts" />
@@ -208,6 +164,12 @@
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.html" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/core/navbar-admin/navbar-admin.component.html" />
+        <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.spec.ts" />
+        <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.ts" />
+        <option value="$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/event-details/event-details.component.html" />
+        <option value="$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.html" />
       </list>
     </option>
   </component>
@@ -224,6 +186,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -272,7 +235,7 @@
               <item name="Angular-NVT" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="reports" type="462c0819:PsiDirectoryNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Frontend" type="b2602c69:ProjectViewProjectNode" />
@@ -280,8 +243,8 @@
               <item name="Angular-NVT" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="reports" type="462c0819:PsiDirectoryNode" />
-              <item name="event-report-container" type="462c0819:PsiDirectoryNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
+              <item name="event-details" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Frontend" type="b2602c69:ProjectViewProjectNode" />
@@ -289,17 +252,8 @@
               <item name="Angular-NVT" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="reports" type="462c0819:PsiDirectoryNode" />
-              <item name="ticket-list" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="Angular-NVT" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="reports" type="462c0819:PsiDirectoryNode" />
-              <item name="ticket-table" type="462c0819:PsiDirectoryNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
+              <item name="user-event-details" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Frontend" type="b2602c69:ProjectViewProjectNode" />
@@ -313,7 +267,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -378,18 +331,19 @@
       <workItem from="1580414001079" duration="640000" />
       <workItem from="1580416950264" duration="1747000" />
       <workItem from="1580418919401" duration="2182000" />
-      <workItem from="1580422019840" duration="1545000" />
+      <workItem from="1580422019840" duration="2143000" />
+      <workItem from="1580429166313" duration="833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40257000" />
+    <option name="totallyTimeSpent" value="41688000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37594554" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.38199696" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -424,25 +378,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/model/event-day.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/event-day-table/event-day-table.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-event-prices/canvas-event-prices.html" />
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-event-prices/canvas-event-prices.ts" />
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-event-prices/canvas-event-prices.component (2).ts" />
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/locations/sector-canvas/sector-canvas.component.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -468,13 +403,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-event-prices/canvas-event-prices.component.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/event-details/event-details.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-event-prices/canvas-event-prices.component.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -538,13 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/event-details/event-details.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/services/ticket.service.spec.ts" />
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/model/ticket.ts">
       <provider selected="true" editor-type-id="text-editor" />
@@ -569,16 +490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -607,16 +518,6 @@
           <caret line="16" column="58" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="65" column="24" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -657,13 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/add-event-form/add-event-form.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-events/canvas-events.component.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -676,42 +570,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-events/canvas-events.component.ts">
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="26" column="3" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="26" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#108#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="20" selection-start-column="20" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/event-report-container/event-report-container.component.ts">
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/table/table.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="238">
+          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
           <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-list/ticket-list.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-list/ticket-list.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
+            <element signature="e#0#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -726,30 +597,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/table/table.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        <state relative-caret-position="255">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-list/ticket-list.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
           <folding>
-            <element signature="e#0#79#0" expanded="true" />
+            <element signature="e#0#73#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.html">
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/event-report-container/event-report-container.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" selection-start-column="20" selection-end-column="20" />
+        <state relative-caret-position="374">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/add-event-form/add-event-form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/canvas-events/canvas-events.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="3" selection-start-line="22" selection-start-column="2" selection-end-line="26" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#108#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-list/ticket-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -757,6 +652,67 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="63" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1026">
+          <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-318">
+          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/event-details/event-details.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/event-details/event-details.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-187">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/user-event-details/user-event-details.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
         </state>
       </provider>
     </entry>
