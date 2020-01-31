@@ -9,12 +9,16 @@ insert into seats_sector (id, title, row_num, column_num, location_id, top, pos_
 
 insert into event (id, title, description, is_Active, event_Category, location_id) values (105, "Event1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", true, 0, 1);
 insert into event (id, title, description, is_Active, event_Category, location_id) values (106, "Event2", "Descript Event2", true, 1, 2);
+insert into event (id, title, description, is_Active, event_Category, location_id) values (107, "Event3", "Descript Event2", true, 1, 2);
+insert into event (id, title, description, is_Active, event_Category, location_id) values (109, "Event4", "Descript Event4", true, 1, 2);
+insert into event (id, title, description, is_Active, event_Category, location_id) values (108, "Event5", "Descript Event4", true, 1, 2);
 
 insert into sector_price (id, price, sector_id, event_id) values (110, 56, 100, 105);
 insert into sector_price (id, price, sector_id, event_id) values (112, 100, 102, 105);
 insert into sector_price (id, price, sector_id, event_id) values (111, 42, 101, 106);
 
 insert into event_day (id, title, eventdate, event_id) values (201, "Day1", '2019-05-30', 105);
+insert into event_day (id, title, eventdate, event_id) values (203, "Day2", '2019-05-31', 105);
 insert into event_day (id, title, eventdate, event_id) values (202, "Day2", '2019-05-28', 106);
 
 insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (1, 5000, 1, 201, 105, 102, 1, 1);

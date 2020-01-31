@@ -36,6 +36,10 @@ import { TicketTableComponent } from './reports/ticket-table/table.component';
 import { TicketListComponent } from './reports/ticket-list/ticket-list.component';
 import { UserEventDetailsComponent } from './events/user-event-details/user-event-details.component';
 
+import { UserEventContainerComponent } from './events/user-event-container/user-event-container.component';
+import { UserEventListComponent } from './events/user-event-list/user-event-list.component';
+import { UserEventCardComponent } from './events/user-event-card/user-event-card.component';
+
 
 @NgModule({
   declarations: [
@@ -66,6 +70,9 @@ import { UserEventDetailsComponent } from './events/user-event-details/user-even
     TicketTableComponent,
     TicketListComponent,
     UserEventDetailsComponent,
+    UserEventContainerComponent,
+    UserEventListComponent,
+    UserEventCardComponent
   ],
   imports: [
     BrowserModule,
