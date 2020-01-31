@@ -15,11 +15,13 @@ export class AddLocationFormComponent implements OnInit {
 
   location: Location;
   numOfSectors: number;
+  sectorForDelete: string;
 
   constructor(private fb: FormBuilder, private locationService: LocationsService, private router: Router) {
     this.location = new Location();
     this.location.sectors = [];
     this.numOfSectors = 0;
+    this.sectorForDelete = '';
    }
 
   ngOnInit() {
@@ -85,6 +87,7 @@ export class AddLocationFormComponent implements OnInit {
       i ++;
     }
     if ( i < this.location.sectors.length) {
+      this.sectorForDelete = this.location.sectors[i].title;
       this.location.sectors.splice(i, 1);
     }
   }

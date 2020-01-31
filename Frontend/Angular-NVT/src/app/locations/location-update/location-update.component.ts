@@ -12,8 +12,11 @@ export class LocationUpdateComponent implements OnInit {
 
   id: number;
   location: Location;
+  sectorForDelete: string;
 
-  constructor(private route: ActivatedRoute, private locationService: LocationsService) { }
+  constructor(private route: ActivatedRoute, private locationService: LocationsService) {
+    this.sectorForDelete = '';
+  }
 
   ngOnInit() {
     // this.location = new Location();
@@ -75,6 +78,7 @@ export class LocationUpdateComponent implements OnInit {
     let i = 0;
 
     // dodati proveru
+    // ako je moguce obrisati setovati sectorForDelete na title sektora
     for (const sec of this.location.sectors) {
       if (sec.title === sectorTitle) {
         break;

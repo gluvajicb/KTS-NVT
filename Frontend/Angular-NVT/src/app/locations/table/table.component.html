@@ -12,6 +12,7 @@
         <td>{{loc.address}}</td>
         <td>
           <button (click)="locationDetails(loc.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+          <button (click)="clickUpdate(loc.id)" class="btn btn-warning" style="margin-left: 10px">Update</button>
           <button (click)="onClickDelete(loc.id)" class="btn btn-danger">Delete</button>
         </td>
       </tr>

@@ -28,4 +28,8 @@ export class TableComponent implements OnInit {
     console.log(id);
     this.router.navigate(['locations/details', id]);
   }
+
+  clickUpdate(id: number) {
+    this.router.navigate(['locations/update', id]);
+  }
 }
