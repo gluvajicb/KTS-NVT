@@ -1,20 +1,25 @@
 <div class="row mt-5 ml-3 mb-3">
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search events..">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button">Search</button>
-    </div>
-  </div>
+  <input type="text" class="form-control" name="search" [(ngModel)]="this.search" placeholder="Search events..">
 </div>
+<div class="row">
+  <label for="category" class="ml-5">Filter:</label>
+  <select class="form-control col-md-2 ml-4 mb-5"  (ngModelChange)="onChange()" [(ngModel)]="this.filterCategory" name="eventCategory" id="category">
+    <option (ngValue)="ANY"> ANY CATEGORY</option>
+    <option (ngValue)="SHOW">SHOW</option>
+    <option (ngValue)="MUSIC">MUSIC</option>
+    <option (ngValue)="SPORT">SPORT</option>
+  </select>
+</div>
+
 <div class="row">
   <div class="row">
     <div class="col ml-2 mb-3">
-      <h1 class="mt-2 mb-3">All Upcoming Events</h1>
+      <h1 class="mt-2 mb-3">All Upcoming Events {{this.model}}</h1>
     </div>
   </div>
   </div>
   <div class="row">
     <div class="col">
-      <app-user-event-list></app-user-event-list>
+      <app-user-event-list [filterCategory]="this.filterCategory" [search]="this.search"></app-user-event-list>
     </div>
 </div>
