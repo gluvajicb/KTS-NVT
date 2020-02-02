@@ -127,7 +127,7 @@ public class UserService implements UserDetailsService {
         }
 
         User user = new User(0, userDTO.getUsername(), userDTO.getPassword(), userDTO.getName(),
-                userDTO.getSurname(), userDTO.getEmail(), false, null, null);
+                userDTO.getSurname(), userDTO.getEmail(), userDTO.getPhoneNumber(), false, null, null);
 
         user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
         user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByRole("ADMIN"))));

@@ -27,7 +27,7 @@ public class SecurityControllerIntegrationTest {
     @Test
     public void loginSuccess() {
         ResponseEntity<UserTokenState> responseEntity = restTemplate.postForEntity("/security/login",
-                new UserDTO("vpetrovic", "test123", null, null, null, null), UserTokenState.class);
+                new UserDTO("vpetrovic", "test123", null, null, null, null, null), UserTokenState.class);
 
         UserTokenState tokenState = responseEntity.getBody();
 
@@ -38,7 +38,7 @@ public class SecurityControllerIntegrationTest {
     @Test
     public void loginNoData() {
         ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/security/login",
-                new UserDTO("", null, null, null, null, null), Error.class);
+                new UserDTO("", null, null, null, null, null, null), Error.class);
 
         Error error = responseEntity.getBody();
 
@@ -49,7 +49,7 @@ public class SecurityControllerIntegrationTest {
     @Test
     public void loginWrongCredentials() {
         ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/security/login",
-                new UserDTO("vpetrovic", "password", null, null, null, null), Error.class);
+                new UserDTO("vpetrovic", "password", null, null, null, null, null), Error.class);
 
         Error error = responseEntity.getBody();
 
@@ -60,7 +60,7 @@ public class SecurityControllerIntegrationTest {
     @Test
     public void registerNoData() {
         ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/security/register",
-                new UserDTO("", "", "", "", "", ""), Error.class);
+                new UserDTO("", "", "", "", "", "", ""), Error.class);
 
         Error error = responseEntity.getBody();
 
@@ -71,7 +71,7 @@ public class SecurityControllerIntegrationTest {
     @Test
     public void registerUsernameTaken() {
         ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/security/register",
-                new UserDTO("vpetrovic", "test123", "test123", "Petar", "Markovic", "perica@gmail.com"), Error.class);
+                new UserDTO("vpetrovic", "test123", "test123", "Petar", "Markovic", "perica@gmail.com", "065 353 97 23"), Error.class);
 
         Error error = responseEntity.getBody();
 
@@ -82,7 +82,7 @@ public class SecurityControllerIntegrationTest {
     @Test
     public void registerEmailInUse() {
         ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/security/register",
-                new UserDTO("perica", "test123", "test123", "Petar", "Markovic", "vule97@gmail.com"), Error.class);
+                new UserDTO("perica", "test123", "test123", "Petar", "Markovic", "vule97@gmail.com", "065 353 97 23"), Error.class);
 
         Error error = responseEntity.getBody();
 
@@ -93,7 +93,7 @@ public class SecurityControllerIntegrationTest {
     @Test
     public void registerPasswordsDontMatch() {
         ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/security/register",
-                new UserDTO("perica", "test123", "Test123", "Petar", "Markovic", "vule97+petar@gmail.com"), Error.class);
+                new UserDTO("perica", "test123", "Test123", "Petar", "Markovic", "vule97+petar@gmail.com", "065 353 97 23"), Error.class);
 
         Error error = responseEntity.getBody();
 
@@ -104,7 +104,7 @@ public class SecurityControllerIntegrationTest {
     @Test
     public void registerSuccess() {
         ResponseEntity<Boolean> responseEntity = restTemplate.postForEntity("/security/register",
-                new UserDTO("perica", "test123", "test123", "Petar", "Markovic", "vule97+petar@gmail.com"), Boolean.class);
+                new UserDTO("perica", "test123", "test123", "Petar", "Markovic", "vule97+petar@gmail.com", "065 353 97 23"), Boolean.class);
 
         boolean response = responseEntity.getBody();
 

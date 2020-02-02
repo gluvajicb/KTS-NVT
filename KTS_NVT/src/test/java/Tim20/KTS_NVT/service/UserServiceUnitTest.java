@@ -37,7 +37,7 @@ public class UserServiceUnitTest {
 
     @Before
     public void setUp() {
-        User user = new User(1l, "perica", "test123", "Petar", "Markovic", "vule97+petar@gmail.com", true, "verifToken", null);
+        User user = new User(1l, "perica", "test123", "Petar", "Markovic", "vule97+petar@gmail.com", "065 353 97 23", true, "verifToken", null);
         Optional<User> optionalUser = Optional.of(user);
         Mockito.when(userRepositoryMocked.findById(user.getId())).thenReturn(optionalUser);
 
@@ -90,7 +90,7 @@ public class UserServiceUnitTest {
     @Test
     public void register() {
         UserDTO dto = new UserDTO("perica", "test123", "test123",
-                "Petar", "Markovic", "vule97+petar@gmail.com");
+                "Petar", "Markovic", "vule97+petar@gmail.com", "065 353 97 23");
 
         boolean response = userService.registerUser(dto);
         assertTrue(response);
