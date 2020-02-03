@@ -1,6 +1,7 @@
 package tim20.KTS_NVT.repository;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +22,12 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 	@Query("SELECT COUNT(st) FROM stand_ticket st WHERE (st.event.id = ?1 AND st.sector.id = ?2 AND singleDay=false) OR (st.event.id = ?1 AND st.sector.id = ?2 AND st.singleDay=true AND st.day.id = ?3) ")
 	Integer checkNumberOfGuests(Long eventId, Long sectorId, Long dayId); //LOSA LOGIKA
 	
+	//zauzeta sedista
+	//testirati
+	@Query("SELECT st FROM seats_ticket st WHERE st.day.id = ?1")
+	List<Ticket> getSeatsTicketsByEventDay(Long dayId);
+	
+	@Query("SELECT COUNT(st) FROM stand_ticket st WHERE st.day.id = ?1 AND st.sector.id = ?2")
+	Integer getStandTicketsCountByEventDayAndSector(Long dayId, Long sectorId);
 	
 }

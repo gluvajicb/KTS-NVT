@@ -1,27 +1,40 @@
 package tim20.KTS_NVT.controller;
 
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import tim20.KTS_NVT.converters.SectorDTOConverter;
 import tim20.KTS_NVT.converters.TicketDTOConverter;
 import tim20.KTS_NVT.dto.SeatsTicketDTO;
-import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.dto.StandTicketDTO;
+import tim20.KTS_NVT.dto.TakenSeatsDTO;
 import tim20.KTS_NVT.dto.TicketDTO;
-import tim20.KTS_NVT.exceptions.*;
-import tim20.KTS_NVT.model.*;
+import tim20.KTS_NVT.exceptions.EventNotFoundException;
+import tim20.KTS_NVT.exceptions.MaxGuestsException;
+import tim20.KTS_NVT.exceptions.NotStanSectorException;
+import tim20.KTS_NVT.exceptions.SectorNotFoundException;
+import tim20.KTS_NVT.exceptions.TakenSeatException;
+import tim20.KTS_NVT.exceptions.TicketNotFoundException;
 import tim20.KTS_NVT.model.Error;
+import tim20.KTS_NVT.model.Event;
+import tim20.KTS_NVT.model.Ticket;
 import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.SectorService;
 import tim20.KTS_NVT.service.TicketService;
-
-import java.util.*;
 
 
 @Controller
@@ -109,6 +122,13 @@ public class TicketController {
         }
     }
 
+    // zauzeta sedista
+    
+    @GetMapping(value = "/takenSeats/{dayId}")
+    public ResponseEntity<TakenSeatsDTO> getTakenSeats(@PathVariable("dayId") Long dayId) {
+    	TakenSeatsDTO dto = ticketService.getTakenSeats(dayId);
+    	return new ResponseEntity<TakenSeatsDTO>(dto, HttpStatus.OK);
+    }
 
     /* ----------    Exception Handler   ------------- */
 
