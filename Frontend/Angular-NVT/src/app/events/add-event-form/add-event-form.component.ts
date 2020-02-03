@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SectorpriceHelp } from '../model/sectorprice-help';
 import { Sectorprice } from '../model/sectorprice';
+import { PriceFieldValidatorDirective } from '../directives/price-field-validator.directive';
+import { EventPrice } from '../model/event-price';
 
 
 @Component({
@@ -26,7 +28,8 @@ export class AddEventFormComponent implements OnInit {
               private router: Router) {
     this.event = new Event();
     this.event.days = [];
-    this.event.sectorPrices = [];
+    this.event.prices = [];
+    this.event.eventCategory = 'SHOW';
 
    }
 
@@ -37,9 +40,9 @@ export class AddEventFormComponent implements OnInit {
         this.selectedLocation = this.locations[0];
         console.log(this.selectedLocation);
         for (const sec of this.selectedLocation.sectors) {
-          const sp = new Sectorprice();
-          sp.sectorID = sec.id;
-          this.event.sectorPrices.push(sp);
+          const sp = new EventPrice();
+          sp.sector = sec;
+          this.event.prices.push(sp);
         }
 
       });
@@ -48,25 +51,49 @@ export class AddEventFormComponent implements OnInit {
   onChange(newValue: any) {
     console.log(newValue);
     this.selectedLocation = newValue;
-    this.event.sectorPrices = [];
+    this.event.prices = [];
     for (const sec of this.selectedLocation.sectors) {
-      const sp = new Sectorprice();
-      sp.sectorID = sec.id;
-      this.event.sectorPrices.push(sp);
+      const sp = new EventPrice();
+      sp.sector = sec;
+      this.event.prices.push(sp);
     }
 
   }
 
   createSectorPrices(sectorPriceHelp: SectorpriceHelp[]) {
     // this.event.sectorPrices = null;
-    this.event.sectorPrices = [];
+    this.event.prices = [];
     for (const sph of sectorPriceHelp) {
       if (sph.enabled) {
-        const sp = new Sectorprice();
-        sp.sectorID = sph.sectorID;
+        const sp = new EventPrice();
+
+        for ( const s of this.selectedLocation.sectors) {
+          if (sph.sectorID === s.id) {
+            sp.sector = s;
+            break;
+          }
+        }
         sp.price = sph.price;
-        this.event.sectorPrices.push(sp);
+        this.event.prices.push(sp);
       }
     }
   }
+
+  addNewDay(day: EventDay) {
+    this.event.days.push(day);
+  }
+
+  addEvent() {
+    this.event.locationID = this.selectedLocation.id;
+    this.eventsService.add(this.event as Event).subscribe(
+      result => {
+        this.router.navigate(['events']);
+      }
+    );
+  }
+
+  /*onSelectedChange(value) {
+    console.log(value);
+    this.event.eventCategory = value;
+  }*/
 }

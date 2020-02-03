@@ -23,7 +23,7 @@
   <div class="form-group row">
     <label for="category" class="col-2 col-form-label">Event category:</label>
     <div class="col-10">
-      <select class="form-control" [ngModel]="event.eventCategory" name="eventCategory" id="category">
+      <select class="form-control" [(ngModel)]="event.eventCategory" #eventCategory="ngModel" name="eventCategory" id="category">
         <option [ngValue]="SHOW">SHOW</option>
         <option [ngValue]="MUSIC">MUSIC</option>
         <option [ngValue]="SPORT">SPORT</option>
@@ -39,11 +39,21 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-7">
-      <app-canvas-events [sectors]="this.selectedLocation.sectors" [sectorPrices]="this.event.sectorPrices" *ngIf="selectedLocation"></app-canvas-events>
+    <div class="col">
+      <app-canvas-events [sectors]="this.selectedLocation.sectors" [sectorPrices]="this.event.prices" *ngIf="selectedLocation"></app-canvas-events>
     </div>
-    <div class="col-md-15">
-      <app-add-sectorprices-form [sectors]="this.selectedLocation.sectors" (applySelected)="createSectorPrices($event)" *ngIf="selectedLocation"></app-add-sectorprices-form>
+    <div class="col">
+      <div class="row">
+        <app-add-sectorprices-form [sectors]="this.selectedLocation.sectors" (applySelected)="createSectorPrices($event)" *ngIf="selectedLocation"></app-add-sectorprices-form>
+      </div>
+      <div class="row">
+        <app-add-event-days (newDay)="addNewDay($event)"></app-add-event-days>
+      </div>
     </div>
   </div>
+  <div class="form-group row float-right">
+		<div class="col-12">
+			<button class="btn btn-primary " type="submit" (click)="addEvent()" [disabled]="eventForm.invalid">Add Event</button>
+		</div>
+	</div>
 </form>

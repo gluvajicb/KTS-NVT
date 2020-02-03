@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EventsService } from '../services/events.service';
 import { Event } from '../model/event';
 import { EventDay } from '../model/event-day';
-import {Location} from "../../locations/model/location";
-import {LocationsService} from "../../locations/services/locations.service";
+import {Location} from '../../locations/model/location';
+import {LocationsService} from '../../locations/services/locations.service';
 
 
 @Component({
@@ -26,6 +26,7 @@ export class EventDetailsComponent implements OnInit {
 
     this.eventsService.getOne(this.id)
       .subscribe(res => {
+        console.log(res.body);
         this.getLocation(res.body.locationID);
         this.event = res.body as Event;
       }, error => console.log(error));

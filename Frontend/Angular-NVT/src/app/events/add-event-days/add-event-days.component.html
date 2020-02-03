@@ -1,0 +1,29 @@
+<div>
+    <h3>Add event days</h3>
+    <form class="reactiveForm" [formGroup]="dayForm">
+        <table>
+            <tr>
+                <td>
+                    Title
+                </td>
+                <td>
+                    <input type="text" placeholder="Title" formControlName="title">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Date
+                </td>
+                <td>
+                    <input type="date" formControlName="date">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button class="btn btn-primary " type="submit" (click)="sendDay()" [disabled]="dayForm.invalid">Add day</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -11,7 +11,7 @@ export class Event {
     eventCategory: string;
     // tslint:disable-next-line: variable-name
     max_tickets: number;
-    locationId: number;
+    locationID: number;
     active: number;
     prices: EventPrice[];
     sectorPrices: Sectorprice[];

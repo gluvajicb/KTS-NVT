@@ -2,7 +2,10 @@ package tim20.KTS_NVT.controller;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,11 +31,13 @@ import tim20.KTS_NVT.exceptions.IdNotFoundException;
 import tim20.KTS_NVT.model.Error;
 import tim20.KTS_NVT.model.Event;
 import tim20.KTS_NVT.model.EventDay;
+import tim20.KTS_NVT.model.Location;
 import tim20.KTS_NVT.model.SectorPrice;
 import tim20.KTS_NVT.service.EventDayService;
 import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.LocationService;
 import tim20.KTS_NVT.service.SectorPriceService;
+import tim20.KTS_NVT.service.SectorService;
 import tim20.KTS_NVT.service.TicketService;
 
 @Controller
@@ -49,6 +54,9 @@ public class EventController {
 	@Autowired
 	private SectorPriceService sectorPriceService;
 
+	@Autowired
+	private SectorService sectorService;
+	
 	@Autowired
 	private TicketService ticketService;
 
@@ -96,6 +104,19 @@ public class EventController {
 	public ResponseEntity<EventDTO> addEvent(@RequestBody EventDTO dto) {
 
 		Event event = EventDTOConverter.dtoToEvent(dto);
+
+		event.setSectorPrice(new HashSet<SectorPrice>());
+		for (SectorPriceDTO sd : dto.getPrices()) {
+			SectorPrice newSp = new SectorPrice();
+			newSp.setPrice(sd.getPrice());
+			newSp.setSector(sectorService.findOne(sd.getSector().getId()));
+			event.getSectorPrice().add(newSp);
+			newSp.setEvent(event);
+		}
+		
+		Location location = locationService.findOne(dto.getLocationID());
+        event.setLocation(location);
+
 		event.setId(null);
 		Event e = eventService.saveEvent(event);
 
@@ -111,7 +132,6 @@ public class EventController {
 
 		Event found = eventService.findOne(dto.getId());
 
-		System.out.println(dto.getId());
 
 		if(found == null) {
 			throw new EventNotFoundException(dto.getId());

@@ -7,6 +7,7 @@ import tim20.KTS_NVT.controller.EventDayController;
 import tim20.KTS_NVT.dto.EventDTO;
 import tim20.KTS_NVT.model.Event;
 import tim20.KTS_NVT.model.Location;
+import tim20.KTS_NVT.model.SectorPrice;
 import tim20.KTS_NVT.model.EventCategory;
 import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.LocationService;
@@ -36,10 +37,11 @@ public class EventDTOConverter {
             event.setEventCategory(EventCategory.MUSIC);
 
 
-        Location location = ls.findOne(dto.getLocationID());
-        event.setLocation(location);
+        //Location location = ls.findOne(dto.getLocationID());
+        //event.setLocation(location);
 
         event.setEventDays(EventDayDTOConverter.convertDTOsToEventDays(dto.getDays(),event));
+        event.setSectorPrice(SectorPriceDTOConverter.convertDTOsToSectorPrices(dto.getPrices(), event));
         return event;
 
     }
@@ -63,7 +65,6 @@ public class EventDTOConverter {
         dto.setLocationID(event.getLocation().getId());
         
         dto.setDays(EventDayDTOConverter.eventDaysToDtos(event.getEventDays()));
-        
         dto.setPrices(SectorPriceDTOConverter.sectorpricesToDtos(event.getSectorPrice()));
         return dto;
 

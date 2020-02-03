@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Sector } from '../../locations/model/sector';
-import { Sectorprice } from '../model/sectorprice';
+import { EventPrice } from '../model/event-price';
 
 declare var fabric: any;
 
@@ -15,7 +15,7 @@ export class CanvasEventsComponent implements OnInit, OnChanges {
   initDone = false;
 
   @Input() sectors: Sector[];
-  @Input() sectorPrices: Sectorprice[];
+  @Input() sectorPrices: EventPrice[];
   @Input() reservedSeats: any; // promeniti
 
   constructor() { }
@@ -76,7 +76,7 @@ export class CanvasEventsComponent implements OnInit, OnChanges {
     for (const sec of this.sectors) {
       let contains = false;
       for (const sp of this.sectorPrices) {
-        if (sp.sectorID === sec.id) {
+        if (sp.sector.id === sec.id) {
           contains = true;
           break;
         }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import { Sector } from '../../locations/model/sector';
-import { Sectorprice } from '../model/sectorprice';
+
 import { SectorpriceHelp } from '../model/sectorprice-help';
 
 @Component({
