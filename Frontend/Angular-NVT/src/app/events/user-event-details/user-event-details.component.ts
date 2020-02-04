@@ -5,6 +5,8 @@ import { Event } from '../model/event';
 import { EventDay } from '../model/event-day';
 import {Location} from "../../locations/model/location";
 import {LocationsService} from "../../locations/services/locations.service";
+import {TicketsService} from "../../reports/services/tickets.service";
+import {TakenSeats} from "../model/taken-seats";
 
 
 @Component({
@@ -17,9 +19,10 @@ export class UserEventDetailsComponent implements OnInit {
   id: number;
   event: Event;
   location: Location;
+  takenSeats: TakenSeats;
 
   constructor(private route: ActivatedRoute, private router: Router, private locationsService: LocationsService,
-              private eventsService: EventsService) { }
+              private eventsService: EventsService, private ticketsService: TicketsService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
@@ -30,8 +33,10 @@ export class UserEventDetailsComponent implements OnInit {
         this.event = res.body as Event;
       }, error => console.log(error));
 
-
-
+    this.ticketsService.getTakenSeatsForSector(201)
+      .subscribe(res => {
+        this.takenSeats = res.body as TakenSeats;
+      }, error => console.log(error));
   }
 
   getLocation(id: number) {
