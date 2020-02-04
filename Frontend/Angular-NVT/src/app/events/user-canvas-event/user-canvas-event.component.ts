@@ -55,6 +55,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
           message += '\nRow number: ' + e.target.row_num;
           message += '\nColumn number: ' + e.target.column_num;
           message += '\nTaken: ' + e.target.taken;
+          message += '\nPrice: ' + e.target.price;
         }
         alert(message);
       }
@@ -97,7 +98,8 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
         hasControls: false,
         lockMovementX: true,
         lockMovementY: true,
-        selectable: true
+        selectable: true,
+        price: sec.price
       });
 
       this.canvas.add(g);
@@ -138,7 +140,8 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
               title: sec.sector.title,
               row_num: i,
               column_num: j,
-              taken: false
+              taken: false,
+              price: sec.price
             }));
           } else {
             this.canvas.add(new fabric.Rect({
@@ -157,7 +160,8 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
               title: sec.sector.title,
               row_num: i,
               column_num: j,
-              taken: true
+              taken: true,
+              price: sec.price
             }));
           }
         }
