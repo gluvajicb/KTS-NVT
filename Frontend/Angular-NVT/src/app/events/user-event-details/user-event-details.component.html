@@ -32,7 +32,7 @@
     </div>
     <div class="col-md-7">
       <div class="col-md-5">
-        <app-canvas-event-prices [prices]="event.prices" ></app-canvas-event-prices>
+        <app-user-canvas-event [prices]="event.prices" [takenSeats]="this.takenSeats" *ngIf="this.takenSeats" ></app-user-canvas-event>
       </div>
     </div>
   </div>

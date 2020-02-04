@@ -56,7 +56,7 @@ export class CanvasEventsComponent implements OnInit, OnChanges {
         if (e.target.title) {
           message += 'Title: ' + e.target.title;
         }
-        if (e.target.row_num) {
+        if (e.target.row_num >= 0) {
           message += '\nRow number: ' + e.target.row_num;
           message += '\nColumn number: ' + e.target.column_num;
         }

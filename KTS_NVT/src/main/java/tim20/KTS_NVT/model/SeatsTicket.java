@@ -1,15 +1,9 @@
 package tim20.KTS_NVT.model;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 
 @Entity(name="seats_ticket")
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class SeatsTicket extends Ticket {
 
 	private Integer rowNum;
@@ -28,4 +22,22 @@ public class SeatsTicket extends Ticket {
 		this.rowNum = rowNum;
 		this.columnNum = columnNum;
 	}
+
+	public Integer getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(Integer rowNum) {
+		this.rowNum = rowNum;
+	}
+
+	public Integer getColumnNum() {
+		return columnNum;
+	}
+
+	public void setColumnNum(Integer columnNum) {
+		this.columnNum = columnNum;
+	}
+	
+	public SeatsTicket() {}
 }

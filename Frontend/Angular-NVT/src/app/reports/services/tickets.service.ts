@@ -41,4 +41,16 @@ export class TicketsService {
 
     return this.http.get(`${this.baseUrl}/${id}`, queryParams);
    }
+
+  getTakenSeatsForSector(id: number): Observable<any> {
+
+    let queryParams = {};
+
+    queryParams = {
+      headers: this.headers,
+      observe: 'response'
+    };
+
+    return this.http.get(`${this.baseUrl}/takenSeats/${id}`, queryParams);
+  }
 }

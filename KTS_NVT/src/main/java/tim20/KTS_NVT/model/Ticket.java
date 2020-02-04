@@ -1,19 +1,12 @@
 package tim20.KTS_NVT.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 
 @Entity
 @Inheritance(strategy=TABLE_PER_CLASS)
-@Getter
-@Setter
-@NoArgsConstructor
+
 public abstract class Ticket {
 
 	@Id
@@ -33,6 +26,94 @@ public abstract class Ticket {
 
 	@ManyToOne
 	private User user;
+	
+	public Ticket() {}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public EventDay getDay() {
+		return day;
+	}
+
+
+
+	public void setDay(EventDay day) {
+		this.day = day;
+	}
+
+
+
+	public Boolean getSingleDay() {
+		return singleDay;
+	}
+
+
+
+	public void setSingleDay(Boolean singleDay) {
+		this.singleDay = singleDay;
+	}
+
+
+
+	public Double getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+
+
+	public Event getEvent() {
+		return event;
+	}
+
+
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+
+
+	public Sector getSector() {
+		return sector;
+	}
+
+
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 	public Ticket(EventDay day, Boolean singleDay, Double price, Event event, Sector sector) {
 		super();

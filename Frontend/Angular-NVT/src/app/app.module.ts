@@ -42,7 +42,7 @@ import { UserEventCardComponent } from './events/user-event-card/user-event-card
 import { LocationSearchFormComponent } from './locations/location-search-form/location-search-form.component';
 import { LocationUpdateComponent } from './locations/location-update/location-update.component';
 import { AddEventDaysComponent } from './events/add-event-days/add-event-days.component';
-
+import { CanvasUserEventComponent } from './events/user-canvas-event/user-canvas-event.component'
 
 @NgModule({
   declarations: [
@@ -78,7 +78,8 @@ import { AddEventDaysComponent } from './events/add-event-days/add-event-days.co
     UserEventCardComponent,
     LocationSearchFormComponent,
     LocationUpdateComponent,
-    AddEventDaysComponent
+    AddEventDaysComponent,
+    CanvasUserEventComponent
   ],
   imports: [
     BrowserModule,
