@@ -12,7 +12,7 @@ import { EventDetailsComponent } from '../events/event-details/event-details.com
 import { EventReportContainerComponent } from '../reports/event-report-container/event-report-container.component';
 import { UserEventDetailsComponent } from '../events/user-event-details/user-event-details.component';
 import { UserEventContainerComponent } from '../events/user-event-container/user-event-container.component';
-
+import {LoginComponent} from '../security/login/login.component';
 
 const routes: Routes = [
   {path: 'locations', component: LocationContainerComponent},
@@ -25,11 +25,12 @@ const routes: Routes = [
   {path: 'reports', component: EventReportContainerComponent},
   {path: 'user/events/details/:id', component: UserEventDetailsComponent},
   {path: 'user/events', component: UserEventContainerComponent},
-
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
