@@ -72,19 +72,6 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
 
         this.applySelected.emit(this.ticketHelp);
       }
-      if (e.target != null) {
-        let message = '';
-        if (e.target.title) {
-          message += 'Title: ' + e.target.title;
-        }
-        if (e.target.row_num || e.target.column_num || (!e.target.row_num && !e.target.column_num)) {
-          message += '\nRow number: ' + e.target.row_num;
-          message += '\nColumn number: ' + e.target.column_num;
-          message += '\nTaken: ' + e.target.taken;
-          message += '\nPrice: ' + e.target.price;
-        }
-        alert(message);
-      }
     });
     this.draw();
     this.initDone = true;

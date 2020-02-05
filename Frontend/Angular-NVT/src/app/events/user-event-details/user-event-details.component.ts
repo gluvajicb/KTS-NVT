@@ -9,6 +9,8 @@ import {TicketsService} from "../../reports/services/tickets.service";
 import {TakenSeats} from "../model/taken-seats";
 import {TicketHelp} from "../model/ticket-help";
 import {Seat} from "../model/seat";
+import {SeatsTicketDTO} from "../../reports/model/seats-ticket";
+import {StandTicketDTO} from "../../reports/model/stand-ticker";
 
 
 @Component({
@@ -41,6 +43,31 @@ export class UserEventDetailsComponent implements OnInit {
 
   }
 
+  book() {
+
+    if (this.selectedTicket.ticketType === 'SEATS') {
+      let ticket = new SeatsTicketDTO();
+      ticket.columnNumber = this.selectedTicket.column;
+      ticket.rowNumber = this.selectedTicket.row;
+      ticket.isSingleDay = true;
+      ticket.price = this.selectedTicket.total;
+      ticket.sectorID = this.selectedTicket.sectorId;
+      ticket.eventDayID = this.selectedDay;
+      ticket.eventID = this.event.id;
+      this.ticketsService.addSeatsTicket(ticket);
+      console.log(ticket);
+    } else {
+      let ticket = new StandTicketDTO();
+      ticket.isSingleDay = true;
+      ticket.price = this.selectedTicket.total;
+      ticket.sectorID = this.selectedTicket.sectorId;
+      ticket.eventDayID = this.selectedDay;
+      ticket.eventID = this.event.id;
+      this.ticketsService.addStandTicket(ticket);
+      console.log('STANDD');
+    }
+  }
+
   getLocation(id: number) {
     this.locationsService.getOne(id)
       .subscribe( res => {
@@ -52,6 +79,7 @@ export class UserEventDetailsComponent implements OnInit {
     this.selectedTicket = ticketHelp;
   }
   onChangeDay() {
+    this.selectedTicket = null;
     this.ticketsService.getTakenSeatsForSector(this.selectedDay)
       .subscribe(res => {
         this.takenSeats = res.body as TakenSeats;
