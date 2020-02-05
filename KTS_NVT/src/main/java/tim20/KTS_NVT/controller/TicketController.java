@@ -80,6 +80,7 @@ public class TicketController {
     public ResponseEntity<Boolean> addSeatsTicket(@RequestBody SeatsTicketDTO dto) {
     	boolean success;
     	try {
+
     		 success = ticketService.addSeatTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getRowNumber(), dto.getColumnNumber(), dto.getSectorID());
     	}catch(EventNotFoundException nf) {
     		throw new EventNotFoundException(dto.getEventID());
@@ -97,7 +98,7 @@ public class TicketController {
     @PostMapping(value = "/add-stand-ticket", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> addStandTicket(@RequestBody StandTicketDTO dto) {
     	boolean success = ticketService.addStandTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getSectorID());
-        if(success == false) {
+    	if(success == false) {
         	return new ResponseEntity<>(success, HttpStatus.BAD_REQUEST);
         }
         
