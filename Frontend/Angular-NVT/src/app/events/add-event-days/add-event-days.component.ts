@@ -25,7 +25,7 @@ export class AddEventDaysComponent implements OnInit {
   createForm() {
     this.dayForm = this.fb.group({
       title: ['', [Validators.required]],
-      date: ['', [Validators.required]]
+      eventdate: ['', [Validators.required]]
     });
   }
 

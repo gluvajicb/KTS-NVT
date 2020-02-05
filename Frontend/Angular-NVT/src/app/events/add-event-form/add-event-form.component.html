@@ -23,10 +23,10 @@
   <div class="form-group row">
     <label for="category" class="col-2 col-form-label">Event category:</label>
     <div class="col-10">
-      <select class="form-control" [(ngModel)]="event.eventCategory" #eventCategory="ngModel" name="eventCategory" id="category">
-        <option [ngValue]="SHOW">SHOW</option>
-        <option [ngValue]="MUSIC">MUSIC</option>
-        <option [ngValue]="SPORT">SPORT</option>
+      <select class="form-control" [(ngModel)]="event.eventCategory" name="eventCategory" id="category">
+        <option (ngValue)="SHOW">SHOW</option>
+        <option (ngValue)="MUSIC">MUSIC</option>
+        <option (ngValue)="SPORT">SPORT</option>
       </select>
     </div>
   </div>
