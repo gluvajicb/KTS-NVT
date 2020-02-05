@@ -8,6 +8,7 @@ import tim20.KTS_NVT.dto.EventDTO;
 import tim20.KTS_NVT.model.Event;
 import tim20.KTS_NVT.repository.EventRepository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,5 +60,9 @@ public class EventService {
     }
 
     public void deleteEvent(Long eventId) { eventRepository.deleteById(eventId);}
+
+	public Collection<Event> getUpcomingEvents() {
+		return eventRepository.getUpcomingEvents();
+	}
 
 }

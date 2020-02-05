@@ -27,7 +27,7 @@ public class EventDTOConverter {
         event.setTitle(dto.getTitle());
         event.setDescription(dto.getDescription());
         
-        event.setIsActive(dto.getActive());
+        event.setIsActive(true);
 
         if(dto.getEventCategory().equals("SHOW"))
             event.setEventCategory(EventCategory.SHOW);

@@ -86,6 +86,17 @@ public class EventController {
 		return new ResponseEntity<List<EventDTO>>(dtos, HttpStatus.OK);
 
 	}
+	
+	@GetMapping(value = "/upcoming")
+	public ResponseEntity<List<EventDTO>> getUpcomingEvents() {
+
+		Collection<Event> events = eventService.getUpcomingEvents();
+
+		List<EventDTO> dtos = EventDTOConverter.eventsToDtos(events);
+
+		return new ResponseEntity<List<EventDTO>>(dtos, HttpStatus.OK);
+
+	}
 
 	@GetMapping(value = "/{eventId}/days")
 	public ResponseEntity<Collection<EventDay>> getAllDaysForEvent(@PathVariable("eventId") Long eventId) {

@@ -31,6 +31,17 @@ export class EventsService {
     return this.http.get(this.baseUrl, queryParams);
    }
 
+  getUpcoming(): Observable<any> {
+    let queryParams = {};
+
+    queryParams = {
+      headers: this.headers,
+      observe: 'response'
+    };
+    
+    return this.http.get(`${this.baseUrl}/upcoming`, queryParams);
+  }
+
    getTotalSize(): number {
      return this.locationList.length;
    }
