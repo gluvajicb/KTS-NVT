@@ -25,7 +25,7 @@ export class UserEventListComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.eventsService.getAll(this.currentPage - 1, this.pageSize)
+    this.eventsService.getUpcoming()
       .subscribe( res => {
         this.eventList = res.body as Event[];
         this.allEvents = this.eventList;

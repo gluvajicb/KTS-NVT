@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+@Entity()
 public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
