@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tim20.KTS_NVT.dto.UserDTO;
 import tim20.KTS_NVT.exceptions.*;
 import tim20.KTS_NVT.model.User;
+import tim20.KTS_NVT.model.UserRole;
 import tim20.KTS_NVT.repository.UserRepository;
 import tim20.KTS_NVT.repository.UserRoleRepository;
 import tim20.KTS_NVT.security.TokenHelper;
@@ -22,6 +23,7 @@ import tim20.KTS_NVT.security.UserTokenState;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -84,20 +86,21 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
-    public UserTokenState loginUser(UserDTO user) {
-        if (user.getUsername() == null || user.getUsername().trim().equals("")
-                || user.getPassword() == null || user.getPassword().trim().equals("")) {
+    public UserTokenState loginUser(UserDTO loginData) {
+        if (loginData.getUsername() == null || loginData.getUsername().trim().equals("")
+                || loginData.getPassword() == null || loginData.getPassword().trim().equals("")) {
             throw new FieldsRequiredException();
         }
 
         try {
             final Authentication authentication = authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+                    .authenticate(new UsernamePasswordAuthenticationToken(loginData.getUsername(), loginData.getPassword()));
 
             if (authentication != null && authentication.getName() != null) {
+                User user = userRepository.findByUsername(authentication.getName());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 String jwt = tokenHelper.generateToken(authentication.getName());
-                return new UserTokenState(jwt, 43200);
+                return new UserTokenState(jwt, 43000L, "Bearer", user.getId(), user.getUsername(), user.getEmail(), user.getUserRolesStringList());
             }
         } catch (Exception e) {
             throw new WrongCredentialsException();
