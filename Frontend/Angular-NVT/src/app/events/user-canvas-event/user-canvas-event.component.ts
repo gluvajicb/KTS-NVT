@@ -85,13 +85,11 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
   }
 
   draw() {
-    console.log(this.takenSeats)
 
     if (this.canvas) {
       this.canvas.remove(...this.canvas.getObjects());
     }
     for (const sec of this.prices) {
-      console.log(sec.sector.title);
       if (sec.sector.type === 'Stand' || sec.sector.type === 'stand') {
       const r = new fabric.Rect({
         originX: 'center',

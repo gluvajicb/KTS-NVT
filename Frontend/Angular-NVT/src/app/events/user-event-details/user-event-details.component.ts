@@ -39,6 +39,7 @@ export class UserEventDetailsComponent implements OnInit {
         this.getLocation(res.body.locationID);
         this.event = res.body as Event;
         this.selectedDay = this.event.days[0].id;
+        this.onChangeDay();
       }, error => console.log(error));
 
   }
@@ -46,7 +47,7 @@ export class UserEventDetailsComponent implements OnInit {
   book() {
 
     if (this.selectedTicket.ticketType === 'SEATS') {
-      let ticket = new SeatsTicketDTO();
+      const ticket = new SeatsTicketDTO();
       ticket.columnNumber = this.selectedTicket.column;
       ticket.rowNumber = this.selectedTicket.row;
       ticket.isSingleDay = true;
@@ -61,7 +62,7 @@ export class UserEventDetailsComponent implements OnInit {
       );
       console.log(ticket);
     } else {
-      let ticket = new StandTicketDTO();
+      const ticket = new StandTicketDTO();
       ticket.isSingleDay = true;
       ticket.price = this.selectedTicket.total;
       ticket.sectorID = this.selectedTicket.sectorId;
