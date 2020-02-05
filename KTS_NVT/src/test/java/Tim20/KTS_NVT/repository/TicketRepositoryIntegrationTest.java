@@ -58,11 +58,30 @@ public class TicketRepositoryIntegrationTest {
 	
 	@Test
 	public void checkNumberOfGuestsSingleDay() {
-		int number = ticketRepository.checkNumberOfGuestsSingleDay(1l, 101l, 1l);
+		int number = ticketRepository.checkNumberOfGuestsSingleDay(1l, 101l, 2l);
 		
-		assertEquals(5, number);
+		assertEquals(3, number);
 	}
 	
+	//zauzeta sedista
 	
+	@Test
+	public void getSeatsTicketsByDayTest() {
+		List<Ticket> tickets = ticketRepository.getSeatsTicketsByEventDay(2l);
+		
+		assertEquals(2, tickets.size());
+		for (Ticket ticket : tickets) {
+			assertEquals(2, ticket.getDay().getId().intValue());
+		}
+	}
+	
+	@Test
+	public void getStandTicketsCountTest() {
+		
+		int count = ticketRepository.getStandTicketsCountByEventDayAndSector(2l, 102l);
+		
+		assertEquals(2, count);
+		
+	}
 
 }
