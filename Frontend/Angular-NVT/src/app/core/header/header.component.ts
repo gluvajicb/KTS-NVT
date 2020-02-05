@@ -9,7 +9,7 @@ import {TokenStorageService} from '../../security/services/token-storage/token-s
 export class HeaderComponent implements OnInit {
   private roles: string[];
   isLoggedIn = false;
-  showAdminBoard = false;
+  isAdmin = false;
   username: string;
   title = 'Angular-NVT';
 
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-      this.showAdminBoard = this.roles.includes('ADMIN');
+      this.isAdmin = this.roles.includes('ADMIN');
       this.username = user.username;
     }
   }

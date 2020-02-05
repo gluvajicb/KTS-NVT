@@ -14,6 +14,7 @@ import { UserEventDetailsComponent } from '../events/user-event-details/user-eve
 import { UserEventContainerComponent } from '../events/user-event-container/user-event-container.component';
 import {LoginComponent} from '../security/login/login.component';
 import {RegisterComponent} from '../security/register/register.component';
+import {HomeComponent} from '../core/home/home.component';
 
 const routes: Routes = [
   {path: 'locations', component: LocationContainerComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'user/events/details/:id', component: UserEventDetailsComponent},
   {path: 'user/events', component: UserEventContainerComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: '', component: HomeComponent}
 ];
 
 @NgModule({

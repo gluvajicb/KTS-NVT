@@ -46,6 +46,7 @@ import {LoginComponent} from './security/login/login.component';
 import {SecurityService} from './security/services/security/security.service';
 import { RegisterComponent } from './security/register/register.component';
 import { MatchValueDirective } from './helpers/match-value.directive';
+import { HomeComponent } from './core/home/home.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { MatchValueDirective } from './helpers/match-value.directive';
     AddEventDaysComponent,
     LoginComponent,
     RegisterComponent,
-    MatchValueDirective
+    MatchValueDirective,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
