@@ -9,8 +9,9 @@ import {
   Output
 } from '@angular/core';
 import { EventPrice } from '../model/event-price';
-import {TakenSeats} from "../model/taken-seats";
-import {TicketHelp} from "../model/ticket-help";
+import {TakenSeats} from '../model/taken-seats';
+import {TicketHelp} from '../model/ticket-help';
+import { Seat } from '../model/seat';
 
 declare var fabric: any;
 
@@ -40,7 +41,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
 
     this.canvas.on('mouse:over', (e: any) => {
       if (e.target != null && e.target.toObject().type === 'rect') {
-        e.target.set('stroke', "black" );
+        e.target.set('stroke', 'black' );
         this.canvas.renderAll();
       } else if (e.target != null && e.target.toObject().type === 'group') {
         // e.target.toObject().objects[0].set('fill', '#5d5d5d');
@@ -72,19 +73,6 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
 
         this.applySelected.emit(this.ticketHelp);
       }
-      if (e.target != null) {
-        let message = '';
-        if (e.target.title) {
-          message += 'Title: ' + e.target.title;
-        }
-        if (e.target.row_num || e.target.column_num || (!e.target.row_num && !e.target.column_num)) {
-          message += '\nRow number: ' + e.target.row_num;
-          message += '\nColumn number: ' + e.target.column_num;
-          message += '\nTaken: ' + e.target.taken;
-          message += '\nPrice: ' + e.target.price;
-        }
-        alert(message);
-      }
     });
     this.draw();
     this.initDone = true;
@@ -97,13 +85,11 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
   }
 
   draw() {
-    console.log(this.takenSeats)
 
     if (this.canvas) {
       this.canvas.remove(...this.canvas.getObjects());
     }
     for (const sec of this.prices) {
-
       if (sec.sector.type === 'Stand' || sec.sector.type === 'stand') {
       const r = new fabric.Rect({
         originX: 'center',
@@ -140,7 +126,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
 
       this.canvas.add(g);
     } else {
-      let taken;
+      let taken = [];
       for (const id of this.takenSeats.seatsTaken) {
         if (id.sectorId === sec.sector.id) {
           taken = id.seats;

@@ -13,6 +13,7 @@ import tim20.KTS_NVT.dto.TakenSeatsDTO;
 import tim20.KTS_NVT.dto.TakenSeatsDTO.Seat;
 import tim20.KTS_NVT.dto.TakenSeatsDTO.Seats;
 import tim20.KTS_NVT.dto.TakenSeatsDTO.Stand;
+import tim20.KTS_NVT.exceptions.EventDayNotFoundException;
 import tim20.KTS_NVT.exceptions.EventNotFoundException;
 import tim20.KTS_NVT.exceptions.SectorNotFoundException;
 import tim20.KTS_NVT.model.Event;
@@ -79,6 +80,12 @@ public class TicketService {
             throw new SectorNotFoundException(sectorID);
         }
         
+        EventDay day = dayRepository.getOne(eventDayID);
+        
+        if (day == null) {
+        	throw new EventDayNotFoundException(eventDayID);
+        }
+        
         boolean isAvailable;
         if (!isSingleDay) {
         	isAvailable = checkSeatsTicketAvailability(eventID, rowNumber, columnNumber, sectorID);
@@ -93,6 +100,7 @@ public class TicketService {
 
         SeatsTicket t = new SeatsTicket();
         t.setEvent(event);
+        t.setDay(day);
         t.setPrice(price);
         t.setSingleDay(isSingleDay);
         t.setColumnNum(columnNumber);
@@ -115,6 +123,12 @@ public class TicketService {
             throw new EventNotFoundException(eventID);
         }
         
+        EventDay day = dayRepository.getOne(eventDayID);
+        
+        if(day == null) {
+        	throw new EventDayNotFoundException(eventDayID);
+        }
+        
         Sector s = sectorService.findOne(sectorID);
         if (s == null) {
             throw new SectorNotFoundException(sectorID);
@@ -129,6 +143,7 @@ public class TicketService {
 
         StandTicket t = new StandTicket();
         t.setEvent(event);
+        t.setDay(day);
         t.setPrice(price);
         t.setSingleDay(isSingleDay);
         t.setSector(s);

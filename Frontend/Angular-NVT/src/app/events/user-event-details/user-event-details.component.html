@@ -50,10 +50,20 @@
 
           <h3>TOTAL: {{this.selectedTicket.total}}</h3>
         </div>
+        <button class="btn btn-primary ml-3 mt-3"  (click)="this.book()">Book</button>
       </div>
-    </div>
+      <div class="row mt-3 ml-2">
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          Your ticket is reserved! Please check your email.
+        </div>
+
+        <div class="alert alert-warning" *ngIf="isFailed">
+          Sorry, ticket you are looking for is taken.
+        </div>
+      </div>
+      </div>
       <div class="col-md-7">
-        <app-user-canvas-event  (applySelected)="createTicketHelp($event)" [prices]="event.prices" [takenSeats]="this.takenSeats" *ngIf="this.takenSeats" ></app-user-canvas-event>
+        <app-user-canvas-event (applySelected)="createTicketHelp($event)" [prices]="event.prices" [takenSeats]="this.takenSeats" *ngIf="this.takenSeats" ></app-user-canvas-event>
       </div>
     </div>
   </div>

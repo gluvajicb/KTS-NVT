@@ -3,12 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EventsService } from '../services/events.service';
 import { Event } from '../model/event';
 import { EventDay } from '../model/event-day';
-import {Location} from "../../locations/model/location";
-import {LocationsService} from "../../locations/services/locations.service";
-import {TicketsService} from "../../reports/services/tickets.service";
-import {TakenSeats} from "../model/taken-seats";
-import {TicketHelp} from "../model/ticket-help";
-import {Seat} from "../model/seat";
+import {Location} from '../../locations/model/location';
+import {LocationsService} from '../../locations/services/locations.service';
+import {TicketsService} from '../../reports/services/tickets.service';
+import {TakenSeats} from '../model/taken-seats';
+import {TicketHelp} from '../model/ticket-help';
+import {Seat} from '../model/seat';
+import {SeatsTicketDTO} from '../../reports/model/seats-ticket';
+import {StandTicketDTO} from '../../reports/model/stand-ticker';
 
 
 @Component({
@@ -24,6 +26,8 @@ export class UserEventDetailsComponent implements OnInit {
   takenSeats: TakenSeats;
   selectedDay: number;
   selectedTicket: TicketHelp;
+  isSuccessful = false;
+  isFailed = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private locationsService: LocationsService,
               private eventsService: EventsService, private ticketsService: TicketsService) {
@@ -37,8 +41,55 @@ export class UserEventDetailsComponent implements OnInit {
         this.getLocation(res.body.locationID);
         this.event = res.body as Event;
         this.selectedDay = this.event.days[0].id;
+        this.onChangeDay();
       }, error => console.log(error));
 
+  }
+
+  book() {
+
+    if (this.selectedTicket.ticketType === 'SEATS') {
+      const ticket = new SeatsTicketDTO();
+      ticket.columnNumber = this.selectedTicket.column;
+      ticket.rowNumber = this.selectedTicket.row;
+      ticket.isSingleDay = true;
+      ticket.price = this.selectedTicket.total;
+      ticket.sectorID = this.selectedTicket.sectorId;
+      ticket.eventDayID = this.selectedDay;
+      ticket.eventID = this.event.id;
+     // this.ticketsService.addSeatsTicket(ticket);
+      this.ticketsService.addSeatsTicket(ticket).subscribe(
+        result => {
+          this.isSuccessful = true;
+          this.isFailed = false;
+        },
+        err => {
+          this.isFailed = true;
+          this.isSuccessful = false;
+
+        }
+      );
+      console.log(ticket);
+    } else {
+      const ticket = new StandTicketDTO();
+      ticket.isSingleDay = true;
+      ticket.price = this.selectedTicket.total;
+      ticket.sectorID = this.selectedTicket.sectorId;
+      ticket.eventDayID = this.selectedDay;
+      ticket.eventID = this.event.id;
+      // this.ticketsService.addStandTicket(ticket);
+      this.ticketsService.addStandTicket(ticket).subscribe(
+        result => {
+          this.isSuccessful = true;
+          this.isFailed = false;
+        },
+        err => {
+          this.isFailed = true;
+          this.isSuccessful = false;
+
+        }
+      );
+    }
   }
 
   getLocation(id: number) {
@@ -52,6 +103,7 @@ export class UserEventDetailsComponent implements OnInit {
     this.selectedTicket = ticketHelp;
   }
   onChangeDay() {
+    this.selectedTicket = null;
     this.ticketsService.getTakenSeatsForSector(this.selectedDay)
       .subscribe(res => {
         this.takenSeats = res.body as TakenSeats;
