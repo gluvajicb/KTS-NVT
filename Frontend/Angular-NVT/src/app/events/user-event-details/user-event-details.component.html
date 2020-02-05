@@ -21,19 +21,40 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-5">
-      <h2 class="mt-5">Event days</h2>
+    <div class="col-md-5 mt-5">
+      <h2>Event days</h2>
       <app-table-event-day [days]="event.days"></app-table-event-day>
-
+    </div>
+    <div class="col-md-4">
       <h2 class="mt-5">Prices</h2>
       <div *ngFor="let sectorPrice of event.prices">
         <label><b>{{sectorPrice.sector.title}} </b> - </label> {{sectorPrice.price}}e
       </div>
     </div>
-    <div class="col-md-7">
-      <div class="col-md-5">
-        <app-user-canvas-event [prices]="event.prices" [takenSeats]="this.takenSeats" *ngIf="this.takenSeats" ></app-user-canvas-event>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-5">
+      <div class="row">
+        <h2>Select day</h2>
+        <select class="form-control" [(ngModel)]="this.selectedDay"  (ngModelChange)="onChangeDay()" name="daySelection" id="idDaySelection">
+          <option *ngFor="let day of event.days" [ngValue]="day.id">{{day.title}}</option>
+        </select>
+      </div>
+      <div class="row" id="ticket" *ngIf="this.selectedTicket">
+        <div class="col-md-12">
+          <h2>Selected ticket</h2> <br/>
+          <label><b>Sector </b> - </label> {{this.selectedTicket.sectorTitle}} <br/>
+          <label><b>Ticket type </b> - </label> {{this.selectedTicket.ticketType}}<br/>
+          <label *ngIf="this.selectedTicket.column !== -1"><b>Row </b> -  {{this.selectedTicket.row}}</label><br/>
+          <label *ngIf="this.selectedTicket.column !== -1"><b>Column </b> - {{this.selectedTicket.column}} </label><br/>
+
+          <h3>TOTAL: {{this.selectedTicket.total}}</h3>
+        </div>
+      </div>
+    </div>
+      <div class="col-md-7">
+        <app-user-canvas-event  (applySelected)="createTicketHelp($event)" [prices]="event.prices" [takenSeats]="this.takenSeats" *ngIf="this.takenSeats" ></app-user-canvas-event>
       </div>
     </div>
   </div>
-</div>
+

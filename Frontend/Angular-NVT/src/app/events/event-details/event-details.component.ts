@@ -17,6 +17,7 @@ export class EventDetailsComponent implements OnInit {
   id: number;
   event: Event;
   location: Location;
+  selectedDay: number;
 
   constructor(private route: ActivatedRoute, private router: Router, private locationsService: LocationsService,
               private eventsService: EventsService) { }

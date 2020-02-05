@@ -1,6 +1,16 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+  EventEmitter,
+  Output
+} from '@angular/core';
 import { EventPrice } from '../model/event-price';
 import {TakenSeats} from "../model/taken-seats";
+import {TicketHelp} from "../model/ticket-help";
 
 declare var fabric: any;
 
@@ -17,12 +27,11 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
   @Input() prices: EventPrice[];
   @Input() takenSeats: TakenSeats; // promeniti
 
-  constructor() { }
+  @Output() applySelected: EventEmitter<TicketHelp>;
+  ticketHelp: TicketHelp;
+  constructor() {
+    this.applySelected = new EventEmitter();
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.initDone) {
-      this.draw();
-    }
   }
 
   ngOnInit() {
@@ -46,6 +55,23 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
     });
 
     this.canvas.on('mouse:up', (e: any) => {
+
+      if (!e.target.taken) {
+        this.ticketHelp = new TicketHelp();
+        this.ticketHelp.sectorId = e.target.sectorId;
+        this.ticketHelp.sectorTitle = e.target.sectorTitle;
+        this.ticketHelp.total = e.target.price;
+        this.ticketHelp.ticketType = e.target.type;
+        if (this.ticketHelp.ticketType === 'SEATS') {
+          this.ticketHelp.row = e.target.row_num + 1;
+          this.ticketHelp.column = e.target.column_num + 1;
+        } else {
+          this.ticketHelp.row = -1;
+          this.ticketHelp.column = -1;
+        }
+
+        this.applySelected.emit(this.ticketHelp);
+      }
       if (e.target != null) {
         let message = '';
         if (e.target.title) {
@@ -62,6 +88,12 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
     });
     this.draw();
     this.initDone = true;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.initDone) {
+      this.draw();
+    }
   }
 
   draw() {
@@ -99,7 +131,11 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
         lockMovementX: true,
         lockMovementY: true,
         selectable: true,
-        price: sec.price
+        price: sec.price,
+        type: 'STAND',
+        sectorId: sec.sector.id,
+        sectorTitle: sec.sector.title,
+        taken: false
       });
 
       this.canvas.add(g);
@@ -119,7 +155,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
         for (let j = 0; j < sec.sector.column_num; j++) {
           let found = false;
           for (const seat of taken) {
-            if (seat.row-1  === i && seat.col-1 === j) {
+            if (seat.row - 1  === i && seat.col - 1 === j) {
               found = true;
             }
           }
@@ -141,7 +177,10 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
               row_num: i,
               column_num: j,
               taken: false,
-              price: sec.price
+              price: sec.price,
+              type: 'SEATS',
+              sectorId: sec.sector.id,
+              sectorTitle: sec.sector.title
             }));
           } else {
             this.canvas.add(new fabric.Rect({
@@ -161,7 +200,10 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
               row_num: i,
               column_num: j,
               taken: true,
-              price: sec.price
+              price: sec.price,
+              type: 'SEATS',
+              sectorId: sec.sector.id,
+              sectorTitle: sec.sector.title
             }));
           }
         }
