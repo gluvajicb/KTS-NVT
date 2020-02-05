@@ -68,10 +68,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private AuthenticationFailureHandler authenticationFailureHandler;
 
+	/*
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	*/
+
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -83,6 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication().usersByUsernameQuery(usersQuery).authoritiesByUsernameQuery(rolesQuery)
 				.dataSource(dataSource).passwordEncoder(bCryptPasswordEncoder);
 	}
+
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
