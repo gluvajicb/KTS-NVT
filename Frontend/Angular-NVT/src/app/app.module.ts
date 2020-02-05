@@ -44,6 +44,8 @@ import {LocationUpdateComponent} from './locations/location-update/location-upda
 import {AddEventDaysComponent} from './events/add-event-days/add-event-days.component';
 import {LoginComponent} from './security/login/login.component';
 import {SecurityService} from './security/services/security/security.service';
+import { RegisterComponent } from './security/register/register.component';
+import { MatchValueDirective } from './helpers/match-value.directive';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import {SecurityService} from './security/services/security/security.service';
     LocationSearchFormComponent,
     LocationUpdateComponent,
     AddEventDaysComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    MatchValueDirective
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,11 @@ export class SecurityService {
     return this.http.post(AUTH_API + 'register', {
       username: user.username,
       email: user.email,
-      password: user.password
+      password: user.password,
+      passwordConfirmation: user.passwordConfirmation,
+      name: user.name,
+      surname: user.surname,
+      phoneNumber: user.phoneNumber
     }, httpOptions);
   }
 }

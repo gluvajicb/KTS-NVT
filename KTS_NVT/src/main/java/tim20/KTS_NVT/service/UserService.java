@@ -110,10 +110,13 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean registerUser(UserDTO userDTO) {
-        if (userDTO.getName() == null || userDTO.getName().isEmpty() || userDTO.getSurname() == null || userDTO.getSurname().isEmpty()
-                || userDTO.getUsername() == null || userDTO.getUsername().isEmpty() || userDTO.getEmail() == null || userDTO.getEmail().isEmpty()
+        if (userDTO.getName() == null || userDTO.getName().isEmpty()
+                || userDTO.getSurname() == null || userDTO.getSurname().isEmpty()
+                || userDTO.getUsername() == null || userDTO.getUsername().isEmpty()
+                || userDTO.getEmail() == null || userDTO.getEmail().isEmpty()
                 || userDTO.getPassword() == null || userDTO.getPassword().isEmpty()
-                || userDTO.getPasswordConfirmation() == null || userDTO.getPasswordConfirmation().isEmpty()) {
+                || userDTO.getPasswordConfirmation() == null || userDTO.getPasswordConfirmation().isEmpty()
+                || userDTO.getPhoneNumber() == null || userDTO.getPhoneNumber().isEmpty()) {
             throw new FieldsRequiredException();
         }
 
@@ -133,7 +136,7 @@ public class UserService implements UserDetailsService {
                 userDTO.getSurname(), userDTO.getEmail(), userDTO.getPhoneNumber(), false, null, null);
 
         user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
-        user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByRole("ADMIN"))));
+        user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findByRole("USER"))));
 
         emailService.sendVerificationEmail(user);
         userRepository.save(user);
@@ -146,13 +149,13 @@ public class UserService implements UserDetailsService {
             throw new FieldsRequiredException();
         }
 
-        try {
-            // This decoding is added to decode email address passed from test case
-            // where email has special characters ie. vule97+petar@gmail.com
-            email = URLDecoder.decode(email, StandardCharsets.UTF_8.name());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            // This decoding is added to decode email address passed from test case
+//            // where email has special characters ie. vule97+petar@gmail.com
+//            email = URLDecoder.decode(email, StandardCharsets.UTF_8.name());
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
 
         User user = userRepository.findByEmailAndVerificationToken(email, token);
         if (user != null) {
