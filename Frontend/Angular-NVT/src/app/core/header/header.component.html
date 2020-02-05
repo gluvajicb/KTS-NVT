@@ -1,11 +1,3 @@
-<!--<nav class="navbar navbar-inverse navigation navbar-fixed-top" style="background-color: #5D3F6A;!important">-->
-<!--  <div class="container">-->
-<!--    <div class="navbar-header">-->
-<!--      <h2 style="color:white">KTS/NVT Events</h2>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</nav>-->
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #5D3F6A !important;">
   <div class="container">
     <span class="navbar-brand text-white mb-0 h1" href="#">KTS/NVT</span>
@@ -16,14 +8,26 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLinkActive="active" routerLink="/home">Home<span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/">Home<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/login" href="#">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/register" href="#">Register</a>
-        </li>
+
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/login" href="#">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/register" href="#">Register</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/register" href="#">Profile({{ username }})</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        </ul>
       </ul>
     </div>
   </div>
