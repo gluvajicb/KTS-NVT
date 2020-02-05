@@ -26,6 +26,8 @@ export class UserEventDetailsComponent implements OnInit {
   takenSeats: TakenSeats;
   selectedDay: number;
   selectedTicket: TicketHelp;
+  isSuccessful = false;
+  isFailed = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private locationsService: LocationsService,
               private eventsService: EventsService, private ticketsService: TicketsService) {
@@ -58,6 +60,13 @@ export class UserEventDetailsComponent implements OnInit {
      // this.ticketsService.addSeatsTicket(ticket);
       this.ticketsService.addSeatsTicket(ticket).subscribe(
         result => {
+          this.isSuccessful = true;
+          this.isFailed = false;
+        },
+        err => {
+          this.isFailed = true;
+          this.isSuccessful = false;
+
         }
       );
       console.log(ticket);
@@ -71,9 +80,15 @@ export class UserEventDetailsComponent implements OnInit {
       // this.ticketsService.addStandTicket(ticket);
       this.ticketsService.addStandTicket(ticket).subscribe(
         result => {
+          this.isSuccessful = true;
+          this.isFailed = false;
+        },
+        err => {
+          this.isFailed = true;
+          this.isSuccessful = false;
+
         }
       );
-      console.log('STANDD');
     }
   }
 
