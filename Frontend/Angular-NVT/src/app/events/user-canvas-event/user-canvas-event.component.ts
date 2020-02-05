@@ -9,8 +9,9 @@ import {
   Output
 } from '@angular/core';
 import { EventPrice } from '../model/event-price';
-import {TakenSeats} from "../model/taken-seats";
-import {TicketHelp} from "../model/ticket-help";
+import {TakenSeats} from '../model/taken-seats';
+import {TicketHelp} from '../model/ticket-help';
+import { Seat } from '../model/seat';
 
 declare var fabric: any;
 
@@ -40,7 +41,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
 
     this.canvas.on('mouse:over', (e: any) => {
       if (e.target != null && e.target.toObject().type === 'rect') {
-        e.target.set('stroke', "black" );
+        e.target.set('stroke', 'black' );
         this.canvas.renderAll();
       } else if (e.target != null && e.target.toObject().type === 'group') {
         // e.target.toObject().objects[0].set('fill', '#5d5d5d');
@@ -90,7 +91,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
       this.canvas.remove(...this.canvas.getObjects());
     }
     for (const sec of this.prices) {
-
+      console.log(sec.sector.title);
       if (sec.sector.type === 'Stand' || sec.sector.type === 'stand') {
       const r = new fabric.Rect({
         originX: 'center',
@@ -127,7 +128,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
 
       this.canvas.add(g);
     } else {
-      let taken;
+      let taken = [];
       for (const id of this.takenSeats.seatsTaken) {
         if (id.sectorId === sec.sector.id) {
           taken = id.seats;

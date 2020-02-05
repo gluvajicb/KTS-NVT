@@ -3,14 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { EventsService } from '../services/events.service';
 import { Event } from '../model/event';
 import { EventDay } from '../model/event-day';
-import {Location} from "../../locations/model/location";
-import {LocationsService} from "../../locations/services/locations.service";
-import {TicketsService} from "../../reports/services/tickets.service";
-import {TakenSeats} from "../model/taken-seats";
-import {TicketHelp} from "../model/ticket-help";
-import {Seat} from "../model/seat";
-import {SeatsTicketDTO} from "../../reports/model/seats-ticket";
-import {StandTicketDTO} from "../../reports/model/stand-ticker";
+import {Location} from '../../locations/model/location';
+import {LocationsService} from '../../locations/services/locations.service';
+import {TicketsService} from '../../reports/services/tickets.service';
+import {TakenSeats} from '../model/taken-seats';
+import {TicketHelp} from '../model/ticket-help';
+import {Seat} from '../model/seat';
+import {SeatsTicketDTO} from '../../reports/model/seats-ticket';
+import {StandTicketDTO} from '../../reports/model/stand-ticker';
 
 
 @Component({
@@ -54,7 +54,11 @@ export class UserEventDetailsComponent implements OnInit {
       ticket.sectorID = this.selectedTicket.sectorId;
       ticket.eventDayID = this.selectedDay;
       ticket.eventID = this.event.id;
-      this.ticketsService.addSeatsTicket(ticket);
+     // this.ticketsService.addSeatsTicket(ticket);
+      this.ticketsService.addSeatsTicket(ticket).subscribe(
+        result => {
+        }
+      );
       console.log(ticket);
     } else {
       let ticket = new StandTicketDTO();
@@ -63,7 +67,11 @@ export class UserEventDetailsComponent implements OnInit {
       ticket.sectorID = this.selectedTicket.sectorId;
       ticket.eventDayID = this.selectedDay;
       ticket.eventID = this.event.id;
-      this.ticketsService.addStandTicket(ticket);
+      // this.ticketsService.addStandTicket(ticket);
+      this.ticketsService.addStandTicket(ticket).subscribe(
+        result => {
+        }
+      );
       console.log('STANDD');
     }
   }
