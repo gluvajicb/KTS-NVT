@@ -23,4 +23,8 @@ export class TableEventComponent implements OnInit {
   eventDetails(id: number) {
     this.router.navigate(['events/details', id]);
   }
+
+  deactivateEvent(id: number) {
+    this.deleteClickedEvent.emit(id);
+  }
 }

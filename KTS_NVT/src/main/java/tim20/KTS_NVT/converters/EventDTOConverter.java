@@ -61,6 +61,11 @@ public class EventDTOConverter {
         else if (event.getEventCategory().equals(EventCategory.MUSIC))
         	dto.setEventCategory("MUSIC");
         
+        if(event.getTickets().isEmpty()) {
+        	dto.setEnabledDeactivation(true);
+        }else {
+        	dto.setEnabledDeactivation(false);
+        }
         dto.setActive(event.getIsActive());
         dto.setLocationID(event.getLocation().getId());
         

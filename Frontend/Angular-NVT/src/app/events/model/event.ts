@@ -15,6 +15,7 @@ export class Event {
     active: number;
     prices: EventPrice[];
     sectorPrices: Sectorprice[];
+    enabledDeactivation: boolean;
 
     constructor(obj?: any) {
      this.id = obj && obj.id || null;

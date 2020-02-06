@@ -20,6 +20,7 @@ public class EventDTO
     private Integer max_tickets;
     private Long locationID;
     private List<SectorPriceDTO> prices;
+    private boolean enabledDeactivation;
 
     public EventDTO() {}
 
@@ -41,7 +42,16 @@ public class EventDTO
         return id;
     }
 
-    public void setId(Long id) {
+	
+    public boolean isEnabledDeactivation() {
+		return enabledDeactivation;
+	}
+
+	public void setEnabledDeactivation(boolean enabledDeactivation) {
+		this.enabledDeactivation = enabledDeactivation;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

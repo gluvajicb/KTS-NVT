@@ -38,7 +38,6 @@ export class EventsService {
       headers: this.headers,
       observe: 'response'
     };
-    
     return this.http.get(`${this.baseUrl}/upcoming`, queryParams);
   }
 
@@ -64,7 +63,7 @@ export class EventsService {
    }
 
 
-    delete(id: number): Observable<any> {
+    deactivate(id: number): Observable<any> {
      console.log('delete');
      return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
    }
