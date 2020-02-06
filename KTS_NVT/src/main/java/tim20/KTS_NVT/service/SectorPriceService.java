@@ -36,6 +36,9 @@ public class SectorPriceService {
 
     public SectorPrice saveSectorPrice(SectorPrice sectorprice) {
 
+    	if(sectorprice.getId() != null) {
+    		return null;
+    	}
         SectorPrice sp = sectorPriceRepository.save(sectorprice);
 
         return sp;

@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
 import tim20.KTS_NVT.model.Event;
+import tim20.KTS_NVT.repository.EventRepository;
 import tim20.KTS_NVT.service.EventService;
 
 import java.util.List;
@@ -23,6 +24,9 @@ public class EventServiceIntegrationTest {
 
     @Autowired
     private EventService eventService;
+    
+    @Autowired
+    private EventRepository eventRepository;
 
     @Test
     public void findAllTest() {
@@ -30,7 +34,7 @@ public class EventServiceIntegrationTest {
         List<Event> events = eventService.findAll();
 
         assertNotNull(events);
-        assertTrue(events.size() > 0);
+        assertEquals(4, events.size());
     }
 
 
@@ -62,7 +66,8 @@ public class EventServiceIntegrationTest {
         assertNotNull(saved);
         assertNotNull(saved.getId());
         assertEquals(event.getTitle(), saved.getTitle());
-
+        
+        eventRepository.deleteById(saved.getId());
     }
 
     @Test
@@ -100,7 +105,12 @@ public class EventServiceIntegrationTest {
 
     @Test
     public void deleteEvent() {
-        eventService.deleteEvent(2l);
+    	
+    	Event saved = eventRepository.save(new Event());
+    	int size = eventRepository.findAll().size();
+        eventService.deleteEvent(saved.getId());
+        
+        assertEquals(size - 1, eventRepository.findAll().size());
     }
 
     @Test(expected = EmptyResultDataAccessException.class)

@@ -37,23 +37,34 @@ public class SectorServiceIntegrationTest {
 		List<Sector> sectors = sectorService.findAll();
 		
 		assertNotNull(sectors);
-		System.out.println(sectors.size());
 		
-		for (Sector sector : sectors) {
-			System.out.println(sector.getId());
-			System.out.println(sector.getTitle());
-		}
-		assertTrue(sectors.size() > 0 );
+		assertTrue(sectors.size() ==  4);
 	}
 	
 	@Test
-	public void findOneTest() {
-		
+	public void findOneTestStand() {
+		// za stand sektor
 		Sector sector = sectorService.findOne(101l);
 		
 		assertNotNull(sector);
+		assertTrue(sector instanceof StandSector);
 		assertEquals(101l, sector.getId());
 		assertEquals("Stand sector", sector.getTitle());
+		assertEquals(100, ((StandSector)sector).getMaxGuests());
+		assertEquals(1, sector.getLocation().getId());
+	}
+	
+	@Test
+	public void findOneTestSeats() {
+		// za seats sektor
+		Sector sector = sectorService.findOne(104l);
+		
+		assertNotNull(sector);
+		assertTrue(sector instanceof SeatsSector);
+		assertEquals(104l, sector.getId());
+		assertEquals("Seats sector 2", sector.getTitle());
+		assertEquals(60, ((SeatsSector)sector).getColumnNum());
+		assertEquals(2, sector.getLocation().getId());
 	}
 	
 	@Test
@@ -79,7 +90,7 @@ public class SectorServiceIntegrationTest {
 		
 		assertTrue(find.isPresent());
 		assertEquals(saved.getId(), find.get().getId());
-		
+		sectorRepository.deleteById(saved.getId());
 	}
 
 	@Test
@@ -94,7 +105,12 @@ public class SectorServiceIntegrationTest {
 	
 	@Test
 	public void deleteSectorTest() {
-		sectorService.deleteSector(103l);
+		Sector sector = new SeatsSector();
+		Sector saved = sectorRepository.save(sector);
+		int size = sectorRepository.findAll().size();
+		sectorService.deleteSector(saved.getId());
+		
+		assertEquals(size - 1, sectorRepository.findAll().size());
 	}
 
 	@Test(expected = EmptyResultDataAccessException.class)

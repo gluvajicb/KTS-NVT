@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import tim20.KTS_NVT.model.Location;
 import tim20.KTS_NVT.model.Sector;
+import tim20.KTS_NVT.repository.LocationRepository;
 import tim20.KTS_NVT.service.LocationService;
 
 @RunWith(SpringRunner.class)
@@ -26,13 +27,16 @@ public class LocationServiceIntegrationTest {
 	@Autowired
 	private LocationService locationService;
 	
+	@Autowired
+	private LocationRepository locationRepository;
+	
 	@Test
 	public void findAllTest() {
 
 		List<Location> locations = locationService.findAll();
 
 		assertNotNull(locations);
-		assertTrue(locations.size() > 0);
+		assertEquals(3, locations.size());
 	}
 
 	@Test
@@ -63,7 +67,10 @@ public class LocationServiceIntegrationTest {
 		assertNotNull(saved);
 		assertNotNull(saved.getId());
 		assertEquals(location.getTitle(), saved.getTitle());
-
+		
+		assertNotNull(locationRepository.findById(saved.getId()));
+		
+		locationRepository.deleteById(saved.getId());
 	}
 
 	@Test
@@ -101,7 +108,11 @@ public class LocationServiceIntegrationTest {
 
 	@Test
 	public void deleteLocation() {
-		locationService.deleteLocation(2l);
+		Location saved = locationRepository.save(new Location());
+		int size = locationRepository.findAll().size();
+		locationService.deleteLocation(saved.getId());
+		
+		assertEquals(size - 1, locationRepository.findAll().size());
 	}
 
 	@Test(expected = EmptyResultDataAccessException.class)
