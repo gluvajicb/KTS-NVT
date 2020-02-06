@@ -24,16 +24,6 @@ public class SecurityController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRoleRepository roleRepository;
-
-    @RequestMapping(value = "/whoami", method = RequestMethod.GET)
-    public UserDetails getUser() {
-        Object a = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (a.equals("anonymousUser")) return null;
-        return (UserDetails) a;
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<UserTokenState> login(@Valid @RequestBody UserDTO user) {
         UserTokenState tokenState = userService.loginUser(user);
@@ -90,5 +80,12 @@ public class SecurityController {
     {
         Error error = new Error(1,"Provided verification data is not valid.");
         return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(FieldLengthException.class)
+    public ResponseEntity<Error> eventNotFound(FieldLengthException e) {
+        String message = String.format("Field %s must be between %d and %d characters long.", e.getFieldName(), e.getMinSize(), e.getMaxSize());
+        Error error = new Error(1, message);
+        return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
     }
 }
