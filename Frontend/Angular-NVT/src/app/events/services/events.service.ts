@@ -38,7 +38,6 @@ export class EventsService {
       headers: this.headers,
       observe: 'response'
     };
-    
     return this.http.get(`${this.baseUrl}/upcoming`, queryParams);
   }
 

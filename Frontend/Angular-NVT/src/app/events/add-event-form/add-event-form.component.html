@@ -49,6 +49,9 @@
       <div class="row">
         <app-add-event-days (newDay)="addNewDay($event)"></app-add-event-days>
       </div>
+      <div class="row mt-4" *ngIf="this.event.days">
+        <app-table-event-day [days]="this.event.days"></app-table-event-day>
+      </div>
     </div>
   </div>
   <div class="form-group row float-right">
