@@ -15,6 +15,7 @@ import { UserEventContainerComponent } from '../events/user-event-container/user
 import {LoginComponent} from '../security/login/login.component';
 import {RegisterComponent} from '../security/register/register.component';
 import {HomeComponent} from '../core/home/home.component';
+import {ProfileComponent} from '../security/profile/profile.component';
 
 const routes: Routes = [
   {path: 'locations', component: LocationContainerComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'user/events', component: UserEventContainerComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '', component: HomeComponent}
 ];
 

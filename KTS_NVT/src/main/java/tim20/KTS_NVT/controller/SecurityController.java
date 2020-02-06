@@ -24,16 +24,6 @@ public class SecurityController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRoleRepository roleRepository;
-
-    @RequestMapping(value = "/whoami", method = RequestMethod.GET)
-    public UserDetails getUser() {
-        Object a = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (a.equals("anonymousUser")) return null;
-        return (UserDetails) a;
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<UserTokenState> login(@Valid @RequestBody UserDTO user) {
         UserTokenState tokenState = userService.loginUser(user);
