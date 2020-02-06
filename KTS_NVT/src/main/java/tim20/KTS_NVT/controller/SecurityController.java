@@ -81,4 +81,11 @@ public class SecurityController {
         Error error = new Error(1,"Provided verification data is not valid.");
         return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
     }
+
+    @ExceptionHandler(FieldLengthException.class)
+    public ResponseEntity<Error> eventNotFound(FieldLengthException e) {
+        String message = String.format("Field %s must be between %d and %d characters long.", e.getFieldName(), e.getMinSize(), e.getMaxSize());
+        Error error = new Error(1, message);
+        return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+    }
 }

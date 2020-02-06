@@ -4,7 +4,7 @@
     <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate [matchValue]="['password', 'passwordConfirmation']">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" required minlength="3" maxlength="20" #name="ngModel" />
+        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" required minlength="3" maxlength="50" #name="ngModel" />
         <div class="alert-danger" *ngIf="f.submitted && name.invalid">
           <div *ngIf="name.errors.required">Name is required</div>
           <div *ngIf="name.errors.minlength">
@@ -18,7 +18,7 @@
 
       <div class="form-group">
         <label for="surname">Surname</label>
-        <input type="text" class="form-control" name="surname" [(ngModel)]="form.surname" required minlength="3" maxlength="20" #surname="ngModel" />
+        <input type="text" class="form-control" name="surname" [(ngModel)]="form.surname" required minlength="3" maxlength="50" #surname="ngModel" />
         <div class="alert-danger" *ngIf="f.submitted && surname.invalid">
           <div *ngIf="surname.errors.required">Surname is required</div>
           <div *ngIf="surname.errors.minlength">
@@ -57,7 +57,7 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel" />
+        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" maxlength="20" #password="ngModel" />
         <div class="alert-danger" *ngIf="f.submitted && password.invalid">
           <div *ngIf="password.errors.required">Password is required</div>
           <div *ngIf="password.errors.minlength">
@@ -68,7 +68,7 @@
 
       <div class="form-group">
         <label for="passwordConfirmation">Password confirmation</label>
-        <input type="password" class="form-control" name="passwordConfirmation" [(ngModel)]="form.passwordConfirmation" required #passwordConfirmation="ngModel" />
+        <input type="password" class="form-control" name="passwordConfirmation" [(ngModel)]="form.passwordConfirmation" required minlength="6" maxlength="20" #passwordConfirmation="ngModel" />
         <div class="alert-danger" *ngIf="f.submitted && passwordConfirmation.invalid">
           <div *ngIf="passwordConfirmation.errors.required">Password confirmation is required</div>
           <div *ngIf="passwordConfirmation.errors.matchValueError">
@@ -79,7 +79,7 @@
 
       <div class="form-group">
         <label for="phoneNumber">Phone number</label>
-        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="form.phoneNumber" required minlength="3" maxlength="20" #phoneNumber="ngModel" />
+        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="form.phoneNumber" required minlength="9" maxlength="15" #phoneNumber="ngModel" />
         <div class="alert-danger" *ngIf="f.submitted && phoneNumber.invalid">
           <div *ngIf="phoneNumber.errors.required">Phone number is required</div>
           <div *ngIf="phoneNumber.errors.minlength">

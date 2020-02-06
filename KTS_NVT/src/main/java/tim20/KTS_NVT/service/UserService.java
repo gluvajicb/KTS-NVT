@@ -120,6 +120,22 @@ public class UserService implements UserDetailsService {
             throw new FieldsRequiredException();
         }
 
+        trimUserDataStrings(userDTO);
+
+        if (userDTO.getPassword().length() < 6 || userDTO.getPassword().length() > 20) {
+            throw new FieldLengthException("PASSWORD", 6, 20);
+        } else if (userDTO.getPasswordConfirmation().length() < 6 || userDTO.getPasswordConfirmation().length() > 20) {
+            throw new FieldLengthException("PASSWORD CONFIRMATION", 6, 20);
+        } else if (userDTO.getUsername().length() < 3 || userDTO.getUsername().length() > 20) {
+            throw new FieldLengthException("USERNAME", 3, 20);
+        } else if (userDTO.getPhoneNumber().length() < 9 || userDTO.getPhoneNumber().length() > 15) {
+            throw new FieldLengthException("PHONE NUMBER", 9, 15);
+        } else if (userDTO.getName().length() < 3 || userDTO.getName().length() > 50) {
+            throw new FieldLengthException("NAME", 3, 50);
+        } else if (userDTO.getSurname().length() < 3 || userDTO.getSurname().length() > 50) {
+            throw new FieldLengthException("SURNAME", 3, 50);
+        }
+
         if (findByUsername(userDTO.getUsername()) != null) {
             throw new UsernameTakenException();
         }
@@ -166,5 +182,13 @@ public class UserService implements UserDetailsService {
         }
 
         throw new WrongVerificationTokenAndEmail();
+    }
+
+    private void trimUserDataStrings(UserDTO user) {
+        user.setName(user.getName().trim());
+        user.setSurname(user.getSurname().trim());
+        user.setUsername(user.getUsername().trim());
+        user.setEmail(user.getEmail().trim());
+        user.setPhoneNumber(user.getPhoneNumber().trim());
     }
 }
