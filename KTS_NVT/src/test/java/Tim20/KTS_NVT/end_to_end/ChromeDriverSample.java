@@ -1,3 +1,5 @@
+package Tim20.KTS_NVT.end_to_end;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 

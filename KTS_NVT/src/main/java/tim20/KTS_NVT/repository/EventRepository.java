@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import tim20.KTS_NVT.model.Event;
-import tim20.KTS_NVT.model.Ticket;
 
 public interface EventRepository extends JpaRepository<Event, Long>
 {
