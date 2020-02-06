@@ -83,6 +83,10 @@ export class AddEventFormComponent implements OnInit {
     this.event.days.push(day);
   }
 
+  onClickDelete(day: EventDay) {
+    this.event.days.splice( this.event.days.indexOf(day), 1 );
+  }
+
   addEvent() {
     this.event.locationID = this.selectedLocation.id;
     this.eventsService.add(this.event as Event).subscribe(

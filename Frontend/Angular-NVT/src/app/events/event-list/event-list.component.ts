@@ -53,7 +53,7 @@ export class EventListComponent implements OnInit {
     }
     console.log(this.eventList);
   }
-  
+
   deactivateEvent(id: number) {
     console.log("DEACT")
 
