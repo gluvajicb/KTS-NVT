@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e1c978d-12da-4518-93d4-5bb7c7bc740a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/DeleteLocationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/LocationDetailsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/EventPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/LocationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/LocationsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/SearchLocationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/SearchLocationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tim20/KTS_NVT/model/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tim20/KTS_NVT/model/Event.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,73 +17,8 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationPage.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1105">
-                    <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                      <element signature="e#603#604#0" expanded="true" />
-                      <element signature="e#645#646#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/SearchLocationTest.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="962">
-                    <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/LocationsPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1117#1118#0" expanded="true" />
-                <element signature="e#1149#1150#0" expanded="true" />
-                <element signature="e#889#890#0" expanded="true" />
-                <element signature="e#931#932#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/DeleteLocationTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -119,6 +50,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/converters/EventDTOConverter.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/service/EventService.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/resources/application.properties" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/EventPage.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/controller/LocationControllerIntegrationTest.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/SearchLocationTest.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/controller/SectorPriceController.java" root0="SKIP_INSPECTION" />
@@ -147,7 +79,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/dto/TicketDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/exceptions/TicketAlreadyReservedException.java" />
         <option value="$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/exceptions/TakenSeatException.java" />
         <option value="$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/dto/SeatsTicket.java" />
@@ -193,11 +124,12 @@
         <option value="$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/security/WebSecurityConfig.java" />
         <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/LocationDetailsTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationPage.java" />
-        <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/SearchLocationTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/LocationsPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/DeleteLocationTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/EventPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationTest.java" />
       </list>
     </option>
   </component>
@@ -223,7 +155,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -404,6 +335,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -414,7 +346,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580968793479" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580970094973" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -436,7 +368,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DeleteLocationTest">
+  <component name="RunManager" selected="Spring Boot.KtsNvtApplication">
     <configuration name="AddLocationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="KTS_NVT" />
       <extension name="coverage">
@@ -522,8 +454,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DeleteLocationTest" />
         <item itemvalue="JUnit.AddLocationTest" />
+        <item itemvalue="JUnit.DeleteLocationTest" />
         <item itemvalue="JUnit.LocationDetailsTest" />
         <item itemvalue="JUnit.SearchLocationTest" />
         <item itemvalue="JUnit.AddLocationTest.AddLocation" />
@@ -563,13 +495,11 @@
       <workItem from="1580759817572" duration="40000" />
       <workItem from="1580869198622" duration="1625000" />
       <workItem from="1580870869454" duration="3326000" />
+      <workItem from="1581012896695" duration="622000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AddLocationTest - 2020.02.06 at 06h 24m 05s.xml">
-      <configuration name="AddLocationTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AddLocationTest - 2020.02.06 at 06h 24m 36s.xml">
       <configuration name="AddLocationTest" configurationId="JUnit" />
     </history-entry>
@@ -597,15 +527,17 @@
     <history-entry file="DeleteLocationTest - 2020.02.06 at 06h 56m 21s.xml">
       <configuration name="DeleteLocationTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AddLocationTest - 2020.02.06 at 07h 19m 26s.xml">
+      <configuration name="AddLocationTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103821000" />
+    <option name="totallyTimeSpent" value="105750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3283582" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33208954" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -645,16 +577,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/model/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1129">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-          <folding>
-            <element signature="e#1907#1908#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tim20/KTS_NVT/model/EventCategory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1008,20 +930,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/SearchLocationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="962">
-          <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="5" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
+        <state relative-caret-position="563">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1030,8 +942,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/LocationsPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="362">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1117#1118#0" expanded="true" />
@@ -1042,10 +954,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/DeleteLocationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/SearchLocationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/AddLocationPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+        <state relative-caret-position="316">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#603#604#0" expanded="true" />
@@ -1054,12 +986,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/DeleteLocationTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/Tim20/KTS_NVT/end_to_end/EventPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        <state relative-caret-position="272">
+          <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#519#520#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
           </folding>
         </state>
       </provider>
