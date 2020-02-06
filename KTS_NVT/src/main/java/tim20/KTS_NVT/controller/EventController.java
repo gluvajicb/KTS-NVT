@@ -159,12 +159,17 @@ public class EventController {
 	public ResponseEntity<Void> deactivateEvent(@PathVariable("eventId") Long id) {
 
 		Event event = eventService.findOne(id);
+		
+		if(!event.getTickets().isEmpty())
+			return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
 
 		if (event == null) {
 			throw new EventNotFoundException(id);
 		} else {
-			event.setIsActive(false);
-
+			boolean isActive = event.getIsActive();
+			event.setIsActive(!isActive);
+			
+			Event e = eventService.updateEvent(event);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 	}

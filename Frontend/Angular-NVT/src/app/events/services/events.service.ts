@@ -63,7 +63,7 @@ export class EventsService {
    }
 
 
-    delete(id: number): Observable<any> {
+    deactivate(id: number): Observable<any> {
      console.log('delete');
      return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
    }

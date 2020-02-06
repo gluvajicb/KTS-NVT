@@ -14,7 +14,7 @@
         <td>{{event.eventCategory}}</td>
         <td>{{event.days.length}}</td>
         <td>
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" [disabled]="!event.enabledDeactivation" [checked]="event.isActive">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1"  (click)="deactivateEvent(event.id)" [disabled]="!event.enabledDeactivation" [checked]="event.isActive">
         </td>
         <td>
           <button (click)="eventDetails(event.id)" class="btn btn-info" style="margin-left: 10px">Details</button>

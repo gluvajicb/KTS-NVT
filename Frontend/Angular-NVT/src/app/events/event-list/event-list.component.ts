@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, SimpleChanges} from '@angular/core';
 import { Event } from '../model/event';
 import { EventsService } from '../services/events.service';
+import {Location} from "../../locations/model/location";
 
 @Component({
   selector: 'app-event-list',
@@ -51,5 +52,16 @@ export class EventListComponent implements OnInit {
       });
     }
     console.log(this.eventList);
+  }
+  
+  deactivateEvent(id: number) {
+    console.log("DEACT")
+
+    this.eventsService.deactivate(id)
+      .subscribe(
+        data => {
+          console.log(data);
+        }
+      );
   }
 }
