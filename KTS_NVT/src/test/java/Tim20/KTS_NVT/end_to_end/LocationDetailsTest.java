@@ -8,18 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.test.context.junit4.SpringRunner;
-import tim20.KTS_NVT.model.Location;
 
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
-public class SearchLocationTest
+public class LocationDetailsTest
 {
 
     private WebDriver browser;
@@ -40,48 +35,7 @@ public class SearchLocationTest
         locationsPage = PageFactory.initElements(browser, LocationsPage.class);
     }
 
-    @Test
-    public void SearchOneLocation() {
 
-        String expectedURL = "http://localhost:4200/locations";
-        assertEquals(expectedURL, browser.getCurrentUrl());
-
-        String searchValue = "Location 1";
-
-        locationsPage.setSearchLocationInput(searchValue);
-
-        assertEquals(1, locationsPage.getLocationsInTable().size());
-    }
-
-
-    // Test prolazi pod uslovom da se za Loc nalaze samo 2 lokacije u testnim podacima //
-    @Test
-    public void SearchTwoLocations() {
-
-        String expectedURL = "http://localhost:4200/locations";
-        assertEquals(expectedURL, browser.getCurrentUrl());
-
-        String searchValue = "Loc";
-
-        locationsPage.setSearchLocationInput(searchValue);
-
-        assertEquals(2, locationsPage.getLocationsInTable().size());
-
-    }
-
-    @Test
-    public void SearchUnexistingLocation() {
-
-        String expectedURL = "http://localhost:4200/locations";
-        assertEquals(expectedURL, browser.getCurrentUrl());
-
-        String searchValue = "Aasijfsdogin";
-
-        locationsPage.setSearchLocationInput(searchValue);
-
-        assertEquals(0, locationsPage.getLocationsInTable().size());
-
-    }
 
     @Test
     public void SeeDetailsForOneLocation() {
