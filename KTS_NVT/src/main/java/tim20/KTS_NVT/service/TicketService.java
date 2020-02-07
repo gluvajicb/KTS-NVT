@@ -186,9 +186,61 @@ public class TicketService {
 		}
 		
 	}
+    
 
-public TakenSeatsDTO getTakenSeats(Long dayId) {
-    	
+    public TakenSeatsDTO getTakenSeatsAllDays(Long eventId) {
+    	TakenSeatsDTO returnTaken = new  TakenSeatsDTO();
+    	Event event = eventService.findOne(eventId);
+
+        if (event == null) {
+            throw new EventNotFoundException(eventId);
+        }
+        
+        TakenSeatsDTO takenSeatsDay;
+        for(EventDay day : event.getEventDays()) {
+        	takenSeatsDay = this.getTakenSeats(day.getId());
+        	
+        	for(Stand standSector : takenSeatsDay.getStandTaken()) {
+        		boolean found = false;
+        		for(Stand stand : returnTaken.getStandTaken()) {
+        			if(stand.getSectorId() == standSector.getSectorId()) {
+        				if(stand.getCount() < standSector.getCount())
+        					stand.setCount(standSector.getCount());
+        				
+        				found = true;
+        				break;
+        			}
+        			
+        		}
+        		
+        		if(!found)
+    				returnTaken.getStandTaken().add(standSector);
+    			}
+        	
+	        for(Seats standSector : takenSeatsDay.getSeatsTaken()) {
+	    		boolean found = false;
+	    		for(Seats stand : returnTaken.getSeatsTaken()) {
+	    			if(stand.getSectorId() == standSector.getSectorId()) {
+	    				
+	    				for(Seat seat : standSector.getSeats()) {
+		    				if(!stand.getSeats().contains(seat))
+		    					stand.getSeats().add(seat);
+	    				}
+	    				found = true;
+	    				break;
+	    			}
+	    			
+	    		}
+	    		
+	    		if(!found)
+					returnTaken.getSeatsTaken().add(standSector);
+				}
+	    	}
+        
+        return returnTaken;
+    }
+	public TakenSeatsDTO getTakenSeats(Long dayId) {
+	    	
     	TakenSeatsDTO soldedTicketsBySectors = new TakenSeatsDTO();
     	// Key id sektora, value lista [row, column]
     	Map<Long, List<List<Integer>>> takenSeats = new HashMap<Long, List<List<Integer>>>();

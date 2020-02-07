@@ -190,6 +190,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
           for (const seat of taken) {
             if (seat.row - 1  === i && seat.col - 1 === j) {
               found = true;
+              break;
             }
           }
           if (!found) {
