@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class AddLocationPage {
 
     private WebDriver webDriver;
@@ -40,6 +42,9 @@ public class AddLocationPage {
     @FindBy(xpath = "//*[@id=\"container\"]/form/div[3]/div/button")
     private WebElement addSectorButton;
 
+    @FindBy(xpath = "/html/body/app-root/div/div[2]/div[2]/div/app-location-container/div[3]/div/app-location-list/div[2]/app-table-location/table/tbody/tr")
+    private List<WebElement> locationsInTable;
+
     public AddLocationPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
@@ -69,6 +74,8 @@ public class AddLocationPage {
     public WebElement getMaxGuestsInput() { return maxGuestsInput; }
 
     public WebElement getAddSectorButton() { return addSectorButton; }
+
+    public List<WebElement> getLocationsInTable() { return locationsInTable; }
 
     public void setLocationTitleInput(String value) {
         WebElement el = getLocationTitleInput();

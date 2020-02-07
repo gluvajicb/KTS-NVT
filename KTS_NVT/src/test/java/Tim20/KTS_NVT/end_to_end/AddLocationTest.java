@@ -43,6 +43,7 @@ public class AddLocationTest {
         String expectedURL = "http://localhost:4200/locations/add";
         assertEquals(expectedURL, browser.getCurrentUrl());
 
+
         String title = "Title Num 515";
         String address = "Address Num 515";
 
@@ -125,6 +126,7 @@ public class AddLocationTest {
         addLocationPage.ensureAddLocationButtonIsClickable();
         addLocationPage.getAddLocationButton().click();
     }
+
 
 
 }
