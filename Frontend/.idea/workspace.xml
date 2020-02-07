@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2741bdf5-a597-4d03-b46a-a54a709d733c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-NVT/src/app/reports/services/tickets.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-NVT/src/app/reports/services/tickets.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/controller/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/dto/StandTicketDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/dto/StandTicketDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/repository/TicketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/repository/TicketRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/service/TicketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/security/TokenAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/java/tim20/KTS_NVT/security/TokenAuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/target/classes/tim20/KTS_NVT/KtsNvtApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/target/classes/tim20/KTS_NVT/KtsNvtApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../KTS_NVT/target/classes/tim20/KTS_NVT/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/target/classes/tim20/KTS_NVT/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/test/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +42,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/user-tickets-container/user-tickets-container.component.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -62,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-374">
-              <caret line="51" column="112" selection-start-line="51" selection-start-column="112" selection-end-line="51" selection-end-column="112" />
+            <state relative-caret-position="212">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -197,8 +189,8 @@
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/user-tickets-container/user-tickets-container.component.spec.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/user-tickets-container/user-tickets-container.component.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/reports/services/tickets.service.ts" />
-        <option value="$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts" />
       </list>
     </option>
   </component>
@@ -389,12 +381,12 @@
       <workItem from="1581006925495" duration="1500000" />
       <workItem from="1581008851848" duration="2140000" />
       <workItem from="1581022797217" duration="1053000" />
-      <workItem from="1581039308022" duration="587000" />
+      <workItem from="1581039308022" duration="1227000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81988000" />
+    <option name="totallyTimeSpent" value="82628000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -781,16 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="51" column="112" selection-start-line="51" selection-start-column="112" selection-end-line="51" selection-end-column="112" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/routing/app-routing.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -810,6 +792,16 @@
           <caret line="13" column="42" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="42" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
