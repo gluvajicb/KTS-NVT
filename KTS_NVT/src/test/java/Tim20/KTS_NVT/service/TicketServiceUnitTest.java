@@ -118,53 +118,53 @@ public class TicketServiceUnitTest {
 	@Test(expected = EventNotFoundException.class)
 	public void addSeatTicket_notExistingEvent_throwsEventNotFoundException(){
 		
-		ticketService.addSeatTicket(2l, 1l, true, 5000, 1, 1, 1l);
+		ticketService.addSeatTicket(2l, 1l, true, 5000, 1, 1, 1l, null);
 	}
 	
 	@Test(expected = SectorNotFoundException.class)
 	public void addSeatTicket_notExistingSector_throwsSectorNotFoundException(){
 		
-		ticketService.addSeatTicket(1l, 1l, true, 5000, 1, 1, 3l);
+		ticketService.addSeatTicket(1l, 1l, true, 5000, 1, 1, 3l, null);
 	}
 	
 	@Test
 	public void addSeatTicketForAllDays_seatTaken_returnFalse(){
 		
-		boolean success = ticketService.addSeatTicket(1l, 1l, false, 5000, 1, 1, 1l);
+		boolean success = ticketService.addSeatTicket(1l, 1l, false, 5000, 1, 1, 1l, null);
 		assertFalse(success);
 	}
 	
 	@Test
 	public void addSeatTicketForSingleDay_seatTaken_returnFalse(){
 		
-		boolean success = ticketService.addSeatTicket(1l, 1l, true, 5000, 1, 1, 1l);
+		boolean success = ticketService.addSeatTicket(1l, 1l, true, 5000, 1, 1, 1l, null);
 		assertFalse(success);
 	}
 	
 	@Test
 	public void addSeatTicketForSingleDay_seatAvailable_returnTrue(){
 		
-		boolean success = ticketService.addSeatTicket(1l, 1l, true, 5000, 1, 2, 1l);
+		boolean success = ticketService.addSeatTicket(1l, 1l, true, 5000, 1, 2, 1l, null);
 		assertTrue(success);
 	}
 	
 	@Test
 	public void addSeatTicketForAllDays_seatAvailable_returnTrue(){
 
-		boolean success = ticketService.addSeatTicket(1l, 1l, false, 5000, 1, 2, 1l);
+		boolean success = ticketService.addSeatTicket(1l, 1l, false, 5000, 1, 2, 1l, null);
 		assertTrue(success);
 	}
 	
 	@Test(expected = EventNotFoundException.class)
 	public void addStandTicket_notExistingEvent_throwsEventNotFoundException(){
 		
-		ticketService.addStandTicket(2l, 1l, true, 5000, 1l);
+		ticketService.addStandTicket(2l, 1l, true, 5000, 1l, null);
 	}
 	
 	@Test(expected = SectorNotFoundException.class)
 	public void addStandTicket_notExistingSector_throwsSectorNotFoundException(){
 		
-		ticketService.addStandTicket(1l, 1l, true, 5000, 3l);
+		ticketService.addStandTicket(1l, 1l, true, 5000, 3l, null);
 	}
 	
 	@Test

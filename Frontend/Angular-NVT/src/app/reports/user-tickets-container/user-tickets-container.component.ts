@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Event } from './../../events/model/event';
-import { EventsService} from "../../events/services/events.service";
-import {Sectorprice} from "../../events/model/sectorprice";
-import {Ticket} from "../model/ticket";
-import {TicketsService} from "../services/tickets.service";
+import { EventsService} from '../../events/services/events.service';
+import {Sectorprice} from '../../events/model/sectorprice';
+import {Ticket} from '../model/ticket';
+import {TicketsService} from '../services/tickets.service';
 
 @Component({
   selector: 'app-user-tickets-container',

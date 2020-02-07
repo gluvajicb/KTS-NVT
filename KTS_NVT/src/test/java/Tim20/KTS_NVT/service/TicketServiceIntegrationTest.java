@@ -68,7 +68,7 @@ public class TicketServiceIntegrationTest {
 	public void addSeatsTicketTest() {
 		int size = ticketRepository.findAll().size();
 
-		boolean saved = ticketService.addSeatTicket(1l, 1l, true, 50, 3, 1, 101l);
+		boolean saved = ticketService.addSeatTicket(1l, 1l, true, 50, 3, 1, 101l, null);
 		assertTrue(saved);
 
 		assertEquals(size + 1, ticketRepository.findAll().size());
@@ -78,21 +78,21 @@ public class TicketServiceIntegrationTest {
 	@Test(expected = EventNotFoundException.class)
 	public void addSeatsTicketTestEventNotFound() {
 
-		ticketService.addSeatTicket(1485l, 1l, true, 50, 3, 1, 101l);
+		ticketService.addSeatTicket(1485l, 1l, true, 50, 3, 1, 101l, null);
 
 	}
 
 	@Test(expected = SectorNotFoundException.class)
 	public void addSeatsTicketTestSectorNotFound() {
 
-		ticketService.addSeatTicket(1l, 1l, true, 50, 3, 1, 10155l);
+		ticketService.addSeatTicket(1l, 1l, true, 50, 3, 1, 10155l, null);
 
 	}
 	
 	@Test(expected = EventDayNotFoundException.class)
 	public void addSeatsTicketTestDayNotFound() {
 
-		ticketService.addSeatTicket(1l, 1585l, true, 50, 3, 1, 101l);
+		ticketService.addSeatTicket(1l, 1585l, true, 50, 3, 1, 101l, null);
 
 	}
 
@@ -100,7 +100,7 @@ public class TicketServiceIntegrationTest {
 	public void addStandTicketTest() {
 		int size = ticketRepository.findAll().size();
 
-		boolean saved = ticketService.addStandTicket(1l, 1l, true, 20, 101l);
+		boolean saved = ticketService.addStandTicket(1l, 1l, true, 20, 101l, null);
 		assertTrue(saved);
 
 		assertEquals(size + 1, ticketRepository.findAll().size());
@@ -111,21 +111,21 @@ public class TicketServiceIntegrationTest {
 	@Test(expected = SectorNotFoundException.class)
 	public void addStandTicketTestSectorNotFound() {
 
-		ticketService.addStandTicket(1l, 1l, true, 200, 5559l);
+		ticketService.addStandTicket(1l, 1l, true, 200, 5559l, null);
 
 	}
 	
 	@Test(expected = EventDayNotFoundException.class)
 	public void addStandTicketTestDayNotFound() {
 
-		ticketService.addStandTicket(1l, 1554l, true, 500, 101l);
+		ticketService.addStandTicket(1l, 1554l, true, 500, 101l, null);
 
 	}
 	
 	@Test(expected = EventNotFoundException.class)
 	public void addStandTicketTestEventNotFound() {
 
-		ticketService.addSeatTicket(1485l, 1l, true, 50, 3, 1, 101l);
+		ticketService.addSeatTicket(1485l, 1l, true, 50, 3, 1, 101l, null);
 
 	}
 

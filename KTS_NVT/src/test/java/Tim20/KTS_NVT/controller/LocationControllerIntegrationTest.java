@@ -178,6 +178,19 @@ public class LocationControllerIntegrationTest {
 		assertEquals(1, error.getCode());
 		assertEquals("Location [115] not found", error.getMessage());
 	}
+	
+	@Test
+	public void deleteLocationHasEventsTest() {
+
+		ResponseEntity<Error> responseEntity = restTemplate.exchange("/locations/2", HttpMethod.DELETE,
+				new HttpEntity<Object>(null), Error.class);
+
+		Error error = responseEntity.getBody();
+
+		assertEquals(HttpStatus.CONFLICT, responseEntity.getStatusCode());
+		assertEquals(1, error.getCode());
+		assertEquals("Location [2] can not be deleted", error.getMessage());
+	}
 
 	// ****************** sektori ****************
 	@Test
@@ -303,15 +316,20 @@ public class LocationControllerIntegrationTest {
 	public void deleteSectorTest() {
 
 		Sector sector = new StandSector();
+		Location location = locationService.saveLocation(new Location());
+		
 		sector.setTitle("Sector for delete");
-
+		sector.setLocation(location);
 		Sector saved = sectorService.saveSector(sector);
 
+		
 		int size = sectorService.findAll().size();
 
 		String uri = "/locations/sector/" + saved.getId();
 		ResponseEntity<Void> responseEntity = restTemplate.exchange(uri, HttpMethod.DELETE,
 				new HttpEntity<Object>(null), Void.class);
+		
+		locationService.deleteLocation(location.getId());
 
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 		assertEquals(size - 1, sectorService.findAll().size());

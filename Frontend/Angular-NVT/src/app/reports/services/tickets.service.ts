@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Ticket } from '../model/ticket';
 import { HttpClientModule, HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Event} from "../../events/model/event";
-import {SeatsTicketDTO} from "../model/seats-ticket";
-import {StandTicketDTO} from "../model/stand-ticker";
+import {Event} from '../../events/model/event';
+import {SeatsTicketDTO} from '../model/seats-ticket';
+import {StandTicketDTO} from '../model/stand-ticker';
 
 
 @Injectable({
@@ -33,7 +33,7 @@ export class TicketsService {
     return this.http.get(this.baseUrl, queryParams);
    }
 
-  getUsersTickets() {
+  getUsersTickets(): Observable<any> {
     let queryParams = {};
 
     queryParams = {

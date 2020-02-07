@@ -1,6 +1,7 @@
 package tim20.KTS_NVT.controller;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,14 @@ import tim20.KTS_NVT.converters.SectorDTOConverter;
 import tim20.KTS_NVT.dto.LocationDTO;
 import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.exceptions.IdNotFoundException;
+import tim20.KTS_NVT.exceptions.LocationCanNotBeDeletedException;
 import tim20.KTS_NVT.exceptions.LocationNotFoundException;
 import tim20.KTS_NVT.exceptions.LowerThanZeroException;
+import tim20.KTS_NVT.exceptions.SectorCanNotBeDeletedException;
 import tim20.KTS_NVT.exceptions.SectorNotFoundException;
 import tim20.KTS_NVT.model.Error;
+import tim20.KTS_NVT.model.Event;
+import tim20.KTS_NVT.model.EventDay;
 import tim20.KTS_NVT.model.Location;
 import tim20.KTS_NVT.model.SeatsSector;
 import tim20.KTS_NVT.model.Sector;
@@ -109,6 +114,17 @@ public class LocationController {
 		if (location == null) {
 			throw new LocationNotFoundException(id);
 		} else {
+			
+			if (location.getEvents().size() > 0) {
+				for (Event event : location.getEvents()) {
+					for (EventDay day : event.getEventDays()) {
+						if (day.getEventDate().after(new Date())) {
+							throw new LocationCanNotBeDeletedException(id);
+						}
+					}
+				}
+			}
+	
 			locationService.deleteLocation(id);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
@@ -182,6 +198,19 @@ public class LocationController {
 		if (sector == null) {
 			throw new SectorNotFoundException(id);
 		} else {
+			Location location = sector.getLocation();
+			if(location.getEvents() != null) {
+				if (location.getEvents().size() > 0) {
+					for (Event event : location.getEvents()) {
+						for (EventDay day : event.getEventDays()) {
+							if (day.getEventDate().after(new Date())) {
+								throw new SectorCanNotBeDeletedException(id);
+							}
+						}
+					}
+				}
+			}
+			
 			sectorService.deleteSector(id);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
@@ -214,6 +243,18 @@ public class LocationController {
 	public ResponseEntity<Error> idNotFound(IdNotFoundException e) {
 		Error error = new Error(1, "Id not found");
 		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(LocationCanNotBeDeletedException.class)
+	public ResponseEntity<Error> locationCnNotBeDeleted(LocationCanNotBeDeletedException e) {
+		Error error = new Error(1, "Location [" + e.getLocationId() + "] can not be deleted");
+		return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(SectorCanNotBeDeletedException.class)
+	public ResponseEntity<Error> sectorCanNotBeDeleted(LocationCanNotBeDeletedException e) {
+		Error error = new Error(1, "Sector [" + e.getLocationId() + "] can not be deleted");
+		return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
 	}
 
 }
