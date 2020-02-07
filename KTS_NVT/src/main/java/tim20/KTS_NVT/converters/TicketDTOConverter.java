@@ -15,14 +15,14 @@ public class TicketDTOConverter {
 	
 	public static TicketDTO seatsTicketToDto(SeatsTicket ss) {
 
-		TicketDTO dto = new TicketDTO(ss.getId(), ss.getDay().getTitle(), ss.getSingleDay(), ss.getPrice(), ss.getSector().getTitle(), ss.getRowNum(), ss.getColumnNum());
+		TicketDTO dto = new TicketDTO(ss.getId(), ss.getDay().getTitle(), ss.getSingleDay(), ss.getPrice(), ss.getSector().getTitle(), ss.getRowNum(), ss.getColumnNum(), ss.getPaid(), ss.getReservationDate().toString());
 
 		return dto;
 	}
 	
 	public static TicketDTO standTicketToDto(StandTicket ss) {
 
-		TicketDTO dto = new TicketDTO(ss.getId(), ss.getDay().getTitle(), ss.getSingleDay(), ss.getPrice(), ss.getSector().getTitle(), -1, -1);
+		TicketDTO dto = new TicketDTO(ss.getId(), ss.getDay().getTitle(), ss.getSingleDay(), ss.getPrice(), ss.getSector().getTitle(), -1, -1, ss.getPaid(), ss.getReservationDate().toString());
 
 		return dto;
 	}

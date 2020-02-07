@@ -52,6 +52,7 @@ import {ProfileComponent} from './security/profile/profile.component';
 import {CanvasUserEventComponent} from './events/user-canvas-event/user-canvas-event.component';
 import {authInterceptorProviders} from './helpers/auth.interceptor';
 import {UserTicketsContainerComponent} from './reports/user-tickets-container/user-tickets-container.component';
+import {UserTicketTableComponent} from './reports/user-ticket-table/table.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import {UserTicketsContainerComponent} from './reports/user-tickets-container/us
     HomeComponent,
     ProfileComponent,
     CanvasUserEventComponent,
-    UserTicketsContainerComponent
+    UserTicketsContainerComponent,
+    UserTicketTableComponent
   ],
   imports: [
     BrowserModule,

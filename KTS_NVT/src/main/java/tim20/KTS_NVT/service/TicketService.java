@@ -112,7 +112,12 @@ public class TicketService {
         t.setColumnNum(columnNumber);
         t.setRowNum(rowNumber);
         t.setUser(user);
+        t.setPaid(false);
+        long millis=System.currentTimeMillis();  
+        java.sql.Date date=new java.sql.Date(millis);  
         
+        t.setReservationDate(date);
+
         t.setSector(s);
 
         event.getTickets().add(t);
@@ -153,7 +158,12 @@ public class TicketService {
         t.setSingleDay(isSingleDay);
         t.setSector(s);
         t.setUser(user);
+        t.setPaid(false);
 
+        long millis=System.currentTimeMillis();  
+        java.sql.Date date=new java.sql.Date(millis);  
+        
+        t.setReservationDate(date);
         event.getTickets().add(t);
         eventService.updateEvent(event);
         return true;

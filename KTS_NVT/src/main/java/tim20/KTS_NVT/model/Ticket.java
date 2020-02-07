@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 
+import java.sql.Date;
+
 @Entity
 @Inheritance(strategy=TABLE_PER_CLASS)
 
@@ -17,6 +19,8 @@ public abstract class Ticket {
 	private EventDay day;
 	private Boolean singleDay;
 	private Double price;
+	private Boolean paid;
+	private Date reservationDate;
 
 	@ManyToOne
 	private Event event;
@@ -45,6 +49,31 @@ public abstract class Ticket {
 
 	public EventDay getDay() {
 		return day;
+	}
+
+
+	
+
+	public Boolean getPaid() {
+		return paid;
+	}
+
+
+
+	public void setPaid(Boolean paid) {
+		this.paid = paid;
+	}
+
+
+
+	public Date getReservationDate() {
+		return reservationDate;
+	}
+
+
+
+	public void setReservationDate(Date reservationDate) {
+		this.reservationDate = reservationDate;
 	}
 
 
