@@ -49,6 +49,7 @@ import {MatchValueDirective} from './helpers/match-value.directive';
 import {HomeComponent} from './core/home/home.component';
 import {ProfileComponent} from './security/profile/profile.component';
 import {CanvasUserEventComponent} from './events/user-canvas-event/user-canvas-event.component'
+import {UserTicketsContainerComponent} from './reports/user-tickets-container/user-tickets-container.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import {CanvasUserEventComponent} from './events/user-canvas-event/user-canvas-e
     MatchValueDirective,
     HomeComponent,
     ProfileComponent,
-    CanvasUserEventComponent
+    CanvasUserEventComponent,
+    UserTicketsContainerComponent
   ],
   imports: [
     BrowserModule,

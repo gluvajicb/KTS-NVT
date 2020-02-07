@@ -18,6 +18,7 @@ import {HomeComponent} from '../core/home/home.component';
 import {ProfileComponent} from '../security/profile/profile.component';
 import {AuthGuard} from '../helpers/AuthGuard';
 import {UserRole} from '../security/models/UserRole';
+import {UserTicketsContainerComponent} from '../reports/user-tickets-container/user-tickets-container.component';
 
 const routes: Routes = [
   {path: 'locations', component: LocationContainerComponent, canActivate: [AuthGuard]},
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: '', component: HomeComponent}
+  {path: '', component: HomeComponent},
+  {path: 'tickets', component: UserTicketsContainerComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

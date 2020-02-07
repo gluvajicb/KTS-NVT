@@ -1,4 +1,4 @@
- insert into location (id, title, address) values (1, "Location 1", "Address");
+/* insert into location (id, title, address) values (1, "Location 1", "Address");
  insert into location (id, title, address) values (2, "Location 2", "Address 2");
 
  insert into stand_sector (id, title, max_guests, location_id, top, pos_left, width, height, angle) values (100, "Stand sector", 100, 1, 50, 50, 100, 100, 0);
@@ -18,4 +18,4 @@
  insert into event_day (id, title, eventdate, event_id) values (203, "Day2", '2020-05-30', 105);
  
  insert into role (role_id, role) values(1, "ADMIN");
- insert into role (role_id, role) values(2, "USER");
+ insert into role (role_id, role) values(2, "USER");*/

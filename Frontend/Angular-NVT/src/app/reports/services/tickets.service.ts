@@ -33,6 +33,18 @@ export class TicketsService {
     return this.http.get(this.baseUrl, queryParams);
    }
 
+  getUsersTickets() {
+    let queryParams = {};
+
+    queryParams = {
+      headers: this.headers,
+      observe: 'response',
+      params: new HttpParams()
+    };
+
+    return this.http.get(`${this.baseUrl}/user`, queryParams);
+  }
+
    getTicketsForEvent(id: number): Observable<any> {
 
     let queryParams = {};

@@ -1,10 +1,12 @@
 package tim20.KTS_NVT.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,7 @@ import tim20.KTS_NVT.model.SectorPrice;
 import tim20.KTS_NVT.model.StandSector;
 import tim20.KTS_NVT.model.StandTicket;
 import tim20.KTS_NVT.model.Ticket;
+import tim20.KTS_NVT.model.User;
 import tim20.KTS_NVT.repository.DayRepository;
 import tim20.KTS_NVT.repository.TicketRepository;
 
@@ -61,6 +64,9 @@ public class TicketService {
         return null;
     }
 
+    public Set<Ticket> getTicketsForUser(User user){
+    	return ticketRepository.findByUserId(user.getId());
+    }
 
     public Ticket saveTicket(Ticket ticket) {
 
@@ -68,7 +74,7 @@ public class TicketService {
         return t;
     }
     
-    public boolean addSeatTicket(Long eventID, Long eventDayID, boolean isSingleDay, double price, int rowNumber, int columnNumber, Long sectorID) {
+    public boolean addSeatTicket(Long eventID, Long eventDayID, boolean isSingleDay, double price, int rowNumber, int columnNumber, Long sectorID, User user) {
     	Event event = eventService.findOne(eventID);
 
         if (event == null) {
@@ -105,18 +111,17 @@ public class TicketService {
         t.setSingleDay(isSingleDay);
         t.setColumnNum(columnNumber);
         t.setRowNum(rowNumber);
+        t.setUser(user);
         
         t.setSector(s);
 
         event.getTickets().add(t);
         eventService.updateEvent(event);
-        
-        saveTicket(t);
         return true;
         
     }
     
-    public boolean addStandTicket(Long eventID, Long eventDayID, boolean isSingleDay, double price, Long sectorID) {
+    public boolean addStandTicket(Long eventID, Long eventDayID, boolean isSingleDay, double price, Long sectorID, User user) {
     	Event event = eventService.findOne(eventID);
 
         if (event == null) {
@@ -147,11 +152,10 @@ public class TicketService {
         t.setPrice(price);
         t.setSingleDay(isSingleDay);
         t.setSector(s);
+        t.setUser(user);
 
         event.getTickets().add(t);
         eventService.updateEvent(event);
-
-        saveTicket(t);
         return true;
     }
 

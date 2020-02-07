@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +33,8 @@ import tim20.KTS_NVT.exceptions.TicketNotFoundException;
 import tim20.KTS_NVT.model.Error;
 import tim20.KTS_NVT.model.Event;
 import tim20.KTS_NVT.model.Ticket;
+import tim20.KTS_NVT.model.User;
+import tim20.KTS_NVT.repository.UserRepository;
 import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.SectorService;
 import tim20.KTS_NVT.service.TicketService;
@@ -51,6 +54,9 @@ public class TicketController {
 
     @Autowired
     private SectorService sectorService;
+    
+    @Autowired
+    private UserRepository repository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<Ticket>> getAll() {
@@ -76,12 +82,33 @@ public class TicketController {
 
     }
     
+    @GetMapping(value = "/user")
+    public ResponseEntity<Collection<TicketDTO>> getTicketsForUser() {
+
+    	String username = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+    	User user = repository.findByUsername(username);
+    	
+
+        if (user == null) {
+			return new ResponseEntity<Collection<TicketDTO>>(HttpStatus.FORBIDDEN);
+
+        } else {
+        	List<TicketDTO> dtos = TicketDTOConverter.convertTicketsToDtos(ticketService.getTicketsForUser(user));
+			return new ResponseEntity<Collection<TicketDTO>>(dtos, HttpStatus.OK);
+        }
+
+    }
+    
     @PostMapping(value = "/add-seats-ticket", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> addSeatsTicket(@RequestBody SeatsTicketDTO dto) {
     	boolean success;
+    	String username = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+    	System.out.println("++++++++++++++++++++++++++++++++++++");
+    	System.out.println(username);
+    	User user = repository.findByUsername(username);
     	try {
 
-    		 success = ticketService.addSeatTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getRowNumber(), dto.getColumnNumber(), dto.getSectorID());
+    		 success = ticketService.addSeatTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getRowNumber(), dto.getColumnNumber(), dto.getSectorID(), user);
     	}catch(EventNotFoundException nf) {
     		throw new EventNotFoundException(dto.getEventID());
     	}catch(SectorNotFoundException nf){
@@ -97,7 +124,11 @@ public class TicketController {
     
     @PostMapping(value = "/add-stand-ticket", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> addStandTicket(@RequestBody StandTicketDTO dto) {
-    	boolean success = ticketService.addStandTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getSectorID());
+    	String username = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+    	System.out.println("++++++++++++++++++++++++++++++++++++");
+    	System.out.println(username);
+    	User user = repository.findByUsername(username);
+    	boolean success = ticketService.addStandTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getSectorID(), user);
     	if(success == false) {
         	return new ResponseEntity<>(success, HttpStatus.BAD_REQUEST);
         }
