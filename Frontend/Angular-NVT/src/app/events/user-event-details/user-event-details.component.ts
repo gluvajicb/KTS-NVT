@@ -40,7 +40,7 @@ export class UserEventDetailsComponent implements OnInit {
       .subscribe(res => {
         this.getLocation(res.body.locationID);
         this.event = res.body as Event;
-        this.selectedDay = this.event.days[0].id;
+        this.selectedDay = -1;
         this.onChangeDay();
       }, error => console.log(error));
 
@@ -52,10 +52,18 @@ export class UserEventDetailsComponent implements OnInit {
       const ticket = new SeatsTicketDTO();
       ticket.columnNumber = this.selectedTicket.column;
       ticket.rowNumber = this.selectedTicket.row;
-      ticket.isSingleDay = true;
-      ticket.price = this.selectedTicket.total;
+      if (this.selectedDay === -1) {
+        ticket.isSingleDay = false;
+        ticket.price = this.selectedTicket.total * this.event.days.length;
+        ticket.eventDayID = this.event.days[0].id;
+
+      } else {
+        ticket.isSingleDay = true;
+        ticket.price = this.selectedTicket.total;
+        ticket.eventDayID = this.selectedDay;
+
+      }
       ticket.sectorID = this.selectedTicket.sectorId;
-      ticket.eventDayID = this.selectedDay;
       ticket.eventID = this.event.id;
      // this.ticketsService.addSeatsTicket(ticket);
       this.ticketsService.addSeatsTicket(ticket).subscribe(
@@ -72,10 +80,19 @@ export class UserEventDetailsComponent implements OnInit {
       console.log(ticket);
     } else {
       const ticket = new StandTicketDTO();
-      ticket.isSingleDay = true;
-      ticket.price = this.selectedTicket.total;
+
+      if (this.selectedDay === -1) {
+        ticket.isSingleDay = false;
+        ticket.price = this.selectedTicket.total * this.event.days.length;
+        ticket.eventDayID = this.event.days[0].id;
+
+      } else {
+        ticket.isSingleDay = true;
+        ticket.price = this.selectedTicket.total;
+        ticket.eventDayID = this.selectedDay;
+
+      }
       ticket.sectorID = this.selectedTicket.sectorId;
-      ticket.eventDayID = this.selectedDay;
       ticket.eventID = this.event.id;
       // this.ticketsService.addStandTicket(ticket);
       this.ticketsService.addStandTicket(ticket).subscribe(
@@ -104,10 +121,18 @@ export class UserEventDetailsComponent implements OnInit {
   }
   onChangeDay() {
     this.selectedTicket = null;
-    this.ticketsService.getTakenSeatsForSector(this.selectedDay)
-      .subscribe(res => {
-        this.takenSeats = res.body as TakenSeats;
-      }, error => console.log(error));
+
+    if (this.selectedDay === -1) {
+      this.ticketsService.getTakenSeatsForEvent(this.event.id)
+        .subscribe(res => {
+          this.takenSeats = res.body as TakenSeats;
+        }, error => console.log(error));
+    } else {
+      this.ticketsService.getTakenSeatsForSector(this.selectedDay)
+        .subscribe(res => {
+          this.takenSeats = res.body as TakenSeats;
+        }, error => console.log(error));
+    }
 
     console.log(this.takenSeats);
   }

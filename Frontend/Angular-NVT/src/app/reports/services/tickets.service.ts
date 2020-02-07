@@ -69,6 +69,18 @@ export class TicketsService {
     return this.http.get(`${this.baseUrl}/takenSeats/${id}`, queryParams);
   }
 
+  getTakenSeatsForEvent(id: number): Observable<any> {
+
+    let queryParams = {};
+
+    queryParams = {
+      headers: this.headers,
+      observe: 'response'
+    };
+
+    return this.http.get(`${this.baseUrl}/takenSeatsAllDays/${id}`, queryParams);
+  }
+
   addSeatsTicket(ticket: SeatsTicketDTO): Observable<any> {
     return this.http.post(`${this.baseUrl}/add-seats-ticket`, ticket, {headers: this.headers, responseType: 'text'});
   }
