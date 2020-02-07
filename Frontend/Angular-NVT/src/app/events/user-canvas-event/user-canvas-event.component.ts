@@ -91,40 +91,87 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
     }
     for (const sec of this.prices) {
       if (sec.sector.type === 'Stand' || sec.sector.type === 'stand') {
-      const r = new fabric.Rect({
-        originX: 'center',
-        originY: 'center',
-        width: sec.sector.width,
-        height: sec.sector.height,
-        fill: 'gray',
-      });
+      let taken = 0;
+      for (const id of this.takenSeats.standTaken) {
+        if (id.sectorId === sec.sector.id) {
+          taken = id.count;
+        }
+      }
 
-      const t = new fabric.IText(sec.sector.title + '\n ' + sec.price + 'e', {
-        fontFamily: 'Calibri',
-        fontSize: 14,
-        textAlign: 'center',
-        originX: 'center',
-        originY: 'center'
-      });
+      let ticketsLeft = sec.sector.max_guests - taken;
 
-      const g = new fabric.Group([r, t], {
-        left: sec.sector.left,
-        top: sec.sector.top,
-        id: sec.sector.id,
-        title: sec.sector.title,
-        angle: sec.sector.angle,
-        hasControls: false,
-        lockMovementX: true,
-        lockMovementY: true,
-        selectable: true,
-        price: sec.price,
-        type: 'STAND',
-        sectorId: sec.sector.id,
-        sectorTitle: sec.sector.title,
-        taken: false
-      });
+      if (ticketsLeft > 0) {
+        const r = new fabric.Rect({
+          originX: 'center',
+          originY: 'center',
+          width: sec.sector.width,
+          height: sec.sector.height,
+          fill: 'grey',
+        });
+        const t = new fabric.IText(sec.sector.title + '\n ' + sec.price + 'e', {
+          fontFamily: 'Calibri',
+          fontSize: 14,
+          textAlign: 'center',
+          originX: 'center',
+          originY: 'center'
+        });
 
-      this.canvas.add(g);
+        const g = new fabric.Group([r, t], {
+          left: sec.sector.left,
+          top: sec.sector.top,
+          id: sec.sector.id,
+          title: sec.sector.title,
+          angle: sec.sector.angle,
+          hasControls: false,
+          lockMovementX: true,
+          lockMovementY: true,
+          selectable: true,
+          price: sec.price,
+          type: 'STAND',
+          sectorId: sec.sector.id,
+          sectorTitle: sec.sector.title,
+          taken: false
+        });
+
+        this.canvas.add(g);
+      } else {
+        const r = new fabric.Rect({
+          originX: 'center',
+          originY: 'center',
+          width: sec.sector.width,
+          height: sec.sector.height,
+          fill: 'red',
+        });
+
+
+        const t = new fabric.IText(sec.sector.title + '\n ' + sec.price + 'e', {
+          fontFamily: 'Calibri',
+          fontSize: 14,
+          textAlign: 'center',
+          originX: 'center',
+          originY: 'center'
+        });
+
+        const g = new fabric.Group([r, t], {
+          left: sec.sector.left,
+          top: sec.sector.top,
+          id: sec.sector.id,
+          title: sec.sector.title,
+          angle: sec.sector.angle,
+          hasControls: false,
+          lockMovementX: true,
+          lockMovementY: true,
+          selectable: true,
+          price: sec.price,
+          type: 'STAND',
+          sectorId: sec.sector.id,
+          sectorTitle: sec.sector.title,
+          taken: true
+        });
+
+        this.canvas.add(g);
+      }
+
     } else {
       let taken = [];
       for (const id of this.takenSeats.seatsTaken) {
