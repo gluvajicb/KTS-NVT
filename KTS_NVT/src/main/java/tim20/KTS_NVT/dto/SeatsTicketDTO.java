@@ -1,5 +1,7 @@
 package tim20.KTS_NVT.dto;
 
+import java.sql.Date;
+
 public class SeatsTicketDTO {
     private Long eventID;
     private Long eventDayID;
@@ -8,8 +10,28 @@ public class SeatsTicketDTO {
     private int rowNumber;
     private int columnNumber;
     private Long sectorID;
+    
+    private Boolean paid;
+	private String reservationDate;
+	
 
-    public SeatsTicketDTO(Long eventID, Long eventDayID, boolean isSingleDay, double price, int rowNumber, int columnNumber, Long sectorID) {
+    public Boolean getPaid() {
+		return paid;
+	}
+
+	public void setPaid(Boolean paid) {
+		this.paid = paid;
+	}
+
+	public String getReservationDate() {
+		return reservationDate;
+	}
+
+	public void setReservationDate(String reservationDate) {
+		this.reservationDate = reservationDate;
+	}
+
+	public SeatsTicketDTO(Long eventID, Long eventDayID, boolean isSingleDay, double price, int rowNumber, int columnNumber, Long sectorID, boolean paid, String date) {
         this.eventID = eventID;
         this.eventDayID = eventDayID;
         this.isSingleDay = isSingleDay;
@@ -17,6 +39,8 @@ public class SeatsTicketDTO {
         this.rowNumber = rowNumber;
         this.columnNumber = columnNumber;
         this.sectorID = sectorID;
+        this.paid = paid;
+        this.reservationDate = date;
     }
 
     public Long getSectorID() {

@@ -4,28 +4,37 @@ import { Router } from '@angular/router';
 import {TicketsService} from '../services/tickets.service';
 
 @Component({
-  selector: 'app-table-ticket',
+  selector: 'app-user-table-ticket',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TicketTableComponent implements OnInit {
+export class UserTicketTableComponent implements OnInit {
   @Input() tickets: Ticket[];
   total: number;
 
   constructor(private ticketsService: TicketsService, private router: Router) {
     this.total = 0;
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.tickets);
     this.total = 0;
-    this.getTotal();
+    this.tickets.forEach(ticket => ticket.checked = ticket.paid);
   }
   ngOnInit() {
   }
-  getTotal() {
-    for( let t of this.tickets) {
-      this.total += t.price;
+
+  calculateTotal(ticket: Ticket) {
+    console.log(ticket.checked);
+
+    if (!ticket.checked) {
+      this.total += ticket.price;
+    } else {
+      this.total -= ticket.price;
     }
   }
 
+  pay() {
+
+  }
 }

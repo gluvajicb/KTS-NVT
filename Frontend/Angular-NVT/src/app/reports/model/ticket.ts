@@ -6,6 +6,9 @@ export class Ticket {
     columnNumber: number;
     id: number;
     singleday: boolean;
+    paid: boolean;
+    reservationDate: string;
+    checked: boolean;
 
     constructor(obj?: any) {
      this.id = obj && obj.id || null;
