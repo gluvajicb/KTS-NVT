@@ -13,18 +13,18 @@
  insert into location (id, title, address) values (2, 'Location 2', 'Address 2');
  insert into location (id, title, address) values (3, 'Location 3', 'Address 3');
 
- insert into stand_sector (id, title, max_guests, location_id) values (101, 'Stand sector', 100, 1);
- insert into stand_sector (id, title, max_guests, location_id) values (102, 'Stand sector 2', 150, 1);
+ insert into stand_sector (id, title, max_guests, location_id, top, pos_left, width, height, angle) values (101, 'Stand sector', 100, 1, 0, 0, 50, 50, 0);
+ insert into stand_sector (id, title, max_guests, location_id, top, pos_left, width, height, angle) values (102, 'Stand sector 2', 150, 1, 100, 0, 50, 50, 0);
 
- insert into seats_sector (id, title, row_num, column_num, location_id) values (103, 'Seats sector', 50,50, 1);
- insert into seats_sector (id, title, row_num, column_num, location_id) values (104, 'Seats sector 2', 30,60, 2);
+ insert into seats_sector (id, title, row_num, column_num, location_id, top, pos_left, width, height, angle) values (103, 'Seats sector', 10,10, 1, 0, 100, 50, 50, 0);
+ insert into seats_sector (id, title, row_num, column_num, location_id, top, pos_left, width, height, angle) values (104, 'Seats sector 2', 20,10, 2, 100, 100, 50, 50, 0);
 
  delete from event;
 
- insert into event (id, title, description, max_tickets, location_id) values (1, 'Event 1', 'Event 1 Description', 60, 1);
- insert into event (id, title, description, max_tickets, location_id) values (2, 'Event 2', 'Event 2 Description', 70, 2);
- insert into event (id, title, description, max_tickets, location_id) values (3, 'Event 3', 'Event 3 Description', 80, 1);
- insert into event (id, title, description, max_tickets,location_id) values (4, 'Event 4', 'Event 4 Description', 90, 2);
+ insert into event (id, title, description, max_tickets, location_id, event_category) values (1, 'Event 1', 'Event 1 Description', 60, 1, 0);
+ insert into event (id, title, description, max_tickets, location_id, event_category) values (2, 'Event 2', 'Event 2 Description', 70, 2, 1);
+ insert into event (id, title, description, max_tickets, location_id, event_category) values (3, 'Event 3', 'Event 3 Description', 80, 1, 2);
+ insert into event (id, title, description, max_tickets,location_id, event_category) values (4, 'Event 4', 'Event 4 Description', 90, 2, 2);
 
  insert into event_day (id, eventdate, title, event_id) values (1, '2020-03-05', 'Event1 DAY 1', 1);
  insert into event_day (id, eventdate, title, event_id) values (2, '2020-03-06', 'Event4 DAY 1', 4);

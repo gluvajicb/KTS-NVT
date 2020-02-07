@@ -19,70 +19,73 @@ import java.util.List;
 public class EventDTOConverter {
 	static LocationService ls = new LocationService();
 
-    public static Event dtoToEvent(EventDTO dto)
-    {
-        Event event = new Event();
+	public static Event dtoToEvent(EventDTO dto) {
+		Event event = new Event();
 
-        event.setId(dto.getId());
-        event.setTitle(dto.getTitle());
-        event.setDescription(dto.getDescription());
-        
-        event.setIsActive(true);
+		event.setId(dto.getId());
+		event.setTitle(dto.getTitle());
+		event.setDescription(dto.getDescription());
 
-        if(dto.getEventCategory().equals("SHOW"))
-            event.setEventCategory(EventCategory.SHOW);
-        else if (dto.getEventCategory().equals("SPORT"))
-            event.setEventCategory(EventCategory.SPORT);
-        else if (dto.getEventCategory().equals("MUSIC"))
-            event.setEventCategory(EventCategory.MUSIC);
+		event.setIsActive(true);
 
+		if (dto.getEventCategory().equals("SHOW"))
+			event.setEventCategory(EventCategory.SHOW);
+		else if (dto.getEventCategory().equals("SPORT"))
+			event.setEventCategory(EventCategory.SPORT);
+		else if (dto.getEventCategory().equals("MUSIC"))
+			event.setEventCategory(EventCategory.MUSIC);
 
-        //Location location = ls.findOne(dto.getLocationID());
-        //event.setLocation(location);
+		// Location location = ls.findOne(dto.getLocationID());
+		// event.setLocation(location);
 
-        event.setEventDays(EventDayDTOConverter.convertDTOsToEventDays(dto.getDays(),event));
-        event.setSectorPrice(SectorPriceDTOConverter.convertDTOsToSectorPrices(dto.getPrices(), event));
-        return event;
+		if (dto.getDays() != null) {
 
-    }
+			event.setEventDays(EventDayDTOConverter.convertDTOsToEventDays(dto.getDays(), event));
+		}
+		if (dto.getPrices() != null) {
+			event.setSectorPrice(SectorPriceDTOConverter.convertDTOsToSectorPrices(dto.getPrices(), event));
+		}
+		return event;
 
-    public static EventDTO eventToDto(Event event) {
+	}
 
-        EventDTO dto = new EventDTO();
+	public static EventDTO eventToDto(Event event) {
 
-        dto.setId(event.getId());
-        dto.setTitle(event.getTitle());
-        dto.setDescription(event.getDescription());
+		EventDTO dto = new EventDTO();
 
-        if(event.getEventCategory().equals(EventCategory.SHOW))
-            dto.setEventCategory("SHOW");
-        else if (event.getEventCategory().equals(EventCategory.SPORT))
-        	dto.setEventCategory("SPORT");
-        else if (event.getEventCategory().equals(EventCategory.MUSIC))
-        	dto.setEventCategory("MUSIC");
-        
-        if(event.getTickets().isEmpty()) {
-        	dto.setEnabledDeactivation(true);
-        }else {
-        	dto.setEnabledDeactivation(false);
-        }
-        dto.setActive(event.getIsActive());
-        dto.setLocationID(event.getLocation().getId());
-        
-        dto.setDays(EventDayDTOConverter.eventDaysToDtos(event.getEventDays()));
-        dto.setPrices(SectorPriceDTOConverter.sectorpricesToDtos(event.getSectorPrice()));
-        return dto;
+		dto.setId(event.getId());
+		dto.setTitle(event.getTitle());
+		dto.setDescription(event.getDescription());
 
-    }
+		if (event.getEventCategory().equals(EventCategory.SHOW))
+			dto.setEventCategory("SHOW");
+		else if (event.getEventCategory().equals(EventCategory.SPORT))
+			dto.setEventCategory("SPORT");
+		else if (event.getEventCategory().equals(EventCategory.MUSIC))
+			dto.setEventCategory("MUSIC");
 
-    public static List<EventDTO> eventsToDtos(Collection<Event> events) {
+		if (event.getTickets().isEmpty()) {
+			dto.setEnabledDeactivation(true);
+		} else {
+			dto.setEnabledDeactivation(false);
+		}
+		dto.setActive(event.getIsActive());
+		dto.setLocationID(event.getLocation().getId());
 
-        List<EventDTO> retVal = new ArrayList<>();
+		dto.setDays(EventDayDTOConverter.eventDaysToDtos(event.getEventDays()));
+		dto.setPrices(SectorPriceDTOConverter.sectorpricesToDtos(event.getSectorPrice()));
+		return dto;
 
-        for (Event event : events) {
-            retVal.add(EventDTOConverter.eventToDto(event));
-        }
+	}
 
-        return retVal;
-    }
+	public static List<EventDTO> eventsToDtos(Collection<Event> events) {
+
+		List<EventDTO> retVal = new ArrayList<>();
+
+		for (Event event : events) {
+			retVal.add(EventDTOConverter.eventToDto(event));
+		}
+
+		return retVal;
+	}
 }

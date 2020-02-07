@@ -63,7 +63,7 @@ public class SectorServiceIntegrationTest {
 		assertTrue(sector instanceof SeatsSector);
 		assertEquals(104l, sector.getId());
 		assertEquals("Seats sector 2", sector.getTitle());
-		assertEquals(60, ((SeatsSector)sector).getColumnNum());
+		assertEquals(10, ((SeatsSector)sector).getColumnNum());
 		assertEquals(2, sector.getLocation().getId());
 	}
 	
