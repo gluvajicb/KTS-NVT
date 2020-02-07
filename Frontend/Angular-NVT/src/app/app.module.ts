@@ -48,6 +48,7 @@ import {RegisterComponent} from './security/register/register.component';
 import {MatchValueDirective} from './helpers/match-value.directive';
 import {HomeComponent} from './core/home/home.component';
 import {ProfileComponent} from './security/profile/profile.component';
+
 import {CanvasUserEventComponent} from './events/user-canvas-event/user-canvas-event.component';
 import {authInterceptorProviders} from './helpers/auth.interceptor';
 
@@ -91,7 +92,8 @@ import {authInterceptorProviders} from './helpers/auth.interceptor';
     MatchValueDirective,
     HomeComponent,
     ProfileComponent,
-    CanvasUserEventComponent
+    CanvasUserEventComponent,
+    UserTicketsContainerComponent
   ],
   imports: [
     BrowserModule,

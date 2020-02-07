@@ -1,5 +1,7 @@
 package tim20.KTS_NVT.dto;
 
+import tim20.KTS_NVT.model.User;
+
 public class StandTicketDTO {
     private Long eventID;
     private Long eventDayID;
@@ -15,7 +17,8 @@ public class StandTicketDTO {
         this.price = price;
         this.sectorID = sectorID;
     }
-
+    
+   
     public Long getSectorID() {
         return sectorID;
     }
