@@ -21,8 +21,11 @@
         </ul>
 
         <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/events']" data-toggle="tab" href="#">Events</a>
+          <li class="nav-item" *ngIf="isAdmin">
+            <a class="nav-link" [routerLink]="['/events']" data-toggle="tab" href="#">Events</a> 
+          </li>
+          <li class="nav-item" *ngIf="!isAdmin">
+            <a class="nav-link" [routerLink]="['/user/events']" data-toggle="tab" href="#">Events</a>
           </li>
           <li class="nav-item" *ngIf="isAdmin">
             <a class="nav-link" [routerLink]="['/locations']" data-toggle="tab" href="#">Locations</a>

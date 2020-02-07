@@ -1,3 +1,4 @@
+ /*
  insert into location (id, title, address) values (1, "Location 1", "Address");
  insert into location (id, title, address) values (2, "Location 2", "Address 2");
 
@@ -19,10 +20,4 @@
  
  insert into role (role_id, role) values(1, "ADMIN");
  insert into role (role_id, role) values(2, "USER");
- 
-  /*password test123*/
- insert into users (id, username, password, confirmed) values (1, 'admin', '$2a$10$sKKjLxjVJCK/.Nzp3yz6mu509igc2/ewjky1QywapzMFarW7iFLFW', 1);
- insert into users (id, username, password, confirmed) values (2, 'user', '$2a$10$sKKjLxjVJCK/.Nzp3yz6mu509igc2/ewjky1QywapzMFarW7iFLFW', 1);
-
- INSERT INTO roles (user_id, role_id) VALUES (1, 1);
- INSERT INTO roles (user_id, role_id) VALUES (2, 2);
+ */
