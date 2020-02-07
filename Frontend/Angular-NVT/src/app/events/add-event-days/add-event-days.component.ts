@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { EventDay } from '../model/event-day';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { dateNotPastValidatorDirective } from '../directives/date-not-past-validator.directive';
 
 @Component({
   selector: 'app-add-event-days',
@@ -25,7 +26,7 @@ export class AddEventDaysComponent implements OnInit {
   createForm() {
     this.dayForm = this.fb.group({
       title: ['', [Validators.required]],
-      eventdate: ['', [Validators.required]]
+      eventdate: ['', [Validators.required, dateNotPastValidatorDirective()]]
     });
   }
 

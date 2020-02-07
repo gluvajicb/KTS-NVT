@@ -1,7 +1,7 @@
 package tim20.KTS_NVT.controller;
 
+import java.sql.Date;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +36,7 @@ import tim20.KTS_NVT.model.Location;
 import tim20.KTS_NVT.model.SeatsSector;
 import tim20.KTS_NVT.model.Sector;
 import tim20.KTS_NVT.model.StandSector;
+import tim20.KTS_NVT.service.EventDayService;
 import tim20.KTS_NVT.service.LocationService;
 import tim20.KTS_NVT.service.SectorService;
 
@@ -49,6 +50,9 @@ public class LocationController {
 	
 	@Autowired
 	private SectorService sectorService;
+	
+	@Autowired
+	private EventDayService dayService;
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<LocationDTO>> getAll() {
@@ -118,7 +122,7 @@ public class LocationController {
 			if (location.getEvents().size() > 0) {
 				for (Event event : location.getEvents()) {
 					for (EventDay day : event.getEventDays()) {
-						if (day.getEventDate().after(new Date())) {
+						if (day.getEventDate().after(new java.util.Date())) {
 							throw new LocationCanNotBeDeletedException(id);
 						}
 					}
@@ -203,7 +207,7 @@ public class LocationController {
 				if (location.getEvents().size() > 0) {
 					for (Event event : location.getEvents()) {
 						for (EventDay day : event.getEventDays()) {
-							if (day.getEventDate().after(new Date())) {
+							if (day.getEventDate().after(new java.util.Date())) {
 								throw new SectorCanNotBeDeletedException(id);
 							}
 						}
@@ -214,6 +218,15 @@ public class LocationController {
 			sectorService.deleteSector(id);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
+
+	}
+	
+	@GetMapping(value = "/{id}/available/{date}")
+	public ResponseEntity<Boolean> isLocationAvailable(@PathVariable("id") Long id, @PathVariable("date") String date) {
+
+		boolean available = dayService.checkAvailability(Date.valueOf(date), id);
+		
+		return new ResponseEntity<Boolean>(new Boolean(available), HttpStatus.OK);
 
 	}
 

@@ -94,7 +94,7 @@ import {UserTicketsContainerComponent} from './reports/user-tickets-container/us
     HomeComponent,
     ProfileComponent,
     CanvasUserEventComponent,
-    UserTicketsContainerComponent
+    UserTicketsContainerComponent,
   ],
   imports: [
     BrowserModule,

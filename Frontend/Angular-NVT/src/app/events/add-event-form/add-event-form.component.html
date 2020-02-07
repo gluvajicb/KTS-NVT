@@ -49,6 +49,11 @@
       <div class="row">
         <app-add-event-days (newDay)="addNewDay($event)"></app-add-event-days>
       </div>
+      <div class="row mt-3 ml-2">
+        <div class="alert alert-warning" *ngIf="isFailed">
+          Sorry, location is not available.
+        </div>
+      </div>
       <div class="row mt-4" *ngIf="this.event.days">
         <table class="table table-hover table-bordered">
           <thead>

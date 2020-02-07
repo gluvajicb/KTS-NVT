@@ -23,6 +23,7 @@ export class AddEventFormComponent implements OnInit {
   event: Event;
   locations: Location[];
   selectedLocation: Location;
+  isFailed: boolean;
 
   constructor(private fb: FormBuilder, private eventsService: EventsService, private locationsService: LocationsService,
               private router: Router) {
@@ -34,6 +35,7 @@ export class AddEventFormComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.isFailed = false;
     this.locationsService.getAll(1, 100)
       .subscribe( res => {
         this.locations = res.body as Location[];
@@ -80,7 +82,22 @@ export class AddEventFormComponent implements OnInit {
   }
 
   addNewDay(day: EventDay) {
-    this.event.days.push(day);
+    this.eventsService.checkLocationAvailability(this.selectedLocation.id, day.eventdate.toString()).subscribe(
+      result => {
+        const available = result.body;
+        console.log(available);
+        if (available) {
+          this.event.days.push(day);
+          this.isFailed = false;
+        } else {
+          this.isFailed = true;
+        }
+      },
+      err => {
+        this.isFailed = true;
+        console.log('wrong');
+      }
+    );
   }
 
   onClickDelete(day: EventDay) {
