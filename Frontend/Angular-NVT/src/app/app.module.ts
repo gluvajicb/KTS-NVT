@@ -97,6 +97,7 @@ import {UserTicketTableComponent} from './reports/user-ticket-table/table.compon
     CanvasUserEventComponent,
     UserTicketsContainerComponent,
     UserTicketTableComponent
+
   ],
   imports: [
     BrowserModule,

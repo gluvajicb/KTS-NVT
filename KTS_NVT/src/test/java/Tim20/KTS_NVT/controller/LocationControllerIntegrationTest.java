@@ -1,6 +1,8 @@
 package Tim20.KTS_NVT.controller;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -348,4 +350,23 @@ public class LocationControllerIntegrationTest {
 		assertEquals(1, error.getCode());
 		assertEquals("Sector [115] not found", error.getMessage());
 	}
+	
+	@Test
+	public void locationAvailableTest() {
+		ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity("/locations/1/available/2020-03-08", Boolean.class);
+
+		boolean available = responseEntity.getBody().booleanValue();
+		
+		assertTrue(available);
+	}
+	
+	@Test
+	public void locationNotAvailableTest() {
+		ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity("/locations/2/available/2020-03-07", Boolean.class);
+
+		boolean available = responseEntity.getBody().booleanValue();
+		
+		assertFalse(available);
+	}
+	
 }

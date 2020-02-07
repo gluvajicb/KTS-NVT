@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class EventsService {
 
   private baseUrl = 'http://localhost:8080/events';
+  private baseUrlLocations = 'http://localhost:8080/locations';
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   private locationList: Location[] = [];
@@ -67,5 +68,15 @@ export class EventsService {
      console.log('delete');
      return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
    }
+
+   checkLocationAvailability(locationId: number, date: string): Observable<any> {
+    let queryParams = {};
+
+    queryParams = {
+      headers: this.headers,
+      observe: 'response'
+    };
+    return this.http.get(`${this.baseUrlLocations}/${locationId}/available/${date}`, queryParams);
+    }
 
 }
