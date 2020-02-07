@@ -46,20 +46,18 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     public static final String CSS_MATCHER = "/**/*.css";
     public static final String JS_MATCHER = "/**/*.js";
     public static final String IMG_MATCHER = "/images/*";
-    public static final String LOGIN_MATCHER = "/login";
+    public static final String SECURITY_MATCHER = "/security/**";
     public static final String LOGOUT_MATCHER = "/logout";
 
     private List<String> pathsToSkip = Arrays.asList(
-            ROOT_MATCHER,
-            HTML_MATCHER,
-            FAVICON_MATCHER,
-            CSS_MATCHER,
-            JS_MATCHER,
-            IMG_MATCHER,
-            LOGIN_MATCHER,
-            LOGOUT_MATCHER,
-            "/**",
-            "register.html"
+        ROOT_MATCHER,
+        HTML_MATCHER,
+        FAVICON_MATCHER,
+        CSS_MATCHER,
+        JS_MATCHER,
+        IMG_MATCHER,
+        LOGOUT_MATCHER,
+        SECURITY_MATCHER
     );
 
     @Override

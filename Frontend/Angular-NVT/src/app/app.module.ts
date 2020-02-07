@@ -48,7 +48,8 @@ import {RegisterComponent} from './security/register/register.component';
 import {MatchValueDirective} from './helpers/match-value.directive';
 import {HomeComponent} from './core/home/home.component';
 import {ProfileComponent} from './security/profile/profile.component';
-import {CanvasUserEventComponent} from './events/user-canvas-event/user-canvas-event.component'
+import {CanvasUserEventComponent} from './events/user-canvas-event/user-canvas-event.component';
+import {authInterceptorProviders} from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import {CanvasUserEventComponent} from './events/user-canvas-event/user-canvas-e
   providers: [
     LocationsService,
     EventsService,
-    SecurityService
+    SecurityService,
+    authInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
