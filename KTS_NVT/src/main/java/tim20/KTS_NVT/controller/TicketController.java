@@ -162,6 +162,12 @@ public class TicketController {
     	return new ResponseEntity<TakenSeatsDTO>(dto, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/takenSeatsAllDays/{eventId}")
+    public ResponseEntity<TakenSeatsDTO> getTakenSeatsAllDays(@PathVariable("eventId") Long eventId) {
+    	TakenSeatsDTO dto = ticketService.getTakenSeatsAllDays(eventId);
+    	return new ResponseEntity<TakenSeatsDTO>(dto, HttpStatus.OK);
+    }
+
     /* ----------    Exception Handler   ------------- */
 
     @ExceptionHandler(EventNotFoundException.class)

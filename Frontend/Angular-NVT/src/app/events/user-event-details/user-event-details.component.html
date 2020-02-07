@@ -37,6 +37,7 @@
       <div class="row">
         <h2>Select day</h2>
         <select class="form-control" [(ngModel)]="this.selectedDay"  (ngModelChange)="onChangeDay()" name="daySelection" id="idDaySelection">
+          <option [ngValue]="-1">ALL DAYS TICKET</option>
           <option *ngFor="let day of event.days" [ngValue]="day.id">{{day.title}}</option>
         </select>
       </div>
@@ -48,7 +49,9 @@
           <label *ngIf="this.selectedTicket.column !== -1"><b>Row </b> -  {{this.selectedTicket.row}}</label><br/>
           <label *ngIf="this.selectedTicket.column !== -1"><b>Column </b> - {{this.selectedTicket.column}} </label><br/>
 
-          <h3>TOTAL: {{this.selectedTicket.total}}</h3>
+          <h3 *ngIf="this.selectedDay !== -1">TOTAL: {{this.selectedTicket.total}}</h3>
+          <h3 *ngIf="this.selectedDay === -1">TOTAL: {{this.event.days.length * this.selectedTicket.total}}</h3>
+
         </div>
         <button class="btn btn-primary ml-3 mt-3"  (click)="this.book()">Book</button>
       </div>
