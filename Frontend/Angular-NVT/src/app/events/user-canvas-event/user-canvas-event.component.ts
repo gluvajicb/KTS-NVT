@@ -144,7 +144,7 @@ export class CanvasUserEventComponent implements OnInit, OnChanges {
         });
 
 
-        const t = new fabric.IText(sec.sector.title + '\n ' + sec.price + 'e', {
+        const t = new fabric.IText(sec.sector.title + '\n SOLD OUT', {
           fontFamily: 'Calibri',
           fontSize: 14,
           textAlign: 'center',
