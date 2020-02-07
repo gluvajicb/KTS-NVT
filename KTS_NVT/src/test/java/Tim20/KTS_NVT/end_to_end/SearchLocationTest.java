@@ -97,9 +97,6 @@ public class SearchLocationTest
 
         locationsPage.getDetailsButton().click();
 
-        expectedURL = "http://localhost:4200/locations/details/1";
-        assertEquals(expectedURL, browser.getCurrentUrl());
-
         // Ovde pise Location Details na frontu //
         WebElement detailsText = browser.findElement(By.xpath("/html/body/app-root/div/div[2]/div[2]/div/app-location-details/div[1]/h3"));
 
