@@ -12,6 +12,7 @@ public class EventPage {
 
     private WebDriver webDriver;
 
+    
     @FindBy(xpath = "/html/body/app-root/div/div[2]/div[2]/div/app-event-container/div[2]/input")
     private WebElement searchEventInput;
 
