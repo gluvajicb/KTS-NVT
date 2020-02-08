@@ -103,7 +103,7 @@ public class TicketController {
 
     }
     
-    @PostMapping(value = "/add-seats-ticket", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add-seats-ticket", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> addSeatsTicket(@RequestBody SeatsTicketDTO dto) {
     	boolean success;
     	String username = (String) SecurityContextHolder.getContext().getAuthentication().getName();
@@ -142,7 +142,10 @@ public class TicketController {
    	   		throw new EventNotFoundException(dto.getEventID());
    	   	}catch(SectorNotFoundException nf){
    	   		throw new SectorNotFoundException(dto.getSectorID());
-      	}
+      	}catch (EventDayNotFoundException e) {
+			throw new EventDayNotFoundException(dto.getEventDayID());
+		}
+    	
     	if(success == false) {
         	return new ResponseEntity<>(success, HttpStatus.BAD_REQUEST);
         }
@@ -238,6 +241,13 @@ public class TicketController {
 		Error error = new Error(1, "Event day [" + locationId + "] not found");
 		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
 	}
+
+    @ExceptionHandler(EventDayNotFoundException.class)
+  	public ResponseEntity<Error> dayNotFound(EventDayNotFoundException e) {
+  		long dayId = e.getEventDayId();
+  		Error error = new Error(1, "Day [" + dayId + "] not found");
+  		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+  	}
 
 
 }
