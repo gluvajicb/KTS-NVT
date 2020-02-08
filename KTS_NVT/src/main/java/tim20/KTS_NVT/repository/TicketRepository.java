@@ -28,10 +28,10 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 	
 	//zauzeta sedista
 	//testirati
-	@Query("SELECT st FROM seats_ticket st WHERE st.day.id = ?1 OR st.singleDay = false")
-	List<Ticket> getSeatsTicketsByEventDay(Long dayId);
+	@Query("SELECT st FROM seats_ticket st WHERE st.day.id = ?1 OR (st.singleDay = false AND st.event.id = ?2)")
+	List<Ticket> getSeatsTicketsByEventDay(Long dayId, Long eventId);
 	
-	@Query("SELECT COUNT(st) FROM stand_ticket st WHERE st.day.id = ?1 AND st.sector.id = ?2 OR st.singleDay = false")
-	Integer getStandTicketsCountByEventDayAndSector(Long dayId, Long sectorId);
+	@Query("SELECT COUNT(st) FROM stand_ticket st WHERE st.day.id = ?1 AND st.sector.id = ?2 OR (st.singleDay = false  AND st.event.id = ?2 AND st.sector.id = ?2)")
+	Integer getStandTicketsCountByEventDayAndSector(Long dayId, Long sectorId, Long eventId);
 	
 }

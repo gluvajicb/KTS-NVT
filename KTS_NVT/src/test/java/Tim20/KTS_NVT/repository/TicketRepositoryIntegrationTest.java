@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import tim20.KTS_NVT.repository.TicketRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@Transactional
+
 public class TicketRepositoryIntegrationTest {
 	@Autowired
 	private TicketRepository ticketRepository;
@@ -66,7 +70,7 @@ public class TicketRepositoryIntegrationTest {
 	// zauzeta sedista
 	@Test
 	public void getSetsTicketsByDayTest() {
-		List<Ticket> tickets = ticketRepository.getSeatsTicketsByEventDay(3l);
+		List<Ticket> tickets = ticketRepository.getSeatsTicketsByEventDay(3l, 4l);
 	
 		assertEquals(2, tickets.size());
 		
@@ -77,20 +81,20 @@ public class TicketRepositoryIntegrationTest {
 	
 	@Test
 	public void getSetsTicketsByDayTestNoTickets() {
-		List<Ticket> tickets = ticketRepository.getSeatsTicketsByEventDay(2l);
+		List<Ticket> tickets = ticketRepository.getSeatsTicketsByEventDay(2l, 4l);
 	
 		assertEquals(0, tickets.size());
 	}
 	
 	@Test
 	public void getStandTicketsCount() {
-		int count = ticketRepository.getStandTicketsCountByEventDayAndSector(2l, 102l);
+		int count = ticketRepository.getStandTicketsCountByEventDayAndSector(2l, 102l, 4l);
 		assertEquals(2, count);
 	}
 	
 	@Test
 	public void getStandTicketsCountNoTickets() {
-		int count = ticketRepository.getStandTicketsCountByEventDayAndSector(3l, 102l);
+		int count = ticketRepository.getStandTicketsCountByEventDayAndSector(30l, 103l, 4l);
 		assertEquals(0, count);
 	}
 

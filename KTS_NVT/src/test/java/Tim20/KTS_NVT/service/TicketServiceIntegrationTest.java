@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ import tim20.KTS_NVT.service.TicketService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
+
 public class TicketServiceIntegrationTest {
 
 	@Autowired
@@ -70,8 +74,9 @@ public class TicketServiceIntegrationTest {
 
 		boolean saved = ticketService.addSeatTicket(1l, 1l, true, 50, 3, 1, 101l, null);
 		assertTrue(saved);
-
-		assertEquals(size + 1, ticketRepository.findAll().size());
+		
+		int numTickets =  ticketRepository.findAll().size();
+		assertEquals(size + 1,numTickets);
 		// ticketRepository.deleteById(saved.getId());
 	}
 
