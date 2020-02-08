@@ -3,6 +3,7 @@ package tim20.KTS_NVT.controller;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,11 +60,13 @@ public class TicketController {
     private UserRepository repository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<Ticket>> getAll() {
+    public ResponseEntity<Collection<TicketDTO>> getAll() {
 
-        Collection<Ticket> events = ticketService.findAll();
+        Set<Ticket> events = (Set<Ticket>)ticketService.findAll();
+        Collection<TicketDTO> dtos = TicketDTOConverter.convertTicketsToDtos(events);
 
-        return new ResponseEntity<Collection<Ticket>>(events, HttpStatus.OK);
+        
+        return new ResponseEntity<Collection<TicketDTO>>(dtos, HttpStatus.OK);
 
     }
 
@@ -116,10 +119,10 @@ public class TicketController {
     	}
         
         if(success == false) {
-        	return new ResponseEntity<>(success, HttpStatus.BAD_REQUEST);
+        	return new ResponseEntity<Boolean>(success, HttpStatus.BAD_REQUEST);
         }
         
-        return new ResponseEntity<>(true, HttpStatus.OK);
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
     
     @PostMapping(value = "/add-stand-ticket", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -127,8 +130,18 @@ public class TicketController {
     	String username = (String) SecurityContextHolder.getContext().getAuthentication().getName();
     	System.out.println("++++++++++++++++++++++++++++++++++++");
     	System.out.println(username);
+    	
+
     	User user = repository.findByUsername(username);
-    	boolean success = ticketService.addStandTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getSectorID(), user);
+    	boolean success;
+    	
+    	try {
+    		success = ticketService.addStandTicket(dto.getEventID(),dto.getEventDayID(), dto.isSingleDay(), dto.getPrice(), dto.getSectorID(), user);
+   	   	}catch(EventNotFoundException nf) {
+   	   		throw new EventNotFoundException(dto.getEventID());
+   	   	}catch(SectorNotFoundException nf){
+   	   		throw new SectorNotFoundException(dto.getSectorID());
+      	}
     	if(success == false) {
         	return new ResponseEntity<>(success, HttpStatus.BAD_REQUEST);
         }
@@ -147,9 +160,6 @@ public class TicketController {
             Event event = eventService.findOne(ticket.getEvent().getId());
             event.getTickets().remove(ticket);
             eventService.updateEvent(event);
-
-            ticketService.deleteTicket(ticket.getId());
-
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
     }
