@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import tim20.KTS_NVT.security.PayPalClient;
 
 @SpringBootApplication
 public class KtsNvtApplication {
@@ -18,6 +19,9 @@ public class KtsNvtApplication {
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
+	@Bean
+	public PayPalClient payPalClient() { return new PayPalClient(); }
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
