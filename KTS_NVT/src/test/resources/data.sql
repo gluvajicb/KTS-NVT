@@ -36,19 +36,19 @@
  insert into sector_price (id, price, sector_id, event_id) values (111, 42, 102, 1);
  insert into sector_price (id, price, sector_id, event_id) values (112, 100, 104, 2);
  
- insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (1, 5000, 1, 1, 1, 103, 1, 1);
- insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (2, 5000, 1, 1, 1, 103, 1, 2);
- insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (3, 5000, 1, 1, 1, 103, 1, 3);
- insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(1, 2000, 0, 1, 1,101);
- insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(2, 2000, 1, 1, 1, 101);
- insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(3, 2000, 1, 1, 1, 101);
- insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(4, 2000, 1, 1, 1, 101);
- insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(5, 2000, 1, 1, 1, 101);
+ insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num, paid, reservation_date) values (1, 5000, 1, 1, 1, 103, 1, 1, false, "2020-12-12");
+ insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num, paid, reservation_date) values (2, 5000, 1, 1, 1, 103, 1, 2, false, "2020-12-12");
+ insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num, paid, reservation_date) values (3, 5000, 1, 1, 1, 103, 1, 3,false, "2020-12-12");
+ insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id, paid, reservation_date) values(1, 2000, 0, 1, 1,101, false, "2020-12-12");
+ insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id, paid, reservation_date) values(2, 2000, 1, 1, 1, 101, false, "2020-12-12");
+ insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id, paid, reservation_date) values(3, 2000, 1, 1, 1, 101, false, "2020-12-12");
+ insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id, paid, reservation_date) values(4, 2000, 1, 1, 1, 101, false, "2020-12-12");
+ insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id, paid, reservation_date) values(5, 2000, 1, 1, 1, 101, false, "2020-12-12");
  
- insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (111, 5000, 1, 3, 4, 103, 2, 2);
- insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num) values (222, 5000, 1, 3, 4, 103, 2, 3);
- insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(555, 2000, 1, 2, 1, 102);
- insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id) values(666, 2000, 1, 2, 1, 102);
+ insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num, paid, reservation_date) values (111, 5000, 1, 3, 4, 103, 2, 2, false, "2020-12-12");
+ insert into seats_ticket (id, price, single_day, day_id, event_id, sector_id, column_num, row_num, paid, reservation_date) values (222, 5000, 1, 3, 4, 103, 2, 3, false, "2020-12-12");
+ insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id, paid, reservation_date) values(555, 2000, 1, 2, 1, 102, false, "2020-12-12");
+ insert into stand_ticket (id, price, single_day, day_id, event_id, sector_id, paid, reservation_date) values(666, 2000, 1, 2, 1, 102,false, "2020-12-12");
 
  insert into role (role_id, role) values(1, 'ADMIN');
  insert into role (role_id, role) values(2, 'USER');
