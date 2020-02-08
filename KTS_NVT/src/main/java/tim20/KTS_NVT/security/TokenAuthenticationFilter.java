@@ -66,7 +66,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
         String authToken = tokenHelper.getToken(request);
 
-        if (authToken != null && !skipPathRequest(request, pathsToSkip)) {
+        if (authToken != null) {
             // get username from token
             try {
                 String username = tokenHelper.getUsernameFromToken(authToken);

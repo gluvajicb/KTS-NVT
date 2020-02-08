@@ -172,15 +172,22 @@ public class TicketController {
     
     @GetMapping(value = "/takenSeats/{dayId}")
     public ResponseEntity<TakenSeatsDTO> getTakenSeats(@PathVariable("dayId") Long dayId) {
+    	
     	TakenSeatsDTO dto = ticketService.getTakenSeats(dayId);
     	return new ResponseEntity<TakenSeatsDTO>(dto, HttpStatus.OK);
     }
 
     @GetMapping(value = "/takenSeatsAllDays/{eventId}")
     public ResponseEntity<TakenSeatsDTO> getTakenSeatsAllDays(@PathVariable("eventId") Long eventId) {
-    	TakenSeatsDTO dto = ticketService.getTakenSeatsAllDays(eventId);
+    	
+    	try{
+    		TakenSeatsDTO dto = ticketService.getTakenSeatsAllDays(eventId);
+    	
     	return new ResponseEntity<TakenSeatsDTO>(dto, HttpStatus.OK);
-    }
+    	} catch(EventDayNotFoundException e) {
+   	   		throw new EventNotFoundException(eventId);
+    	}
+    	}
 
     /* ----------    Exception Handler   ------------- */
 
@@ -225,6 +232,13 @@ public class TicketController {
 	public ResponseEntity<Error> sectorNotFound(SectorNotFoundException e) {
 		long locationId = e.getSectorId();
 		Error error = new Error(1, "Sector [" + locationId + "] not found");
+		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+	}
+    
+    @ExceptionHandler(EventDayNotFoundException.class)
+	public ResponseEntity<Error> eventDayNotFound(EventDayNotFoundException e) {
+		long locationId = e.getEventDayId();
+		Error error = new Error(1, "Event day [" + locationId + "] not found");
 		return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
 	}
 
