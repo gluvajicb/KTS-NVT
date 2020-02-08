@@ -95,81 +95,84 @@ public class TicketControllerIntegrationTest {
 		assertEquals("Ticket [115] not found", error.getMessage());
 	}
 	
-	/*@Test
+	@Test
 	public void getTakenSeatsTest() {
 
-		ResponseEntity<TakenSeatsDTO[]> responseEntity = restTemplate.getForEntity("/tickets/takenSeatsAllDays/4",
-				TakenSeatsDTO[].class);
+		ResponseEntity<TakenSeatsDTO> responseEntity = restTemplate.getForEntity("/tickets/takenSeatsAllDays/4",
+				TakenSeatsDTO.class);
 
-		TakenSeatsDTO[] tickets = responseEntity.getBody();
+		TakenSeatsDTO tickets = responseEntity.getBody();
 
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-		System.out.println(tickets.length);
 		}
-/*
+
 	
 	@Test
 	public void addSeatsTicketTest() {
 
 		int size = ticketService.findAll().size();
 
-		ResponseEntity<Boolean> responseEntity = restTemplate.postForEntity("/add-seats-ticket",
-				new SeatsTicketDTO(1l, 1l, true, 5000.00, 1, 1, 1l,false,"2020-03-03"), Boolean.class);
+		ResponseEntity<Boolean> responseEntity = restTemplate.postForEntity("/tickets/add-seats-ticket",
+				new SeatsTicketDTO(1l, 1l, true, 5000.00, 1, 1, 101l,false,"2020-03-03"), Boolean.class);
 
-		System.out.println(responseEntity.getBody());
+		boolean success = responseEntity.getBody();
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-		List<Ticket> tickets = ticketService.findAll();
-		assertEquals(size + 1, tickets.size());
+		assertEquals(true, success);
+		assertEquals(size + 1, ticketService.findAll().size());
 		
 	}
-	*/
+	
 	
 	@Test
 	public void addSeatsTicketEventNotFound() {
 
-		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/add-seats-ticket",
+		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/tickets/add-seats-ticket",
 				new SeatsTicketDTO(5l, 1l, true, 5000.00, 1, 1, 1l, false, "2020-12-12"), Error.class);
 
 		Error error = responseEntity.getBody();
 
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-		assertEquals(0, error.getCode());
+		assertEquals("Event [5] not found", error.getMessage());
+		assertEquals(1, error.getCode());
 	}
 	
 	@Test
 	public void addStandTicketEventNotFound() {
 
-		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/add-stand-ticket",
+		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/tickets/add-stand-ticket",
 				new StandTicketDTO(5l, 1l, true, 5000.00, 1l, false, "2020-12-12"), Error.class);
 
 		Error error = responseEntity.getBody();
 
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-		assertEquals(0, error.getCode());
+		assertEquals("Event [5] not found", error.getMessage());
+		assertEquals(1, error.getCode());
 	}
 	
 	@Test
 	public void addStandTicketSectorNotFound() {
 
-		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/add-stand-ticket",
-				new StandTicketDTO(1l, 133l, true, 5000.00, 1l, false, "2020-12-12"), Error.class);
+		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/tickets/add-stand-ticket",
+				new StandTicketDTO(1l, 1l, true, 5000.00, 5556l, false, "2020-12-12"), Error.class);
 
 		Error error = responseEntity.getBody();
 
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-		assertEquals(0, error.getCode());
+		assertEquals("Sector [5556] not found", error.getMessage());
+		assertEquals(1, error.getCode());
 	}
 	
 	@Test
 	public void addSeatsTicketSectorNotFound() {
 
-		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/add-seats-ticket",
+		ResponseEntity<Error> responseEntity = restTemplate.postForEntity("/tickets/add-seats-ticket",
 				new SeatsTicketDTO(1l, 1l, true, 5000.00, 1, 1, 5l, false, "2020-12-12"), Error.class);
 
 		Error error = responseEntity.getBody();
 
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-		assertEquals(0, error.getCode());
+		assertEquals("Sector [5] not found", error.getMessage());
+		assertEquals(1, error.getCode());
 	}
 }
 

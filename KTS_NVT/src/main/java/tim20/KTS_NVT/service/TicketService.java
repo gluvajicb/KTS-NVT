@@ -1,7 +1,6 @@
 package tim20.KTS_NVT.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +9,8 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import tim20.KTS_NVT.dto.TakenSeatsDTO;
 import tim20.KTS_NVT.dto.TakenSeatsDTO.Seat;
@@ -27,7 +28,6 @@ import tim20.KTS_NVT.model.StandSector;
 import tim20.KTS_NVT.model.StandTicket;
 import tim20.KTS_NVT.model.Ticket;
 import tim20.KTS_NVT.model.User;
-import tim20.KTS_NVT.repository.DayRepository;
 import tim20.KTS_NVT.repository.TicketRepository;
 
 @Service
@@ -74,6 +74,7 @@ public class TicketService {
         return t;
     }
     
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public boolean addSeatTicket(Long eventID, Long eventDayID, boolean isSingleDay, double price, int rowNumber, int columnNumber, Long sectorID, User user) {
     	Event event = eventService.findOne(eventID);
 
@@ -126,6 +127,7 @@ public class TicketService {
         
     }
     
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public boolean addStandTicket(Long eventID, Long eventDayID, boolean isSingleDay, double price, Long sectorID, User user) {
     	Event event = eventService.findOne(eventID);
 
