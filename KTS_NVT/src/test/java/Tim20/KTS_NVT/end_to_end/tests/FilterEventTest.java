@@ -1,23 +1,19 @@
-package Tim20.KTS_NVT.end_to_end;
+package Tim20.KTS_NVT.end_to_end.tests;
 
+import Tim20.KTS_NVT.end_to_end.pages.EventPage;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.test.context.junit4.SpringRunner;
-import tim20.KTS_NVT.model.Location;
 
 import org.openqa.selenium.support.ui.Select;
 
 
 import static org.junit.Assert.assertEquals;
-import static org.openqa.grid.common.SeleniumProtocol.Selenium;
 
 @RunWith(SpringRunner.class)
 public class FilterEventTest {

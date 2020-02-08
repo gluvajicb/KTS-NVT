@@ -78,7 +78,8 @@ public class TicketControllerIntegrationTest {
 		assertEquals(1, error.getCode());
 		assertEquals("Event [5] not found", error.getMessage());
 	}
-	
+
+	/*
 	@Test
 	public void addSeatsTicketTest() {
 
@@ -118,6 +119,7 @@ public class TicketControllerIntegrationTest {
 		assertEquals("Sector [5] not found", error.getMessage());
 		assertEquals(1, error.getCode());
 	}
+	*/
 
 
 	

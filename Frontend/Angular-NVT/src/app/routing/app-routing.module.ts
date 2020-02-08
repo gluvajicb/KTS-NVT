@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'locations/details/:id', component: LocationDetailsComponent, canActivate: [AuthGuard]},
   {path: 'locations/add', component: AddLocationFormComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
   {path: 'locations/update/:id', component: LocationUpdateComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
-  {path: 'events', component: EventContainerComponent, canActivate: [AuthGuard]},
+  {path: 'events', component: EventContainerComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
   {path: 'events/add', component: AddEventFormComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
   {path: 'events/details/:id', component: EventDetailsComponent, canActivate: [AuthGuard]},
   {path: 'reports', component: EventReportContainerComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
