@@ -30,12 +30,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import antlr.debug.Event;
 import tim20.KTS_NVT.converters.SectorDTOConverter;
 import tim20.KTS_NVT.dto.LocationDTO;
 import tim20.KTS_NVT.dto.SeatsTicketDTO;
 import tim20.KTS_NVT.dto.SectorDTO;
 import tim20.KTS_NVT.dto.StandTicketDTO;
 import tim20.KTS_NVT.dto.TakenSeatsDTO;
+import tim20.KTS_NVT.dto.TakenSeatsDTO.Stand;
 import tim20.KTS_NVT.dto.TicketDTO;
 import tim20.KTS_NVT.exceptions.LocationNotFoundException;
 import tim20.KTS_NVT.exceptions.LowerThanZeroException;
@@ -47,6 +49,7 @@ import tim20.KTS_NVT.model.Sector;
 import tim20.KTS_NVT.model.StandSector;
 import tim20.KTS_NVT.model.StandTicket;
 import tim20.KTS_NVT.model.Ticket;
+import tim20.KTS_NVT.service.EventService;
 import tim20.KTS_NVT.service.TicketService;
 
 @RunWith(SpringRunner.class)
@@ -57,6 +60,9 @@ public class TicketControllerIntegrationTest {
 
 	@Autowired
 	private TicketService ticketService;
+
+	@Autowired
+	private EventService eventService;
 
 	@Test
 	public void getTicketsForEventTest() {
@@ -95,18 +101,60 @@ public class TicketControllerIntegrationTest {
 		assertEquals("Ticket [115] not found", error.getMessage());
 	}
 	
-	/*@Test
-	public void getTakenSeatsTest() {
+	@Test
+	public void getTakenSeatsAllDaysTest() {
 
-		ResponseEntity<TakenSeatsDTO[]> responseEntity = restTemplate.getForEntity("/tickets/takenSeatsAllDays/4",
-				TakenSeatsDTO[].class);
+		ResponseEntity<TakenSeatsDTO> responseEntity = restTemplate.getForEntity("/tickets/takenSeatsAllDays/4",
+				TakenSeatsDTO.class);
 
-		TakenSeatsDTO[] tickets = responseEntity.getBody();
+		TakenSeatsDTO tickets = responseEntity.getBody();
 
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-		System.out.println(tickets.length);
-		}
-/*
+		int standSectors = tickets.getStandTaken().size();
+		int seatsSectors = tickets.getSeatsTaken().size();
+	}
+	
+	@Test
+	public void getTakenSeatsAllDaysTestEventNotExist() {
+
+		ResponseEntity<Error> responseEntity = restTemplate.getForEntity("/tickets/takenSeatsAllDays/115",
+				Error.class);
+
+		Error error = responseEntity.getBody();
+
+		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+		assertEquals(1, error.getCode());
+		assertEquals("Event [115] not found", error.getMessage());
+
+	}
+	
+	@Test
+	public void getTakenSeatsTestEventNotExist() {
+
+		ResponseEntity<Error> responseEntity = restTemplate.getForEntity("/tickets/takenSeats/115",
+				Error.class);
+
+		Error error = responseEntity.getBody();
+
+		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+		assertEquals(1, error.getCode());
+		assertEquals("Event day [115] not found", error.getMessage());
+
+	}
+	
+	@Test
+	public void getTakenSeatsTest() {
+
+		ResponseEntity<TakenSeatsDTO> responseEntity = restTemplate.getForEntity("/tickets/takenSeats/3",
+				TakenSeatsDTO.class);
+
+		TakenSeatsDTO error = responseEntity.getBody();
+
+		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+	}
+	
+	
+	/*
 	
 	@Test
 	public void addSeatsTicketTest() {

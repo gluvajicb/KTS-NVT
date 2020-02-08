@@ -255,6 +255,10 @@ public class TicketService {
     	// Key id sektora, value lista [row, column]
     	Map<Long, List<List<Integer>>> takenSeats = new HashMap<Long, List<List<Integer>>>();
     	EventDay day = dayService.findOne(dayId);
+    	
+    	if(day == null)
+    		throw new EventDayNotFoundException(dayId);
+    	
     	List<Ticket> data = ticketRepository.getSeatsTicketsByEventDay(dayId, day.getEvent().getId());
     
     	for (Ticket ticket : data) {

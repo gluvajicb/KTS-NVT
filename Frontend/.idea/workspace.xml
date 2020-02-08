@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2741bdf5-a597-4d03-b46a-a54a709d733c" name="Default Changelist" comment="" />
+    <list default="true" id="2741bdf5-a597-4d03-b46a-a54a709d733c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../KTS_NVT/src/test/java/Tim20/KTS_NVT/controller/TicketControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../KTS_NVT/src/test/java/Tim20/KTS_NVT/controller/TicketControllerIntegrationTest.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+            <state relative-caret-position="289">
+              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
               <folding>
                 <element signature="e#0#92#0" expanded="true" />
               </folding>
@@ -80,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/add-event-form/add-event-form.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1122">
-              <caret line="66" column="12" selection-start-line="65" selection-start-column="16" selection-end-line="66" selection-end-column="12" />
+              <caret line="71" column="12" selection-start-line="70" selection-start-column="16" selection-end-line="71" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -208,6 +210,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -334,7 +337,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -434,17 +436,18 @@
       <workItem from="1581094940478" duration="1395000" />
       <workItem from="1581098590580" duration="1687000" />
       <workItem from="1581100381858" duration="1284000" />
+      <workItem from="1581180549546" duration="581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89602000" />
+    <option name="totallyTimeSpent" value="90183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.63161874" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.6414524" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.45990923" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -791,6 +794,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/user-ticket-table/table.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/add-event-days/add-event-days.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -801,7 +828,7 @@
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/events/add-event-form/add-event-form.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1122">
-          <caret line="66" column="12" selection-start-line="65" selection-start-column="16" selection-end-line="66" selection-end-column="12" />
+          <caret line="71" column="12" selection-start-line="70" selection-start-column="16" selection-end-line="71" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -823,30 +850,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/user-ticket-table/table.component.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/user-ticket-table/table.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/ticket-table/table.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Angular-NVT/src/app/reports/user-ticket-table/table.component.ts">
       <provider selected="true" editor-type-id="text-editor">
