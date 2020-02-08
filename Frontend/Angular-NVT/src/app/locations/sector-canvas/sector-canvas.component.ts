@@ -23,9 +23,11 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
   @Output() deleteSectorClicked = new EventEmitter<string>();
   @Input() sectors: Sector[];
   @Input() editable: boolean;
+  @Input() showDeleteButton: boolean;
 
   @Input('numberOfSectors')
   set numberOfSectors(value: number) {
+    console.log('set ' + value);
     this.numOfSectors = value;
     if (this.numOfSectors > 0) {
       this.addLastSector();
@@ -103,6 +105,7 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
 
       this.canvas.add(g);
     } else {
+      console.log('seat');
       const w = sec.width / sec.column_num;
       const h = sec.height / sec.row_num;
 
@@ -152,6 +155,8 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
   }
 
   addLastSector() {
+    console.log('add last');
+    console.log(this.sectors);
     const sec = this.sectors[this.sectors.length - 1];
     if (sec.type === 'Stand' || sec.type === 'stand') {
       const r = new fabric.Rect({
@@ -263,7 +268,10 @@ export class SectorCanvasComponent implements OnInit, OnChanges {
       console.log('Delete');
     } else {
       if (activeObject.type === 'group') {
-        const sectorTitle = activeObject.objects[0].text;
+        let sectorTitle = activeObject.objects[0].text;
+        if (!sectorTitle) {
+          sectorTitle = activeObject.objects[1].text;
+        }
         this.deleteSectorClicked.emit(sectorTitle);
         /*this.canvas.getActiveObjects().forEach((obj: any) => {
           this.canvas.remove(obj);

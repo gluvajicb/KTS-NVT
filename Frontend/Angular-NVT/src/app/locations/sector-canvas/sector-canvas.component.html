@@ -6,7 +6,7 @@
 -->
 <div class="container mt-5">
     <button (click)="sendCanvas()" *ngIf="this.editable" id="submitChangesButton" class="btn btn-primary pr-2" style="border-radius: 10px 0px 0px 0px;" [disabled]="!this.hasUnsavedChanges">Submit changes</button>
-    <button (click)="clickedDelete()" *ngIf="this.editable" class="btn btn-danger" [disabled]="!this.itemSelected" style="border-radius: 0px 10px 0px 0px;">Delete selected item</button>
+    <button (click)="clickedDelete()" *ngIf="this.editable && showDeleteButton" class="btn btn-danger" [disabled]="!this.itemSelected" style="border-radius: 0px 10px 0px 0px;">Delete selected item</button>
     <canvas id="canvas" width="500" height="500" style="border: 1px solid #C0C0C0;"></canvas>
     <small *ngIf="this.hasUnsavedChanges" class="text-danger">Unsaved changes*</small>
 </div>

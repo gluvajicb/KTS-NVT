@@ -134,6 +134,28 @@ public class LocationController {
 		}
 
 	}
+	
+	@GetMapping(value="hasUpcomingEvents/{id}")
+	public ResponseEntity<Boolean> hasUpcomingEvents(@PathVariable("id") Long id) {
+		Location location = locationService.findOne(id);
+
+		if (location == null) {
+			throw new LocationNotFoundException(id);
+		} else {
+			
+			if (location.getEvents().size() > 0) {
+				for (Event event : location.getEvents()) {
+					for (EventDay day : event.getEventDays()) {
+						if (day.getEventDate().after(new java.util.Date())) {
+							return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+						}
+					}
+				}
+			}
+
+			return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+		}
+	}
 
 	// ******************************** sektori *****************************
 
@@ -265,8 +287,8 @@ public class LocationController {
 	}
 
 	@ExceptionHandler(SectorCanNotBeDeletedException.class)
-	public ResponseEntity<Error> sectorCanNotBeDeleted(LocationCanNotBeDeletedException e) {
-		Error error = new Error(1, "Sector [" + e.getLocationId() + "] can not be deleted");
+	public ResponseEntity<Error> sectorCanNotBeDeleted(SectorCanNotBeDeletedException e) {
+		Error error = new Error(1, "Sector [" + e.getSectorId() + "] can not be deleted");
 		return new ResponseEntity<Error>(error, HttpStatus.CONFLICT);
 	}
 

@@ -369,4 +369,22 @@ public class LocationControllerIntegrationTest {
 		assertFalse(available);
 	}
 	
+	@Test
+	public void locationHasUpcomingEvents() {
+		ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity("/locations/hasUpcomingEvents/2", Boolean.class);
+
+		boolean hasEvents = responseEntity.getBody().booleanValue();
+		
+		assertTrue(hasEvents);
+	}
+	
+	@Test
+	public void locationNotUpcomingEvents() {
+		ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity("/locations/hasUpcomingEvents/3", Boolean.class);
+
+		boolean hasEvents = responseEntity.getBody().booleanValue();
+		
+		assertFalse(hasEvents);
+	}
+	
 }

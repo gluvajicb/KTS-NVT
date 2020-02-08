@@ -67,8 +67,20 @@ export class LocationsService {
      return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
    }
 
-   search(searchData: SearchLocation) {
-     // dodati
+   update(location: Location): Observable<any> {
+    return this.http.put(this.baseUrl, location, {headers: this.headers, responseType: 'text'});
+   }
+
+   hasUpcomingEvents(id: number): Observable<any> {
+
+    let queryParams = {};
+
+    queryParams = {
+      headers: this.headers,
+      observe: 'response'
+    };
+
+    return this.http.get(`${this.baseUrl}/hasUpcomingEvents/${id}`, queryParams);
    }
 
 }
