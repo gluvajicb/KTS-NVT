@@ -1,4 +1,4 @@
-package Tim20.KTS_NVT.end_to_end;
+package Tim20.KTS_NVT.end_to_end.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

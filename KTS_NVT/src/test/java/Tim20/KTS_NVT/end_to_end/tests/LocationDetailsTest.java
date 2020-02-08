@@ -1,5 +1,6 @@
-package Tim20.KTS_NVT.end_to_end;
+package Tim20.KTS_NVT.end_to_end.tests;
 
+import Tim20.KTS_NVT.end_to_end.pages.LocationsPage;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
