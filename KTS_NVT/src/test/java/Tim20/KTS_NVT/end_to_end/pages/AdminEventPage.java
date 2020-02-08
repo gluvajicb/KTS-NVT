@@ -24,6 +24,9 @@ public class AdminEventPage {
     @FindBy(xpath = "//*[@id=\"category\"]")
     private WebElement selectEventCategory;
 
+    @FindBy(xpath = "/html/body/app-root/div/div[2]/div/div/app-event-container/div[4]/div/app-event-list/div/app-table-event/table/tbody/tr[1]/td[5]/button")
+    private WebElement detailsButton;
+
     /* TABS */
 
     @FindBy(xpath = "//*[@id=\"navbarSupportedContent\"]/ul/li/a")
@@ -83,6 +86,14 @@ public class AdminEventPage {
         return logoutTabButton;
     }
 
+    public WebDriver getWebDriver() {
+        return webDriver;
+    }
+
+    public WebElement getDetailsButton() {
+        return detailsButton;
+    }
+
     public void setSearchEventInputInput(String value) {
         WebElement el = getSearchEventInput();
         el.clear();
@@ -122,6 +133,10 @@ public class AdminEventPage {
 
     public void ensureLogoutTabButtonIsClickable() {
         (new WebDriverWait(webDriver, 10)).until(ExpectedConditions.elementToBeClickable(logoutTabButton));
+    }
+
+    public void ensureDetailsButtonIsClickable() {
+        (new WebDriverWait(webDriver, 10)).until(ExpectedConditions.elementToBeClickable(detailsButton));
     }
 
 }
