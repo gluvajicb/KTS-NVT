@@ -40,7 +40,7 @@ public class TicketService {
     private EventService eventService;
     
     @Autowired
-    private DayRepository dayRepository;
+    private EventDayService dayService;
 
     @Autowired
     private SectorService sectorService;
@@ -86,9 +86,9 @@ public class TicketService {
             throw new SectorNotFoundException(sectorID);
         }
         
-        EventDay day = dayRepository.getOne(eventDayID);
+        EventDay day = dayService.findOne(eventDayID);
         
-        if (day == null) {
+        if(day == null) {
         	throw new EventDayNotFoundException(eventDayID);
         }
         
@@ -133,7 +133,7 @@ public class TicketService {
             throw new EventNotFoundException(eventID);
         }
         
-        EventDay day = dayRepository.getOne(eventDayID);
+        EventDay day = dayService.findOne(eventDayID);
         
         if(day == null) {
         	throw new EventDayNotFoundException(eventDayID);
@@ -254,8 +254,8 @@ public class TicketService {
     	TakenSeatsDTO soldedTicketsBySectors = new TakenSeatsDTO();
     	// Key id sektora, value lista [row, column]
     	Map<Long, List<List<Integer>>> takenSeats = new HashMap<Long, List<List<Integer>>>();
-    	
-    	List<Ticket> data = ticketRepository.getSeatsTicketsByEventDay(dayId);
+    	EventDay day = dayService.findOne(dayId);
+    	List<Ticket> data = ticketRepository.getSeatsTicketsByEventDay(dayId, day.getEvent().getId());
     
     	for (Ticket ticket : data) {
 			if (!takenSeats.containsKey(ticket.getSector().getId())) {
@@ -288,13 +288,11 @@ public class TicketService {
     	// za stand
     	// key - id sektora, value broj karata
     	//Map<Long, Integer> soldTickets= new HashMap<Long, Integer>();
-    	
-    	EventDay day = dayRepository.getOne(dayId);
-    	
+    	    	
     	for (SectorPrice sp: day.getEvent().getSectorPrice()) {
     		Sector s = sp.getSector();
     		if (s instanceof StandSector) {
-    			int count = ticketRepository.getStandTicketsCountByEventDayAndSector(dayId, s.getId());
+    			int count = ticketRepository.getStandTicketsCountByEventDayAndSector(dayId, s.getId(), day.getEvent().getId());
     			soldedTicketsBySectors.getStandTaken().add(new Stand(s.getId(), count));
     		}
     	}
