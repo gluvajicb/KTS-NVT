@@ -12,19 +12,19 @@ public class LocationsPage {
 
     private WebDriver webDriver;
 
-    @FindBy(xpath = "/html/body/app-root/div/div[2]/div[2]/div/app-location-container/div[2]/input")
+    @FindBy(xpath = "/html/body/app-root/div/div[2]/div/div/app-location-container/div[2]/input")
     private WebElement searchLocationInput;
 
-    @FindBy(xpath = "/html/body/app-root/div/div[2]/div[2]/div/app-location-container/div[1]/div/div/button")
+    @FindBy(xpath = "/html/body/app-root/div/div[2]/div/div/app-location-container/div[1]/div/div/button")
     private WebElement addLocationButton;
 
-    @FindBy(xpath = "/html/body/app-root/div/div[2]/div[2]/div/app-location-container/div[3]/div/app-location-list/div[2]/app-table-location/table/tbody/tr/td[3]/button[1]")
+    @FindBy(xpath = "/html/body/app-root/div/div[2]/div/div/app-location-container/div[3]/div/app-location-list/div[2]/app-table-location/table/tbody/tr[1]/td[3]/button[1]")
     private WebElement detailsButton;
 
-    @FindBy(xpath = "/html/body/app-root/div/div[2]/div[2]/div/app-location-container/div[3]/div/app-location-list/div[2]/app-table-location/table/tbody/tr")
+    @FindBy(xpath = "/html/body/app-root/div/div[2]/div/div/app-location-container/div[3]/div/app-location-list/div[2]/app-table-location/table/tbody/tr")
     private List<WebElement> locationsInTable;
 
-    @FindBy(xpath = "/html/body/app-root/div/div[2]/div[2]/div/app-location-container/div[3]/div/app-location-list/div[2]/app-table-location/table/tbody/tr[4]/td[3]/button[3]")
+    @FindBy(xpath = "/html/body/app-root/div/div[2]/div/div/app-location-container/div[3]/div/app-location-list/div[2]/app-table-location/table/tbody/tr[3]/td[3]/button[3]")
     private WebElement deletableLocationButton;
 
     public WebDriver getWebDriver() {

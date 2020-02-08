@@ -4,9 +4,13 @@ import Tim20.KTS_NVT.end_to_end.pages.RegisterPage;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -44,10 +48,10 @@ public class RegistrationTest {
         String surname = "Markovic";
         registerPage.setSurnameInput(surname);
 
-        String username = "jovan1328";
+        String username = "jovan13282";
         registerPage.setUsernameInput(username);
 
-        String email = "gluvajicbranko+.232@gmail.com";
+        String email = "gluvajicbranko+.2332@gmail.com";
         registerPage.setEmailInput(email);
 
         String password = "password123";
@@ -71,9 +75,10 @@ public class RegistrationTest {
 
         registerPage.getSignUpButton().click();
 
-        /*
+        WebDriverWait wait = new WebDriverWait(browser, 10);
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"successAlert\"]")));
+
         assertEquals("Your registration is successful!", registerPage.getSuccessfulAlertMessage().getText());
-        */
     }
 
     @Test
@@ -163,10 +168,11 @@ public class RegistrationTest {
 
         registerPage.getSignUpButton().click();
 
-        /*
-        assertEquals("Username is taken, please choose another one.", registerPage.getUsernameTakenAlert().getText());
-        */
+        WebDriverWait wait = new WebDriverWait(browser, 10);
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[2]/div/div/app-register/div/div/form/div[9]")));
 
+        assertEquals("Signup failed!\n" +
+                "Username is taken, please choose another one.", registerPage.getUsernameTakenAlert().getText());
     }
 
     @Test
@@ -308,9 +314,13 @@ public class RegistrationTest {
 
         registerPage.getSignUpButton().click();
 
-        /*
-        assertEquals("Email must be a valid email address", registerPage.getEmailInUseAlert().getText());
-        */
+
+        WebDriverWait wait = new WebDriverWait(browser, 10);
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[2]/div/div/app-register/div/div/form/div[9]")));
+
+        assertEquals("Signup failed!\n" +
+                "Email is already in use, try logging in.", registerPage.getEmailInUseAlert().getText());
+
 
     }
 
