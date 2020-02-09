@@ -32,4 +32,8 @@ export class SecurityService {
       phoneNumber: user.phoneNumber
     }, httpOptions);
   }
+
+  verify(email, token): Observable<any> {
+    return this.http.get(AUTH_API + 'verify?email=' + encodeURIComponent(email) + '&token=' + encodeURIComponent(token), httpOptions);
+  }
 }

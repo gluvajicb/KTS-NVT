@@ -102,7 +102,7 @@ public class TicketControllerIntegrationTest {
 	}
 	
 	@Test
-	public void getTakenSeatsTest() {
+	public void getTakenSeatsTest2() {
 
 		ResponseEntity<TakenSeatsDTO> responseEntity = restTemplate.getForEntity("/tickets/takenSeatsAllDays/4",
 				TakenSeatsDTO.class);

@@ -31,7 +31,7 @@ public class EmailService {
         String content = null;
         try {
             content = String.format(
-                    "Hello %s,\nYou must activate your account. Please do so by following the link below.\n\nhttp://localhost:8080/security/verify?email=%s&token=%s",
+                    "Hello %s,\nYou must activate your account. Please do so by following the link below.\n\nhttp://localhost:4200/verification/%s/%s",
                     user.getUsername(), URLEncoder.encode(user.getEmail(), "UTF-8"), URLEncoder.encode(uuid, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

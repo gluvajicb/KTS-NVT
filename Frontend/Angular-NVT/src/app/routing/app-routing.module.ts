@@ -39,7 +39,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'tickets', component: UserTicketsContainerComponent, canActivate: [AuthGuard], data: {roles: [UserRole.User]}},
   {path: 'paypal', component: PaypalPaymentComponent},
-  {path: 'verification/:verified', component: VerificationComponent}
+  {path: 'verification/:email/:token', component: VerificationComponent}
 ];
 
 @NgModule({
