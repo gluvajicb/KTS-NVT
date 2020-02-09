@@ -54,7 +54,8 @@ import {authInterceptorProviders} from './helpers/auth.interceptor';
 import {UserTicketsContainerComponent} from './reports/user-tickets-container/user-tickets-container.component';
 import {UserTicketTableComponent} from './reports/user-ticket-table/table.component';
 import {NgxPayPalModule} from 'ngx-paypal';
-import { PaypalPaymentComponent } from './payment/paypal-payment/paypal-payment.component';
+import {PaypalPaymentComponent} from './payment/paypal-payment/paypal-payment.component';
+import {VerificationComponent} from './security/verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { PaypalPaymentComponent } from './payment/paypal-payment/paypal-payment.
     CanvasUserEventComponent,
     UserTicketsContainerComponent,
     UserTicketTableComponent,
-    PaypalPaymentComponent
+    PaypalPaymentComponent,
+    VerificationComponent
 
   ],
   imports: [

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
+import {TokenStorageService} from '../../security/services/token-storage/token-storage.service';
 
 @Component({
   selector: 'app-paypal-payment',
@@ -11,64 +12,89 @@ export class PaypalPaymentComponent implements OnInit {
   public showSuccess = false;
   public showCancel = false;
   public showError = false;
+  @Input() public message = '';
 
-  constructor() {
+  constructor(private token: TokenStorageService) {
   }
 
   ngOnInit() {
-    this.initConfig();
+    this.initConfig([]);
   }
 
-  private initConfig(): void {
+  public reload(ticketIds) {
+    console.log('updated payment data');
+    this.initConfig(ticketIds);
+  }
+
+  private initConfig(ticketsIds): void {
+    if (ticketsIds == undefined || ticketsIds.length == 0) {
+      this.payPalConfig = undefined;
+      return;
+    }
+
     this.payPalConfig = {
       currency: 'EUR',
       clientId: 'AZy7G54GLeTshw95Qw4OIKWgIVptG4dXgVDMDSV-8K-QkPsAHJsc_CvvzZeBcERZQIjdEbgdlL6v2QBu',
-      createOrderOnClient: (data) => <ICreateOrderRequest> {
-        clientId: 'AZy7G54GLeTshw95Qw4OIKWgIVptG4dXgVDMDSV-8K-QkPsAHJsc_CvvzZeBcERZQIjdEbgdlL6v2QBu',
-        intent: 'AUTHORIZE',
-        purchase_units: [
-          {
-            amount: {
-              currency_code: 'EUR',
-              value: '9.99',
-              breakdown: {
-                item_total: {
-                  currency_code: 'EUR',
-                  value: '9.99'
-                }
-              }
-            },
-            items: [
-              {
-                name: 'Enterprise Subscription',
-                quantity: '1',
-                category: 'DIGITAL_GOODS',
-                unit_amount: {
-                  currency_code: 'EUR',
-                  value: '9.99',
-                },
-              }
-            ]
-          }
-        ]
-      },
+      // createOrderOnClient: (data) => <ICreateOrderRequest> {
+      //   clientId: 'AZy7G54GLeTshw95Qw4OIKWgIVptG4dXgVDMDSV-8K-QkPsAHJsc_CvvzZeBcERZQIjdEbgdlL6v2QBu',
+      //   intent: 'AUTHORIZE',
+      //   purchase_units: [
+      //     {
+      //       amount: {
+      //         currency_code: 'EUR',
+      //         value: totalPrice,
+      //         breakdown: {
+      //           item_total: {
+      //             currency_code: 'EUR',
+      //             value: totalPrice
+      //           }
+      //         }
+      //       },
+      //       items: [
+      //         {
+      //           name: 'Tickets',
+      //           quantity: '1',
+      //           category: 'DIGITAL_GOODS',
+      //           unit_amount: {
+      //             currency_code: 'EUR',
+      //             value: totalPrice
+      //           },
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // },
       advanced: {
         commit: 'true',
-        extraQueryParams: [
-          {
-            name: 'intent',
-            value: 'authorize'
-          }
-        ]
+        // extraQueryParams: [
+        //   {
+        //     name: 'intent',
+        //     value: 'authorize'
+        //   }
+        // ]
       },
       style: {
         label: 'paypal',
         layout: 'vertical'
       },
-      authorizeOnServer: (approveData) => fetch('http://localhost:8080/security/authorize-paypal-transaction', {
+      createOrderOnServer: (data) => fetch('http://localhost:8080/payment/create-paypal-transaction', {
+        method: 'post',
+        mode: 'cors',
+        headers: {
+          'authorization' : 'Bearer ' + this.token.getToken(),
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          ticketIds: ticketsIds
+        })
+      })
+        .then((res) => res.json())
+        .then((order) => order.orderID),
+      authorizeOnServer: (approveData) => fetch('http://localhost:8080/payment/authorize-paypal-transaction', {
           method: 'post',
           mode: 'cors',
           headers: {
+            'authorization' : 'Bearer ' + this.token.getToken(),
             'content-type': 'application/json'
           },
           body: JSON.stringify({
@@ -78,7 +104,8 @@ export class PaypalPaymentComponent implements OnInit {
           console.log(res);
           return res.json();
         }).then((details) => {
-          console.log(details);
+          alert('Payment successful!');
+          location.reload();
         }),
       onApprove: (data, actions) => {
         console.log('onApprove - transaction was approved, but not authorized', data, actions);
@@ -86,15 +113,12 @@ export class PaypalPaymentComponent implements OnInit {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
       },
-      onClientAuthorization: (data) => {
-        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        this.showSuccess = true;
-      },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
       },
       onError: err => {
         console.log('OnError', err);
+        alert('Paymen failed:\n' + err);
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);

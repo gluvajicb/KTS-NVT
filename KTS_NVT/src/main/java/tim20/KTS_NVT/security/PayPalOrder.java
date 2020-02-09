@@ -11,4 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PayPalOrder {
     private String orderID;
+    private Long[] ticketIds;
 }

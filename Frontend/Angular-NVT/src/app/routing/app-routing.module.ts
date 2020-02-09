@@ -20,6 +20,7 @@ import {AuthGuard} from '../helpers/AuthGuard';
 import {UserRole} from '../security/models/UserRole';
 import {UserTicketsContainerComponent} from '../reports/user-tickets-container/user-tickets-container.component';
 import {PaypalPaymentComponent} from '../payment/paypal-payment/paypal-payment.component';
+import {VerificationComponent} from '../security/verification/verification.component';
 
 const routes: Routes = [
   {path: 'locations', component: LocationContainerComponent, canActivate: [AuthGuard]},
@@ -28,16 +29,17 @@ const routes: Routes = [
   {path: 'locations/update/:id', component: LocationUpdateComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
   {path: 'events', component: EventContainerComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
   {path: 'events/add', component: AddEventFormComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
-  {path: 'events/details/:id', component: EventDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'events/details/:id', component: EventDetailsComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
   {path: 'reports', component: EventReportContainerComponent, canActivate: [AuthGuard], data: {roles: [UserRole.Admin]}},
-  {path: 'user/events/details/:id', component: UserEventDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'user/events', component: UserEventContainerComponent, canActivate: [AuthGuard]},
+  {path: 'user/events/details/:id', component: UserEventDetailsComponent, canActivate: [AuthGuard], data: {roles: [UserRole.User]}},
+  {path: 'user/events', component: UserEventContainerComponent, canActivate: [AuthGuard], data: {roles: [UserRole.User]}},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: '', component: HomeComponent},
-  {path: 'tickets', component: UserTicketsContainerComponent, canActivate: [AuthGuard]},
-  {path: 'paypal', component: PaypalPaymentComponent}
+  {path: 'tickets', component: UserTicketsContainerComponent, canActivate: [AuthGuard], data: {roles: [UserRole.User]}},
+  {path: 'paypal', component: PaypalPaymentComponent},
+  {path: 'verification/:verified', component: VerificationComponent}
 ];
 
 @NgModule({

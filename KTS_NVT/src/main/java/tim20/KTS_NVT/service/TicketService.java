@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +45,9 @@ public class TicketService {
 
     @Autowired
     private SectorService sectorService;
+
+    @Autowired
+    private EmailService emailService;
 
     public List<Ticket> findAll() {
 
@@ -123,6 +127,10 @@ public class TicketService {
 
         event.getTickets().add(t);
         eventService.updateEvent(event);
+
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        emailService.sendNewOrderEmail(t, u.getEmail());
+
         return true;
         
     }
@@ -168,6 +176,10 @@ public class TicketService {
         t.setReservationDate(date);
         event.getTickets().add(t);
         eventService.updateEvent(event);
+
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        emailService.sendNewOrderEmail(t, u.getEmail());
+
         return true;
     }
 
